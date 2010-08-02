@@ -1,6 +1,6 @@
 {   "name": "bencode", 
     "description": "a bencode de/encoder", 
-    "version": "0.0.1", 
+    "version": "0.1.0", 
     "author": "Mark Schmale <ma.schmale@googlemail.com", 
     "directories": { "/": "./" }, 
     "main": "./bencode", 
