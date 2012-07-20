@@ -1,8 +1,29 @@
-{   "name": "bencode", 
-    "description": "a bencode de/encoder", 
-    "version": "0.1.0", 
-    "author": "Mark Schmale <ma.schmale@googlemail.com", 
-    "directories": { "/": "./" }, 
-    "main": "./bencode", 
-    "engines": { "node": ">=0.1.94" } 
- }
+{
+  
+  "name": "bencode",
+  "version": "0.2.0",
+  "description": "Bencode de/encoder",
+  "keywords": [ "torrent", "bittorrent", "bencode", "bdecode", "bencoding" ],
+  
+  "author": {
+    "name": "Mark Schmale",
+    "email": "ma.schmale@googlemail.com",
+    "url": "http://masch.it/"
+  },
+  
+  "main": "bencode.js",
+  
+  "devDependencies": {
+    "benchmark": ""
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/themasch/node-bencode.git"
+  },
+  
+  "bugs": {
+    "url": "https://github.com/themasch/node-bencode/issues"
+  }
+  
+}

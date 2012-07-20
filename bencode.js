@@ -1,163 +1,179 @@
-/*
- * ----------------------------------------------------------------------------
- * node-bencode v0.1.0
- * <ma.schmale@googlemail.com> wrote this file. As long as you retain this notice 
- * you can do whatever you want with this stuff. If we meet some day, and you 
- * think this stuff is worth it, you can buy me a beer in return. Mark Schmale
- * ----------------------------------------------------------------------------
- */
-var sys = require('sys');
 
 /**
- * decodes a bencoded string 
+ * Encodes data in bencode.
+ * 
+ * @param  {Buffer|Array|String|Object|Number} data
+ * @return {String}
  */
-exports.decode = function decode(str) {
-    var arr = str.split('');
+function encode( data ) {
+  
+  var out = ''
+  
+  switch( typeof data ) {
+    case 'string': out = encode.bytes( data )
+      break
+    case 'number': out = encode.number( data )
+      break
+    case 'object':
+      out = data.constructor === Array
+        ? encode.list( data )
+        : encode.dict( data )
+      break
+  }
+  
+  return out
+  
+}
 
-    function integer(start) {
-        var c = '', n = '', i = 0, mul = 1;
-        var len = arr.length;
-        if(arr[start] === '-') {
-            mul = -1;
-            start = start+1;
-        }
-        for(i=start;i<len;i++) {
-            c = arr[i];
-            if(c == parseInt(c)) {
-                n = n  + c;
-            } else {
-                break;
-            }
-        } 
-        return {next: i+1, ret: mul*parseInt(n)};
+encode.bytes = function( data ) {
+  return data.length + ':' + data
+}
+
+encode.number = function( data ) {
+  return 'i' + data + 'e'
+}
+
+encode.dict = function( data ) {
+  
+  var dict = 'd'
+  
+  for( var k in data ) {
+    dict += encode( k ) + encode( data[k] )
+  }
+  
+  return dict + 'e'
+  
+}
+
+encode.list = function( data ) {
+  
+  var i = 0
+  var c = data.length
+  var lst = 'l'
+  
+  for( ; i < c; i++ ) {
+    lst += encode( data[i] )
+  }
+  
+  return lst + 'e'
+  
+}
+
+/**
+ * Decodes bencoded data.
+ * 
+ * @param  {Buffer} data
+ * @param  {Boolean} toString
+ * @return {Object|Array|Buffer|String|Number}
+ */
+function decode( data, toString ) {
+  
+  if( !(this instanceof decode) ) {
+    return new decode( data, toString )
+  }
+  
+  this.stringify = !!toString
+  
+  this.data = data
+  
+  return this.next()
+  
+}
+
+decode.prototype = {
+  
+  next: function() {
+    
+    switch( this.data[0] ) {
+      case 0x64: return this.dictionary()
+      case 0x6C: return this.list()
+      case 0x69: return this.integer()
+      default:  return this.bytes()
     }
     
-    function text(start) {
-        var   nfo = integer(start), 
-            start = nfo.next,
-              len = nfo.ret
-                i = 0
-             full = '';
-
-        for(i=start;i<len+start;i++) {
-            full = full + arr[i]
-        }
-        return {next: i, ret: full};
+  },
+  
+  find: function( needle ) {
+    
+    var i = 0
+    var length = this.data.length
+    
+    for( ; i < length; i++ ) {
+      if( this.data[i] === needle ) {
+        return i
+      }
     }
-
-    function list(start) {
-        var len  = arr.length, 
-            i    = start+1,
-            list = [], 
-            tmp  = {}, 
-            lcnt = 0;
-        while(i<len && arr[i] !== 'e') {
-            tmp        = next(i);
-            i          = tmp.next;
-            list[lcnt] = tmp.ret;
-            lcnt++;
-        }
-        return {next: i+1, ret: list};
+    
+    return -1
+    
+  },
+  
+  forward: function( index ) {
+    this.data = this.data.slice(
+      index, this.data.length
+    )
+  },
+  
+  dictionary: function() {
+    
+    this.forward( 1 )
+    
+    var dict = {}
+    
+    while( this.data[0] !== 0x65 ) {
+      dict[ this.next() ] = this.next()
     }
+    
+    this.forward( 1 )
+    
+    return dict
+    
+  },
 
-    function dictionary(start) {
-        var len   = arr.length, 
-            i     = start+1,
-            list  = {}, 
-            tmp   = {}, 
-            isKey = true,
-            key   = '';
-        while(i<len && arr[i] !== 'e') {
-            tmp        = next(i);
-            i          = tmp.next;
-            if(isKey === true) {
-                key = tmp.ret;
-            } else {
-                list[key] = tmp.ret;
-            }
-            isKey = !isKey;
-        }
-        return {next: i+1, ret: list};
+  list: function() {
+    
+    this.forward( 1 )
+    
+    var lst = []
+    
+    while( this.data[0] !== 0x65 ) {
+      lst.push( this.next() )
     }
+    
+    this.forward( 1 )
+    
+    return lst
+    
+  },
 
+  integer: function() {
+    
+    var end    = this.find( 0x65 )
+    var number = this.data.slice( 1, end )
+    
+    this.forward( end + 1 )
+    
+    return +number
+    
+  },
 
-    function next(start) {
-        var data = 0;
-        start = start || 0;
-        switch(arr[start]) { 
-            case 'i':   // integer
-                data = integer(start+1);
-                break;
-            case 'l':   // liste
-                data = list(start);
-                break;
-            case 'd':   // dict
-                data = dictionary(start);
-                break; 
-            default:    // string
-                data = text(start);
-        }
-        return data;
-    }
-
-    return next(0).ret;
+  bytes: function() {
+    
+    var sep    = this.find( 0x3A )
+    var length = +this.data.slice( 0, sep ).toString()
+    var sepl   = sep + 1 + length
+    var bytes  = this.data.slice( sep + 1, sepl )
+    
+    this.forward( sepl )
+    
+    return this.stringify
+      ? bytes.toString()
+      : bytes
+    
+  }
+  
 }
 
-exports.encode = function encode(data) {
-/*    sys.puts(sys.inspect(typeof(data)));
-    sys.puts(sys.inspect(is_array(data)));*/
- 
-    function encode_string(data) {
-        return data.length + ":" + data;
-    }
-
-    function encode_integer(data) {
-        return "i" + data + "e";
-    }
-
-    function encode_list(data) {
-        var max = data.length;
-        var i   = 0;
-        var str = "l";
-        for(i=0;i<max;i++) {
-            str = str + encode(data[i]);
-        }
-        str = str + "e";
-        return str;
-    }
-
-    function encode_dict(data) {
-        var str = "d";
-        for(var key in data) {
-            str = str + encode_string(key) + encode(data[key]);
-        }
-        str = str + "e";
-        return str;
-    }
-
-    /** helper **/
-    function is_array(obj) {
-        return obj.constructor == Array;
-    }
-
-    var str = "";
-   
-    switch(typeof(data)) {
-        case 'object':
-            if(is_array(data) === true) {
-                str = encode_list(data);
-            } else {
-                str = encode_dict(data);
-            }
-            break;
-
-        case 'number':
-            str = encode_integer(data);
-            break;
-
-        case 'string': 
-            str = encode_string(data);
-            break;
-    }
-    return str;
-}
+// Expose methods
+exports.encode = encode
+exports.decode = decode
