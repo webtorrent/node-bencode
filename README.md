@@ -112,7 +112,7 @@ Returns `String`
 ### bencode.decode( *data*, *encoding* )
 
 > `Buffer` __data__  
-> `Boolean` __encoding__
+> `String` __encoding__
 
 If `encoding` is set, bytestrings are
 automatically converted to strings.
