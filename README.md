@@ -85,7 +85,7 @@ var result = bencode.decode( data )
 Automagically convert bytestrings to strings:
 
 ```javascript
-var result = bencode.decode( data, true )
+var result = bencode.decode( data, 'utf8' )
 ```
 
 #### Output
@@ -109,12 +109,12 @@ var result = bencode.decode( data, true )
 
 Returns `String`
 
-### bencode.decode( *data*, *toString* )
+### bencode.decode( *data*, *encoding* )
 
 > `Buffer` __data__  
-> `Boolean` __toString__
+> `Boolean` __encoding__
 
-If `toString` is set to something truthy,  
-bytestrings are automatically converted to strings.
+If `encoding` is set, bytestrings are
+automatically converted to strings.
 
 Returns `Object` | `Array` | `Buffer` | `String` | `Number`
