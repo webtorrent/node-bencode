@@ -63,18 +63,17 @@ encode.list = function( data ) {
  * Decodes bencoded data.
  * 
  * @param  {Buffer} data
- * @param  {Boolean} toString
+ * @param  {String} encoding
  * @return {Object|Array|Buffer|String|Number}
  */
-function decode( data, toString ) {
+function decode( data, encoding ) {
   
   if( !(this instanceof decode) ) {
-    return new decode( data, toString )
+    return new decode( data, encoding )
   }
   
-  this.stringify = !!toString
-  
-  this.data = data
+  this.encoding = encoding || null
+  this.data     = data
   
   return this.next()
   
@@ -88,7 +87,7 @@ decode.prototype = {
       case 0x64: return this.dictionary()
       case 0x6C: return this.list()
       case 0x69: return this.integer()
-      default:  return this.bytes()
+      default:   return this.bytes()
     }
     
   },
@@ -166,8 +165,8 @@ decode.prototype = {
     
     this.forward( sepl )
     
-    return this.stringify
-      ? bytes.toString()
+    return this.encoding
+      ? bytes.toString( this.encoding )
       : bytes
     
   }
