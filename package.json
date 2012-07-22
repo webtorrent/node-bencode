@@ -1,7 +1,7 @@
 {
   
   "name": "bencode",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Bencode de/encoder",
   "keywords": [ "torrent", "bittorrent", "bencode", "bdecode", "bencoding" ],
   
