@@ -7,23 +7,26 @@ var fs        = require( 'fs' )
 var suite = new Benchmark.Suite
 
 var buffer = fs.readFileSync( __dirname + '/test.torrent' )
-var data   = bencode.decode( buffer, true )
+var data   = bencode.decode( buffer, 'ascii' )
 var string = bencode.encode( data )
 
 suite
-  .add( 'new#encode( Object )', function () {
+  .add( 'new.encode( Object )', function () {
     bencode.encode( data )
   })
-  .add( 'old#encode( Object )', function () {
+  .add( 'old.encode( Object )', function () {
     old.encode( data )
   })
-  .add( 'new#decode( Buffer )', function () {
+  .add( 'new.decode( Buffer )', function () {
     bencode.decode( buffer )
   })
-  .add( 'new#decode( Buffer, true )', function () {
-    bencode.decode( buffer, true )
+  .add( 'new.decode( Buffer, "ascii" )', function () {
+    bencode.decode( buffer, 'ascii' )
   })
-  .add( 'old#decode( String )', function () {
+  .add( 'new.decode( Buffer, "utf8" )', function () {
+    bencode.decode( buffer, 'utf8' )
+  })
+  .add( 'old.decode( String )', function () {
     old.decode( string )
   })
   .on( 'cycle', function ( event, bench ) {
