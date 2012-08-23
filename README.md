@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/themasch/node-bencode.png)](http://travis-ci.org/themasch/node-bencode)
 
 # node-bencode
 
