@@ -7,6 +7,9 @@
  */
 function encode( data ) {
   
+  if( Buffer.isBuffer( data ) )
+    return encode.bytes( data )
+  
   switch( typeof data ) {
     case 'string': 
       return encode.bytes( data )
