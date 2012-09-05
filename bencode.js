@@ -7,21 +7,19 @@
  */
 function encode( data ) {
   
-  var out = ''
-  
   switch( typeof data ) {
-    case 'string': out = encode.bytes( data )
+    case 'string': 
+      return encode.bytes( data )
       break
-    case 'number': out = encode.number( data )
+    case 'number': 
+      return encode.number( data )
       break
     case 'object':
-      out = data.constructor === Array
+      return data.constructor === Array
         ? encode.list( data )
         : encode.dict( data )
       break
   }
-  
-  return out
   
 }
 
@@ -95,9 +93,9 @@ decode.prototype = {
   find: function( needle ) {
     
     var i = 0
-    var length = this.data.length
+    var c = this.data.length
     
-    for( ; i < length; i++ ) {
+    for( ; i < c; i++ ) {
       if( this.data[i] === needle ) {
         return i
       }
