@@ -34,6 +34,21 @@ These metadata files are simply bencoded dictionaries.
 npm install bencode
 ```
 
+## Performance
+
+```
+bencode->encode( Object )     x  97,736 ops/sec  ±0.33% (62 runs sampled)
+bencoding->encode( Object )   x  860 ops/sec     ±1.95% (56 runs sampled)
+dht-bencode->encode( Object ) x  846 ops/sec     ±2.97% (56 runs sampled)
+bncode->encode( Object )      x  837 ops/sec     ±2.39% (55 runs sampled)
+```
+```
+bencode->decode( Buffer )     x  12,468 ops/sec  ±0.78% (64 runs sampled)
+bencoding->decode( Buffer )   x  18,556 ops/sec  ±0.57% (62 runs sampled)
+dht-bencode->decode( Buffer ) x  18,344 ops/sec  ±0.35% (62 runs sampled)
+bncode->decode( Buffer )      x  770 ops/sec     ±1.39% (58 runs sampled)
+```
+
 ## Usage
 
 ```javascript
