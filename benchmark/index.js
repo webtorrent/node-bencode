@@ -7,41 +7,62 @@ var bencoding   = require( 'bencoding' )
 var dht_bencode = require( 'dht-bencode' )
 var bncode      = require( 'bncode' )
 
-var suite = new Benchmark.Suite
-
 var buffer = fs.readFileSync( __dirname + '/test.torrent' )
 var object = bencode.decode( buffer, 'ascii' )
 var string = bencode.encode( object )
 
-suite
-  // Encoding
-  .add( 'bencode->encode( Object )', function () {
+// ////////////////////////////////////////////////////////////////////////////
+
+console.log( 'ENCODING\n' )
+var encoding = new Benchmark.Suite()
+  
+  .add( 'bencode', function () {
     bencode.encode( object )
   })
-  .add( 'bencoding->encode( Object )', function () {
+  .add( 'bencoding', function () {
     bencoding.encode( object )
   })
-  .add( 'dht-bencode->encode( Object )', function () {
+  .add( 'dht-bencode', function () {
     dht_bencode.bencode( object )
   })
-  .add( 'bncode->encode( Object )', function () {
+  .add( 'bncode', function () {
     bncode.encode( object )
   })
-  // Decoding
-  .add( 'bencode->decode( Buffer )', function () {
-    bencode.decode( buffer )
-  })
-  .add( 'bencoding->decode( Buffer )', function () {
-    bencoding.decode( buffer )
-  })
-  .add( 'dht-bencode->decode( Buffer )', function () {
-    dht_bencode.bdecode( buffer )
-  })
-  .add( 'bncode->decode( Buffer )', function () {
-    bncode.decode( buffer )
-  })
-  // Print cycle
+  
   .on( 'cycle', function ( event, bench ) {
     console.log( bench.toString(), bench.error || '' )
+  })
+  .on( 'complete', function ( event, bench ) {
+    console.log(
+      '\nFastest is ' + this.filter( 'fastest' ).pluck( 'name' ) + '\n\n'
+    )
+  })
+  .run()
+
+// ////////////////////////////////////////////////////////////////////////////
+
+console.log( 'DECODING\n' )
+var decoding = new Benchmark.Suite()
+  
+  .add( 'bencode', function () {
+    bencode.decode( buffer )
+  })
+  .add( 'bencoding', function () {
+    bencoding.decode( buffer )
+  })
+  .add( 'dht-bencode', function () {
+    dht_bencode.bdecode( buffer )
+  })
+  .add( 'bncode', function () {
+    bncode.decode( buffer )
+  })
+  
+  .on( 'cycle', function ( event, bench ) {
+    console.log( bench.toString(), bench.error || '' )
+  })
+  .on( 'complete', function ( event, bench ) {
+    console.log(
+      '\nFastest is ' + this.filter( 'fastest' ).pluck( 'name' ) + '\n'
+    )
   })
   .run()
