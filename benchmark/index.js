@@ -1,34 +1,46 @@
 
-var bencode   = require( '../' )
-var old       = require( './bencode.old' )
 var Benchmark = require( 'benchmark' )
 var fs        = require( 'fs' )
+
+var bencode     = require( '../' )
+var bencoding   = require( 'bencoding' )
+var dht_bencode = require( 'dht-bencode' )
+var bncode      = require( 'bncode' )
 
 var suite = new Benchmark.Suite
 
 var buffer = fs.readFileSync( __dirname + '/test.torrent' )
-var data   = bencode.decode( buffer, 'ascii' )
-var string = bencode.encode( data )
+var object = bencode.decode( buffer, 'ascii' )
+var string = bencode.encode( object )
 
 suite
-  .add( 'new.encode( Object )', function () {
-    bencode.encode( data )
+  // Encoding
+  .add( 'bencode->encode( Object )', function () {
+    bencode.encode( object )
   })
-  .add( 'old.encode( Object )', function () {
-    old.encode( data )
+  .add( 'bencoding->encode( Object )', function () {
+    bencoding.encode( object )
   })
-  .add( 'new.decode( Buffer )', function () {
+  .add( 'dht-bencode->encode( Object )', function () {
+    dht_bencode.bencode( object )
+  })
+  .add( 'bncode->encode( Object )', function () {
+    bncode.encode( object )
+  })
+  // Decoding
+  .add( 'bencode->decode( Buffer )', function () {
     bencode.decode( buffer )
   })
-  .add( 'new.decode( Buffer, "ascii" )', function () {
-    bencode.decode( buffer, 'ascii' )
+  .add( 'bencoding->decode( Buffer )', function () {
+    bencoding.decode( buffer )
   })
-  .add( 'new.decode( Buffer, "utf8" )', function () {
-    bencode.decode( buffer, 'utf8' )
+  .add( 'dht-bencode->decode( Buffer )', function () {
+    dht_bencode.bdecode( buffer )
   })
-  .add( 'old.decode( String )', function () {
-    old.decode( string )
+  .add( 'bncode->decode( Buffer )', function () {
+    bncode.decode( buffer )
   })
+  // Print cycle
   .on( 'cycle', function ( event, bench ) {
     console.log( bench.toString(), bench.error || '' )
   })
