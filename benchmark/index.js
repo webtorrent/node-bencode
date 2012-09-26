@@ -31,6 +31,9 @@ suite
   .add( 'bencode->decode( Buffer )', function () {
     bencode.decode( buffer )
   })
+  .add( 'bencode->decodev2( Buffer )', function () {
+    bencode.decodev2( buffer )
+  })
   .add( 'bencoding->decode( Buffer )', function () {
     bencoding.decode( buffer )
   })
@@ -42,6 +45,6 @@ suite
   })
   // Print cycle
   .on( 'cycle', function ( event, bench ) {
-    console.log( bench.toString(), bench.error || '' )
+    console.log( event.target.toString(), event.error || '');
   })
   .run()

@@ -173,6 +173,121 @@ decode.bytes = function() {
   
 }
 
+
+/**
+ * Decodes bencoded data.
+ * 
+ * @param  {Buffer} data
+ * @param  {String} encoding
+ * @return {Object|Array|Buffer|String|Number}
+ */
+function decodev2( data, encoding ) {
+  
+  decodev2.encoding = encoding || null
+  
+  decodev2.data = !( data instanceof Buffer )
+    ? new Buffer( data )
+    : data
+  decodev2.position = 0
+
+  return decodev2.next()
+  
+}
+
+decodev2.position = 0
+decodev2.encoding = null
+decodev2.data = null
+
+decodev2.next = function() {
+  
+  switch( decodev2.data[this.position] ) {
+    case 0x64: return decodev2.dictionary()
+    case 0x6C: return decodev2.list()
+    case 0x69: return decodev2.integer()
+    default:   return decodev2.bytes()
+  }
+  
+}
+
+decodev2.find = function( chr ) {
+  
+  var i = this.position
+  var c = decodev2.data.length
+  var d = decodev2.data
+  
+  while( i < c ) {
+    if( d[i] === chr )
+      return i
+    i++
+  }
+  
+  return -1
+  
+}
+
+decodev2.forward = function( index ) {
+  this.position += index
+}
+
+decodev2.dictionary = function() {
+  
+  this.position++;
+  
+  var dict = {}
+  
+  while( decodev2.data[this.position] !== 0x65 ) {
+    dict[ decodev2.next() ] = decodev2.next()
+  }
+  
+  this.position++;
+  
+  return dict
+  
+}
+
+decodev2.list = function() {
+  
+  this.position++;
+  
+  var lst = []
+  
+  while( decodev2.data[this.position] !== 0x65 ) {
+    lst.push( decodev2.next() )
+  }
+  
+  this.position++;
+  
+  return lst
+  
+}
+
+decodev2.integer = function() {
+  
+  var end    = decodev2.find( 0x65 )
+  var number = decodev2.data.slice( 1, end )
+  
+  decodev2.forward( end + 1 - this.position)
+  
+  return +number
+  
+}
+
+decodev2.bytes = function() {
+  
+  var sep    = decodev2.find( 0x3A )
+  var length = +decodev2.data.slice( this.position, sep ).toString()
+  var sepl   = sep + 1 + length
+  var bytes  = decodev2.data.slice( sep + 1, sepl )
+  
+  decodev2.forward( sepl - this.position)
+  
+  return decodev2.encoding
+    ? bytes.toString( decodev2.encoding )
+    : bytes
+  
+}
+
+exports.decodev2 = decodev2
 // Expose methods
 exports.encode = encode
 exports.decode = decode
