@@ -69,112 +69,107 @@ encode.list = function( data ) {
  */
 function decode( data, encoding ) {
   
-  if( !(this instanceof decode) ) {
-    return new decode( data, encoding )
-  }
+  decode.encoding = encoding || null
   
-  this.encoding = encoding || null
-  
-  this.data = !( data instanceof Buffer )
+  decode.data = !( data instanceof Buffer )
     ? new Buffer( data )
     : data
   
-  return this.next()
+  return decode.next()
   
 }
 
-decode.prototype = {
-  
-  next: function() {
-    
-    switch( this.data[0] ) {
-      case 0x64: return this.dictionary()
-      case 0x6C: return this.list()
-      case 0x69: return this.integer()
-      default:   return this.bytes()
-    }
-    
-  },
-  
-  find: function( chr ) {
-    
-    var i = 0
-    var c = this.data.length
-    var d = this.data
-    
-    while( i < c ) {
-      if( d[i] === chr )
-        return i
-      i++
-    }
-    
-    return -1
-    
-  },
-  
-  forward: function( index ) {
-    this.data = this.data.slice(
-      index, this.data.length
-    )
-  },
-  
-  dictionary: function() {
-    
-    this.forward( 1 )
-    
-    var dict = {}
-    
-    while( this.data[0] !== 0x65 ) {
-      dict[ this.next() ] = this.next()
-    }
-    
-    this.forward( 1 )
-    
-    return dict
-    
-  },
+decode.encoding = null
+decode.data = null
 
-  list: function() {
-    
-    this.forward( 1 )
-    
-    var lst = []
-    
-    while( this.data[0] !== 0x65 ) {
-      lst.push( this.next() )
-    }
-    
-    this.forward( 1 )
-    
-    return lst
-    
-  },
-
-  integer: function() {
-    
-    var end    = this.find( 0x65 )
-    var number = this.data.slice( 1, end )
-    
-    this.forward( end + 1 )
-    
-    return +number
-    
-  },
-
-  bytes: function() {
-    
-    var sep    = this.find( 0x3A )
-    var length = +this.data.slice( 0, sep ).toString()
-    var sepl   = sep + 1 + length
-    var bytes  = this.data.slice( sep + 1, sepl )
-    
-    this.forward( sepl )
-    
-    return this.encoding
-      ? bytes.toString( this.encoding )
-      : bytes
-    
+decode.next = function() {
+  
+  switch( decode.data[0] ) {
+    case 0x64: return decode.dictionary()
+    case 0x6C: return decode.list()
+    case 0x69: return decode.integer()
+    default:   return decode.bytes()
   }
+  
+}
+
+decode.find = function( chr ) {
+  
+  var i = 0
+  var c = decode.data.length
+  var d = decode.data
+  
+  while( i < c ) {
+    if( d[i] === chr )
+      return i
+    i++
+  }
+  
+  return -1
+  
+}
+
+decode.forward = function( index ) {
+  decode.data = decode.data.slice(
+    index, decode.data.length
+  )
+}
+
+decode.dictionary = function() {
+  
+  decode.forward( 1 )
+  
+  var dict = {}
+  
+  while( decode.data[0] !== 0x65 ) {
+    dict[ decode.next() ] = decode.next()
+  }
+  
+  decode.forward( 1 )
+  
+  return dict
+  
+}
+
+decode.list = function() {
+  
+  decode.forward( 1 )
+  
+  var lst = []
+  
+  while( decode.data[0] !== 0x65 ) {
+    lst.push( decode.next() )
+  }
+  
+  decode.forward( 1 )
+  
+  return lst
+  
+}
+
+decode.integer = function() {
+  
+  var end    = decode.find( 0x65 )
+  var number = decode.data.slice( 1, end )
+  
+  decode.forward( end + 1 )
+  
+  return +number
+  
+}
+
+decode.bytes = function() {
+  
+  var sep    = decode.find( 0x3A )
+  var length = +decode.data.slice( 0, sep ).toString()
+  var sepl   = sep + 1 + length
+  var bytes  = decode.data.slice( sep + 1, sepl )
+  
+  decode.forward( sepl )
+  
+  return decode.encoding
+    ? bytes.toString( decode.encoding )
+    : bytes
   
 }
 
