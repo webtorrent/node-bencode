@@ -14,7 +14,10 @@
   "main": "bencode.js",
   
   "devDependencies": {
-    "benchmark": ""
+    "benchmark": "",
+    "bencoding": "",
+    "dht-bencode": "",
+    "bncode": ""
   },
   
   "repository": {
