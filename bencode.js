@@ -96,15 +96,16 @@ decode.prototype = {
     
   },
   
-  find: function( needle ) {
+  find: function( chr ) {
     
     var i = 0
     var c = this.data.length
+    var d = this.data
     
-    for( ; i < c; i++ ) {
-      if( this.data[i] === needle ) {
+    while( i < c ) {
+      if( d[i] === chr )
         return i
-      }
+      i++
     }
     
     return -1
