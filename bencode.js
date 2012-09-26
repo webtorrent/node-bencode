@@ -74,7 +74,10 @@ function decode( data, encoding ) {
   }
   
   this.encoding = encoding || null
-  this.data     = data
+  
+  this.data = !( data instanceof Buffer )
+    ? new Buffer( data )
+    : data
   
   return this.next()
   
