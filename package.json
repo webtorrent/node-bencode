@@ -18,7 +18,11 @@
     "bencoding": "",
     "dht-bencode": "",
     "bncode": "",
-    "dht.js": ""
+    "dht.js": "", 
+    "mocha": ""
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha tests/*.test.js"
   },
   
   "repository": {
