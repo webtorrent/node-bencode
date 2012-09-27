@@ -158,8 +158,8 @@ decode.bytes = function() {
   
   var sep    = decode.find( 0x3A )
   var length = +decode.data.slice( decode.position, sep ).toString()
-  var sepl   = sep + 1 + length
-  var bytes  = decode.data.slice( sep + 1, sepl )
+  var sepl   = ++sep + length
+  var bytes  = decode.data.slice( sep, sepl )
   
   decode.position += ( sepl - decode.position )
   
