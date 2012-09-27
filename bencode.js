@@ -27,7 +27,9 @@ function encode( data ) {
 }
 
 encode.bytes = function( data ) {
-  return data.length + ':' + data
+  if( data instanceof Buffer )
+    return data.length + ':' + data
+  return Buffer.byteLength( data ) + ':' + data
 }
 
 encode.number = function( data ) {
