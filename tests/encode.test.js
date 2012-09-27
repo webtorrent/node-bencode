@@ -22,6 +22,10 @@ describe("bencode", function() {
 			assert.equal(bencode.encode("asdf"), '4:asdf');
 			assert.equal(bencode.encode(":asdf:"), '6::asdf:');
 		})
+		it('should be able to encode a unicode string', function() {
+			assert.equal(bencode.encode("ö±sdf"), '7:ö±sdf');
+			assert.equal(bencode.encode(new Buffer("ö±sdf")), '7:ö±sdf');
+		})
 		it('should be able to encode a buffer', function() {
 			assert.equal(bencode.encode(new Buffer("asdf")), '4:asdf');
 			assert.equal(bencode.encode(new Buffer(":asdf:")), '6::asdf:');
