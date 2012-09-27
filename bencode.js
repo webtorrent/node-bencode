@@ -13,15 +13,12 @@ function encode( data ) {
   switch( typeof data ) {
     case 'string': 
       return encode.bytes( data )
-      break
     case 'number': 
       return encode.number( data )
-      break
     case 'object':
       return data.constructor === Array
         ? encode.list( data )
         : encode.dict( data )
-      break
   }
   
 }
@@ -148,7 +145,7 @@ decode.integer = function() {
   var end    = decode.find( 0x65 )
   var number = decode.data.slice( 1, end )
   
-  decode.position += ( end + 1 - decode.position )
+  decode.position += end + 1 - decode.position
   
   return +number
   
@@ -161,7 +158,7 @@ decode.bytes = function() {
   var sepl   = ++sep + length
   var bytes  = decode.data.slice( sep, sepl )
   
-  decode.position += ( sepl - decode.position )
+  decode.position += sepl - decode.position
   
   return decode.encoding
     ? bytes.toString( decode.encoding )
