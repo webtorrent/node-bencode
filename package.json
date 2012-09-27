@@ -17,7 +17,8 @@
     "benchmark": "",
     "bencoding": "",
     "dht-bencode": "",
-    "bncode": ""
+    "bncode": "",
+    "dht.js": ""
   },
   
   "repository": {

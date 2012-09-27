@@ -6,10 +6,11 @@ var bencode     = require( '../' )
 var bencoding   = require( 'bencoding' )
 var dht_bencode = require( 'dht-bencode' )
 var bncode      = require( 'bncode' )
+var dht         = require( 'dht.js/lib/dht/bencode' )
 
 var buffer = fs.readFileSync( __dirname + '/test.torrent' )
 var object = bencode.decode( buffer, 'ascii' )
-var string = bencode.encode( object )
+// var string = bencode.encode( object )
 
 // ////////////////////////////////////////////////////////////////////////////
 
@@ -27,6 +28,9 @@ var encoding = new Benchmark.Suite()
   })
   .add( 'bncode', function () {
     bncode.encode( object )
+  })
+  .add( 'dht.js', function () {
+    dht.encode( object )
   })
   
   .on( 'cycle', function ( event, bench ) {
@@ -55,6 +59,9 @@ var decoding = new Benchmark.Suite()
   })
   .add( 'bncode', function () {
     bncode.decode( buffer )
+  })
+  .add( 'dht.js', function () {
+    dht.decode( buffer )
   })
   
   .on( 'cycle', function ( event, bench ) {
