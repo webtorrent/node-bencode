@@ -7,8 +7,8 @@
  */
 function encode( data ) {
   
-  if( Buffer.isBuffer( data ) )
-    return encode.bytes( data )
+  if( data instanceof Buffer )
+    return data.length + ':' + data
   
   switch( typeof data ) {
     case 'string': 
@@ -27,8 +27,6 @@ function encode( data ) {
 }
 
 encode.bytes = function( data ) {
-  if( data instanceof Buffer )
-    return data.length + ':' + data
   return Buffer.byteLength( data ) + ':' + data
 }
 
