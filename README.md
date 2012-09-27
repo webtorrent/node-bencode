@@ -9,6 +9,7 @@ according to the [BitTorrent specification](http://www.bittorrent.org/beps/bep_0
 
 - [About BEncoding](#about-bencoding)
 - [Installation](#install-with-npm)
+- [Performance](#performance)
 - [Usage](#usage)
 - [API](#api)
 
@@ -37,16 +38,18 @@ npm install bencode
 ## Performance
 
 ```
-bencode->encode( Object )     x  97,736 ops/sec  ±0.33% (62 runs sampled)
-bencoding->encode( Object )   x  860 ops/sec     ±1.95% (56 runs sampled)
-dht-bencode->encode( Object ) x  846 ops/sec     ±2.97% (56 runs sampled)
-bncode->encode( Object )      x  837 ops/sec     ±2.39% (55 runs sampled)
+bencode      x 91,868 ops/sec ±0.29% (63 runs sampled)
+bencoding    x 841    ops/sec ±2.78% (55 runs sampled)
+dht-bencode  x 859    ops/sec ±2.75% (57 runs sampled)
+bncode       x 847    ops/sec ±2.45% (56 runs sampled)
+dht.js       x 785    ops/sec ±2.72% (57 runs sampled)
 ```
 ```
-bencode->decode( Buffer )     x  12,468 ops/sec  ±0.78% (64 runs sampled)
-bencoding->decode( Buffer )   x  18,556 ops/sec  ±0.57% (62 runs sampled)
-dht-bencode->decode( Buffer ) x  18,344 ops/sec  ±0.35% (62 runs sampled)
-bncode->decode( Buffer )      x  770 ops/sec     ±1.39% (58 runs sampled)
+bencode      x 16,070 ops/sec ±1.53% (63 runs sampled)
+bencoding    x 19,578 ops/sec ±0.39% (62 runs sampled)
+dht-bencode  x 18,525 ops/sec ±0.34% (64 runs sampled)
+bncode       x 767    ops/sec ±1.17% (51 runs sampled)
+dht.js       x 14,619 ops/sec ±1.85% (63 runs sampled)
 ```
 
 ## Usage
