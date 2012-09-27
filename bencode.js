@@ -69,6 +69,7 @@ encode.list = function( data ) {
  */
 function decode( data, encoding ) {
   
+  decode.position = 0
   decode.encoding = encoding || null
   
   decode.data = !( data instanceof Buffer )
@@ -79,12 +80,13 @@ function decode( data, encoding ) {
   
 }
 
+decode.position = 0
+decode.data     = null
 decode.encoding = null
-decode.data = null
 
 decode.next = function() {
   
-  switch( decode.data[0] ) {
+  switch( decode.data[decode.position] ) {
     case 0x64: return decode.dictionary()
     case 0x6C: return decode.list()
     case 0x69: return decode.integer()
@@ -95,7 +97,7 @@ decode.next = function() {
 
 decode.find = function( chr ) {
   
-  var i = 0
+  var i = decode.position
   var c = decode.data.length
   var d = decode.data
   
@@ -109,23 +111,17 @@ decode.find = function( chr ) {
   
 }
 
-decode.forward = function( index ) {
-  decode.data = decode.data.slice(
-    index, decode.data.length
-  )
-}
-
 decode.dictionary = function() {
   
-  decode.forward( 1 )
+  decode.position++
   
   var dict = {}
   
-  while( decode.data[0] !== 0x65 ) {
+  while( decode.data[decode.position] !== 0x65 ) {
     dict[ decode.next() ] = decode.next()
   }
   
-  decode.forward( 1 )
+  decode.position++
   
   return dict
   
@@ -133,15 +129,15 @@ decode.dictionary = function() {
 
 decode.list = function() {
   
-  decode.forward( 1 )
+  decode.position++
   
   var lst = []
   
-  while( decode.data[0] !== 0x65 ) {
+  while( decode.data[decode.position] !== 0x65 ) {
     lst.push( decode.next() )
   }
   
-  decode.forward( 1 )
+  decode.position++
   
   return lst
   
@@ -152,7 +148,7 @@ decode.integer = function() {
   var end    = decode.find( 0x65 )
   var number = decode.data.slice( 1, end )
   
-  decode.forward( end + 1 )
+  decode.position += ( end + 1 - decode.position )
   
   return +number
   
@@ -161,11 +157,11 @@ decode.integer = function() {
 decode.bytes = function() {
   
   var sep    = decode.find( 0x3A )
-  var length = +decode.data.slice( 0, sep ).toString()
+  var length = +decode.data.slice( decode.position, sep ).toString()
   var sepl   = sep + 1 + length
   var bytes  = decode.data.slice( sep + 1, sepl )
   
-  decode.forward( sepl )
+  decode.position += ( sepl - decode.position )
   
   return decode.encoding
     ? bytes.toString( decode.encoding )
@@ -173,121 +169,6 @@ decode.bytes = function() {
   
 }
 
-
-/**
- * Decodes bencoded data.
- * 
- * @param  {Buffer} data
- * @param  {String} encoding
- * @return {Object|Array|Buffer|String|Number}
- */
-function decodev2( data, encoding ) {
-  
-  decodev2.encoding = encoding || null
-  
-  decodev2.data = !( data instanceof Buffer )
-    ? new Buffer( data )
-    : data
-  decodev2.position = 0
-
-  return decodev2.next()
-  
-}
-
-decodev2.position = 0
-decodev2.encoding = null
-decodev2.data = null
-
-decodev2.next = function() {
-  
-  switch( decodev2.data[decodev2.position] ) {
-    case 0x64: return decodev2.dictionary()
-    case 0x6C: return decodev2.list()
-    case 0x69: return decodev2.integer()
-    default:   return decodev2.bytes()
-  }
-  
-}
-
-decodev2.find = function( chr ) {
-  
-  var i = decodev2.position
-  var c = decodev2.data.length
-  var d = decodev2.data
-  
-  while( i < c ) {
-    if( d[i] === chr )
-      return i
-    i++
-  }
-  
-  return -1
-  
-}
-
-decodev2.forward = function( index ) {
-  decodev2.position += index
-}
-
-decodev2.dictionary = function() {
-  
-  decodev2.position++;
-  
-  var dict = {}
-  
-  while( decodev2.data[decodev2.position] !== 0x65 ) {
-    dict[ decodev2.next() ] = decodev2.next()
-  }
-  
-  decodev2.position++;
-  
-  return dict
-  
-}
-
-decodev2.list = function() {
-  
-  decodev2.position++;
-  
-  var lst = []
-  
-  while( decodev2.data[decodev2.position] !== 0x65 ) {
-    lst.push( decodev2.next() )
-  }
-  
-  decodev2.position++;
-  
-  return lst
-  
-}
-
-decodev2.integer = function() {
-  
-  var end    = decodev2.find( 0x65 )
-  var number = decodev2.data.slice( 1, end )
-  
-  decodev2.forward( end + 1 - decodev2.position)
-  
-  return +number
-  
-}
-
-decodev2.bytes = function() {
-  
-  var sep    = decodev2.find( 0x3A )
-  var length = +decodev2.data.slice( decodev2.position, sep ).toString()
-  var sepl   = sep + 1 + length
-  var bytes  = decodev2.data.slice( sep + 1, sepl )
-  
-  decodev2.forward( sepl - decodev2.position)
-  
-  return decodev2.encoding
-    ? bytes.toString( decodev2.encoding )
-    : bytes
-  
-}
-
-exports.decodev2 = decodev2
 // Expose methods
 exports.encode = encode
 exports.decode = decode
