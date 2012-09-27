@@ -45,6 +45,6 @@ suite
   })
   // Print cycle
   .on( 'cycle', function ( event, bench ) {
-    console.log( event.target.toString(), event.error || '');
+    console.log( bench.toString(), event.error || '');
   })
   .run()

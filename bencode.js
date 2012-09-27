@@ -200,7 +200,7 @@ decodev2.data = null
 
 decodev2.next = function() {
   
-  switch( decodev2.data[this.position] ) {
+  switch( decodev2.data[decodev2.position] ) {
     case 0x64: return decodev2.dictionary()
     case 0x6C: return decodev2.list()
     case 0x69: return decodev2.integer()
@@ -211,7 +211,7 @@ decodev2.next = function() {
 
 decodev2.find = function( chr ) {
   
-  var i = this.position
+  var i = decodev2.position
   var c = decodev2.data.length
   var d = decodev2.data
   
@@ -226,20 +226,20 @@ decodev2.find = function( chr ) {
 }
 
 decodev2.forward = function( index ) {
-  this.position += index
+  decodev2.position += index
 }
 
 decodev2.dictionary = function() {
   
-  this.position++;
+  decodev2.position++;
   
   var dict = {}
   
-  while( decodev2.data[this.position] !== 0x65 ) {
+  while( decodev2.data[decodev2.position] !== 0x65 ) {
     dict[ decodev2.next() ] = decodev2.next()
   }
   
-  this.position++;
+  decodev2.position++;
   
   return dict
   
@@ -247,15 +247,15 @@ decodev2.dictionary = function() {
 
 decodev2.list = function() {
   
-  this.position++;
+  decodev2.position++;
   
   var lst = []
   
-  while( decodev2.data[this.position] !== 0x65 ) {
+  while( decodev2.data[decodev2.position] !== 0x65 ) {
     lst.push( decodev2.next() )
   }
   
-  this.position++;
+  decodev2.position++;
   
   return lst
   
@@ -266,7 +266,7 @@ decodev2.integer = function() {
   var end    = decodev2.find( 0x65 )
   var number = decodev2.data.slice( 1, end )
   
-  decodev2.forward( end + 1 - this.position)
+  decodev2.forward( end + 1 - decodev2.position)
   
   return +number
   
@@ -275,11 +275,11 @@ decodev2.integer = function() {
 decodev2.bytes = function() {
   
   var sep    = decodev2.find( 0x3A )
-  var length = +decodev2.data.slice( this.position, sep ).toString()
+  var length = +decodev2.data.slice( decodev2.position, sep ).toString()
   var sepl   = sep + 1 + length
   var bytes  = decodev2.data.slice( sep + 1, sepl )
   
-  decodev2.forward( sepl - this.position)
+  decodev2.forward( sepl - decodev2.position)
   
   return decodev2.encoding
     ? bytes.toString( decodev2.encoding )
