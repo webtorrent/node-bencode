@@ -32,8 +32,8 @@ var encoding = new Benchmark.Suite()
     dht.encode( object )
   })
   
-  .on( 'cycle', function ( event, bench ) {
-    console.log( bench.toString(), bench.error || '' )
+  .on( 'cycle', function ( event ) {
+    console.log( event.target.toString() )
   })
   .on( 'complete', function ( event, bench ) {
     console.log(
@@ -64,7 +64,7 @@ var decoding = new Benchmark.Suite()
   })
   
   .on( 'cycle', function ( event, bench ) {
-    console.log( bench.toString(), event.error || '');
+    console.log( event.target.toString() )
   })
   .on( 'complete', function ( event, bench ) {
     console.log(
