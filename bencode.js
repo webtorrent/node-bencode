@@ -13,12 +13,15 @@ function encode( data ) {
   switch( typeof data ) {
     case 'string': 
       return encode.bytes( data )
+      break
     case 'number': 
       return encode.number( data )
+      break
     case 'object':
       return data.constructor === Array
         ? encode.list( data )
         : encode.dict( data )
+      break
   }
   
 }
@@ -84,10 +87,10 @@ decode.encoding = null
 decode.next = function() {
   
   switch( decode.data[decode.position] ) {
-    case 0x64: return decode.dictionary()
-    case 0x6C: return decode.list()
-    case 0x69: return decode.integer()
-    default:   return decode.bytes()
+    case 0x64: return decode.dictionary(); break
+    case 0x6C: return decode.list(); break
+    case 0x69: return decode.integer(); break
+    default:   return decode.bytes(); break
   }
   
 }
