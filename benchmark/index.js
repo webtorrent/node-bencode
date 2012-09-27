@@ -10,7 +10,6 @@ var dht         = require( 'dht.js/lib/dht/bencode' )
 
 var buffer = fs.readFileSync( __dirname + '/test.torrent' )
 var object = bencode.decode( buffer, 'ascii' )
-// var string = bencode.encode( object )
 
 // ////////////////////////////////////////////////////////////////////////////
 
@@ -65,7 +64,7 @@ var decoding = new Benchmark.Suite()
   })
   
   .on( 'cycle', function ( event, bench ) {
-    console.log( bench.toString(), bench.error || '' )
+    console.log( bench.toString(), event.error || '');
   })
   .on( 'complete', function ( event, bench ) {
     console.log(

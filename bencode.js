@@ -13,15 +13,12 @@ function encode( data ) {
   switch( typeof data ) {
     case 'string': 
       return encode.bytes( data )
-      break
     case 'number': 
       return encode.number( data )
-      break
     case 'object':
       return data.constructor === Array
         ? encode.list( data )
         : encode.dict( data )
-      break
   }
   
 }
@@ -69,6 +66,7 @@ encode.list = function( data ) {
  */
 function decode( data, encoding ) {
   
+  decode.position = 0
   decode.encoding = encoding || null
   
   decode.data = !( data instanceof Buffer )
@@ -79,12 +77,13 @@ function decode( data, encoding ) {
   
 }
 
+decode.position = 0
+decode.data     = null
 decode.encoding = null
-decode.data = null
 
 decode.next = function() {
   
-  switch( decode.data[0] ) {
+  switch( decode.data[decode.position] ) {
     case 0x64: return decode.dictionary()
     case 0x6C: return decode.list()
     case 0x69: return decode.integer()
@@ -95,7 +94,7 @@ decode.next = function() {
 
 decode.find = function( chr ) {
   
-  var i = 0
+  var i = decode.position
   var c = decode.data.length
   var d = decode.data
   
@@ -109,23 +108,17 @@ decode.find = function( chr ) {
   
 }
 
-decode.forward = function( index ) {
-  decode.data = decode.data.slice(
-    index, decode.data.length
-  )
-}
-
 decode.dictionary = function() {
   
-  decode.forward( 1 )
+  decode.position++
   
   var dict = {}
   
-  while( decode.data[0] !== 0x65 ) {
+  while( decode.data[decode.position] !== 0x65 ) {
     dict[ decode.next() ] = decode.next()
   }
   
-  decode.forward( 1 )
+  decode.position++
   
   return dict
   
@@ -133,15 +126,15 @@ decode.dictionary = function() {
 
 decode.list = function() {
   
-  decode.forward( 1 )
+  decode.position++
   
   var lst = []
   
-  while( decode.data[0] !== 0x65 ) {
+  while( decode.data[decode.position] !== 0x65 ) {
     lst.push( decode.next() )
   }
   
-  decode.forward( 1 )
+  decode.position++
   
   return lst
   
@@ -152,7 +145,7 @@ decode.integer = function() {
   var end    = decode.find( 0x65 )
   var number = decode.data.slice( 1, end )
   
-  decode.forward( end + 1 )
+  decode.position += end + 1 - decode.position
   
   return +number
   
@@ -161,11 +154,11 @@ decode.integer = function() {
 decode.bytes = function() {
   
   var sep    = decode.find( 0x3A )
-  var length = +decode.data.slice( 0, sep ).toString()
-  var sepl   = sep + 1 + length
-  var bytes  = decode.data.slice( sep + 1, sepl )
+  var length = +decode.data.slice( decode.position, sep ).toString()
+  var sepl   = ++sep + length
+  var bytes  = decode.data.slice( sep, sepl )
   
-  decode.forward( sepl )
+  decode.position += sepl - decode.position
   
   return decode.encoding
     ? bytes.toString( decode.encoding )
