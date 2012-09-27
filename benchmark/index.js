@@ -31,9 +31,6 @@ suite
   .add( 'bencode->decode( Buffer )', function () {
     bencode.decode( buffer )
   })
-  .add( 'bencode->decodev2( Buffer )', function () {
-    bencode.decodev2( buffer )
-  })
   .add( 'bencoding->decode( Buffer )', function () {
     bencoding.decode( buffer )
   })
