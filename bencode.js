@@ -146,7 +146,7 @@ decode.list = function() {
 decode.integer = function() {
   
   var end    = decode.find( 0x65 )
-  var number = decode.data.slice( 1, end )
+  var number = decode.data.slice( decode.position+1, end )
   
   decode.position += end + 1 - decode.position
   
