@@ -16,7 +16,7 @@ describe("bencode", function() {
       assert.equal(bencode.decode('4:öö', 'utf8'), 'öö');
     });
     it('should be able to decode "binary keys"', function() {
-      assert.equal(true, bencode.decode(binary_key).files.hasOwnProperty([keyName]));
+      assert.equal(true, bencode.decode(binary_key).files.hasOwnProperty(keyName));
     });
     it('should be able to decode a dictionary', function() {
       var out;
