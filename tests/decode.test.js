@@ -1,4 +1,8 @@
 var assert = require("assert");
+
+var binary_key = new Buffer("ZDU6ZmlsZXNkMjA6N7VVuuCjmp5LoM+n15a5iM/XJHdkODpjb21wbGV0ZWkwZTEwOmRvd25sb2FkZWRpMTBlMTA6aW5jb21wbGV0ZWkwZWVlZQ==", 'base64')
+var keyName = (new Buffer("N++/vVXvv73go5rvv71L77+9z6fXlu+/ve+/ve+/ve+/vSR3", 'base64')).toString();
+
 var bencode = require('../bencode.js');
 describe("bencode", function() {
   describe("#decode()", function() {
@@ -10,6 +14,9 @@ describe("bencode", function() {
       assert.equal(bencode.decode('5:asdfe'), 'asdfe');
       assert.equal(bencode.decode('4:öö'), 'öö');
       assert.equal(bencode.decode('4:öö', 'utf8'), 'öö');
+    });
+    it('should be able to decode "binary keys"', function() {
+      assert.equal(true, bencode.decode(binary_key).files.hasOwnProperty([keyName]));
     });
     it('should be able to decode a dictionary', function() {
       var out;
