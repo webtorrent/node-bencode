@@ -68,7 +68,7 @@ encode.list = function( data ) {
  * @return {Object|Array|Buffer|String|Number}
  */
 function decode( data, encoding ) {
-  
+  decode.result = [];
   decode.position = 0
   decode.encoding = encoding || null
   
@@ -76,10 +76,17 @@ function decode( data, encoding ) {
     ? new Buffer( data )
     : data
   
-  return decode.next()
+  try {
+    while (decode.position < (decode.data.length-1)) {
+      decode.result.push(decode.next());
+    }
+  } catch(e) {
+    //console.log(e);
+  }
+  return decode.result;
   
 }
-
+decode.result = [];
 decode.position = 0
 decode.data     = null
 decode.encoding = null
