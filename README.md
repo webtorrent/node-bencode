@@ -38,18 +38,18 @@ npm install bencode
 ## Performance
 
 ```
-bencode x 3,638 ops/sec ±0.54% (101 runs sampled)
-bencoding x 844 ops/sec ±3.18% (93 runs sampled)
-dht-bencode x 845 ops/sec ±3.73% (89 runs sampled)
-bncode x 845 ops/sec ±2.66% (92 runs sampled)
-dht.js x 768 ops/sec ±2.70% (92 runs sampled)
+bencode x 6,315 ops/sec ±0.44% (100 runs sampled)
+bencoding x 1,439 ops/sec ±3.11% (93 runs sampled)
+dht-bencode x 1,426 ops/sec ±3.86% (91 runs sampled)
+bncode x 1,431 ops/sec ±2.95% (91 runs sampled)
+dht.js x 1,277 ops/sec ±3.77% (94 runs sampled)
 ```
 ```
-bencode x 16,337 ops/sec ±2.47% (96 runs sampled)
-bencoding x 21,101 ops/sec ±0.84% (95 runs sampled)
-dht-bencode x 18,477 ops/sec ±0.77% (98 runs sampled)
-bncode x 760 ops/sec ±1.63% (93 runs sampled)
-dht.js x 14,624 ops/sec ±2.15% (95 runs sampled)
+bencode x 28,549 ops/sec ±1.76% (96 runs sampled)
+bencoding x 34,481 ops/sec ±0.56% (101 runs sampled)
+dht-bencode x 34,036 ops/sec ±0.50% (97 runs sampled)
+bncode x 1,107 ops/sec ±1.21% (97 runs sampled)
+dht.js x 23,888 ops/sec ±1.15% (94 runs sampled)
 ```
 
 ## Usage
