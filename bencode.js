@@ -1,20 +1,24 @@
 
 /**
  * Encodes data in bencode.
- * 
+ *
  * @param  {Buffer|Array|String|Object|Number} data
- * @return {String}
+ * @return {Buffer}
  */
 function encode( data ) {
   
-  if( data instanceof Buffer )
-    return data.length + ':' + data
+  if( data instanceof Buffer ) {
+    return Buffer.concat([
+      new Buffer(data.length+':'),
+      data
+    ])
+  }
   
   switch( typeof data ) {
-    case 'string': 
+    case 'string':
       return encode.bytes( data )
       break
-    case 'number': 
+    case 'number':
       return encode.number( data )
       break
     case 'object':
@@ -26,43 +30,53 @@ function encode( data ) {
   
 }
 
+var buff_e = new Buffer('e')
+  , buff_d = new Buffer('d')
+  , buff_l = new Buffer('l')
+
 encode.bytes = function( data ) {
-  return Buffer.byteLength( data ) + ':' + data
+  return Buffer.concat([
+    new Buffer(Buffer.byteLength( data )+":"),
+    new Buffer(data)
+  ])
 }
 
 encode.number = function( data ) {
-  return 'i' + data + 'e'
+  return new Buffer('i' + data + 'e')
 }
 
 encode.dict = function( data ) {
   
-  var dict = 'd'
-  
+  var dict = [ buff_d ]
+  var i = 1;
   for( var k in data ) {
-    dict += encode( k ) + encode( data[k] )
+    dict[i++] = encode( k )
+    dict[i++] = encode( data[k] )
   }
-  
-  return dict + 'e'
+
+  dict[i++] = buff_e
+  return Buffer.concat(dict)
   
 }
 
 encode.list = function( data ) {
   
-  var i = 0
+  var i = 0, j = 1
   var c = data.length
-  var lst = 'l'
-  
+  var lst =  [ buff_l ]
+
   for( ; i < c; i++ ) {
-    lst += encode( data[i] )
+    lst[j++] = encode( data[i] )
   }
   
-  return lst + 'e'
+  lst[j++] = buff_e
+  return Buffer.concat(lst)
   
 }
 
 /**
  * Decodes bencoded data.
- * 
+ *
  * @param  {Buffer} data
  * @param  {String} encoding
  * @return {Object|Array|Buffer|String|Number}

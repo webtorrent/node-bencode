@@ -1,13 +1,14 @@
 var assert = require("assert");
 var bencode = require('../bencode.js');
+
 describe("bencode", function() {
 	describe("#encode()", function() {
-		it('should always return a string', function() {
-			assert.equal(typeof(bencode.encode({})), "string");
-			assert.equal(typeof(bencode.encode("test")), "string");
-			assert.equal(typeof(bencode.encode([3, 2])), "string");
-			assert.equal(typeof(bencode.encode({"a": "b", 3: 6})), "string");
-			assert.equal(typeof(bencode.encode(123)), "string");
+		it('should always return a Buffer', function() {
+			assert.ok(Buffer.isBuffer(bencode.encode({})), "its not a buffer for empty dicts");
+			assert.ok(Buffer.isBuffer(bencode.encode("test")), "its not a buffer for strings");
+			assert.ok(Buffer.isBuffer(bencode.encode([3, 2])), "its not a buffer for lists");
+			assert.ok(Buffer.isBuffer(bencode.encode({"a": "b", 3: 6})), "its not a buffer for big dicts");
+			assert.ok(Buffer.isBuffer(bencode.encode(123)), "its not a buffer for numbers");
 		});
 
 		it('should be able to encode a number', function() {

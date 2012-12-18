@@ -38,18 +38,19 @@ npm install bencode
 ## Performance
 
 ```
-bencode x 3,638 ops/sec ±0.54% (101 runs sampled)
-bencoding x 844 ops/sec ±3.18% (93 runs sampled)
-dht-bencode x 845 ops/sec ±3.73% (89 runs sampled)
-bncode x 845 ops/sec ±2.66% (92 runs sampled)
-dht.js x 768 ops/sec ±2.70% (92 runs sampled)
+bencode x 1,143 ops/sec ±2.15% (94 runs sampled)
+bencoding x 1,362 ops/sec ±1.07% (92 runs sampled)
+dht-bencode x 1,502 ops/sec ±1.48% (97 runs sampled)
+bncode x 1,424 ops/sec ±1.89% (95 runs sampled)
+dht.js x 1,277 ops/sec ±1.37% (96 runs sampled)
+
 ```
 ```
-bencode x 16,337 ops/sec ±2.47% (96 runs sampled)
-bencoding x 21,101 ops/sec ±0.84% (95 runs sampled)
-dht-bencode x 18,477 ops/sec ±0.77% (98 runs sampled)
-bncode x 760 ops/sec ±1.63% (93 runs sampled)
-dht.js x 14,624 ops/sec ±2.15% (95 runs sampled)
+bencode x 23,162 ops/sec ±0.86% (100 runs sampled)
+bencoding x 30,022 ops/sec ±0.53% (98 runs sampled)
+dht-bencode x 26,607 ops/sec ±0.15% (102 runs sampled)
+bncode x 883 ops/sec ±1.26% (97 runs sampled)
+dht.js x 20,978 ops/sec ±1.05% (99 runs sampled)
 ```
 
 ## Usage
@@ -126,7 +127,7 @@ var result = bencode.decode( data, 'utf8' )
 
 > `Buffer` | `Array` | `String` | `Object` | `Number` __data__
 
-Returns `String`
+Returns `Buffer`
 
 ### bencode.decode( *data*, *encoding* )
 
