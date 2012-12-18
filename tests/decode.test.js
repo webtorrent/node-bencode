@@ -19,25 +19,28 @@ describe("bencode", function() {
       assert.equal(true, bencode.decode(binary_key).files.hasOwnProperty(keyName));
     });
     it('should be able to decode a dictionary', function() {
-      var out;
-      out = bencode.decode('d1:a5:halloe');
-      assert.equal(out.a, "hallo");
-
-      out = bencode.decode('d1:a5:hallo2:bci15ee');
-      assert.equal(out.a, "hallo");
-      assert.equal(out.bc, 15);
+      assert.deepEqual(
+        bencode.decode( 'd3:cow3:moo4:spam4:eggse', 'utf8' ),
+        { cow: 'moo', spam: 'eggs' }
+      )
+      assert.deepEqual(
+        bencode.decode( 'd4:spaml1:a1:bee', 'utf8' ),
+        { spam: [ 'a', 'b' ] }
+      )
+      assert.deepEqual(
+        bencode.decode( 'd9:publisher3:bob17:publisher-webpage15:www.example.com18:publisher.location4:homee', 'utf8' ),
+        {
+          'publisher': 'bob',
+          'publisher-webpage': 'www.example.com',
+          'publisher.location': 'home'
+        }
+      )
     });
     it('should be able to decode a list', function() {
-      var out;
-      out = bencode.decode('l2:as4:dfghe');
-      assert.equal(out.length, 2);
-      assert.equal(out[0], 'as');
-      assert.equal(out[1], 'dfgh');
-
-      out = bencode.decode('li13ei37ee');
-      assert.equal(out.length, 2);
-      assert.equal(out[0], 13);
-      assert.equal(out[1], 37);
+      assert.deepEqual(
+        bencode.decode( 'l4:spam4:eggse', 'utf8' ),
+        [ 'spam', 'eggs' ]
+      )
     });
     it('should return the correct type', function() {
       assert.ok(bencode.decode('4:öö') instanceof Buffer);

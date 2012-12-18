@@ -1,6 +1,5 @@
-[![build status](https://secure.travis-ci.org/themasch/node-bencode.png)](http://travis-ci.org/themasch/node-bencode)
 
-# node-bencode
+# node-bencode [![build status](https://secure.travis-ci.org/themasch/node-bencode.png)](http://travis-ci.org/themasch/node-bencode)
 
 A node library for encoding and decoding bencoded data,  
 according to the [BitTorrent specification](http://www.bittorrent.org/beps/bep_0003.html).
