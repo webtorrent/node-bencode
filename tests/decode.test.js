@@ -46,5 +46,19 @@ describe("bencode", function() {
       assert.ok(bencode.decode('4:öö') instanceof Buffer);
       assert.ok(typeof(bencode.decode('4:öö', 'utf8')) === 'string');
     });
+    it('should be able to decode integers (issue #12)', function() {
+      var data = {
+        string: 'Hello World',
+        integer: 12345,
+        dict: {
+          key: 'This is a string within a dictionary'
+        },
+        list: [ 1, 2, 3, 4, 'string', 5, {} ]
+      }
+      var result = bencode.encode( data )
+      var dat = bencode.decode ( result , 'utf8')
+      assert.equal(dat.integer, 12345)
+      assert.deepEqual(dat.list, [1, 2, 3, 4, 'string', 5, {}])
+    });
   });
 });
