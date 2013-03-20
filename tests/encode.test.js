@@ -10,7 +10,13 @@ describe("bencode", function() {
 			assert.ok(Buffer.isBuffer(bencode.encode({"a": "b", 3: 6})), "its not a buffer for big dicts");
 			assert.ok(Buffer.isBuffer(bencode.encode(123)), "its not a buffer for numbers");
 		});
-
+		it('should sort dictionories', function() {
+			var data = {
+				string: 'Hello World',
+				integer: 12345,
+			};
+			assert.equal(bencode.encode(data).toString(), "d7:integeri12345e6:string11:Hello Worlde");
+		})
 		it('should be able to encode a number', function() {
 			assert.equal(bencode.encode(123), 'i123e');
 			assert.equal(bencode.encode(123.5), 'i123.5e');
