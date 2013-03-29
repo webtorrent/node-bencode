@@ -82,7 +82,7 @@ var result = bencode.encode( data )
 #### Output
 
 ```
-d6:string11:Hello World7:integeri12345e4:dictd3:key36:This is a string within a dictionarye4:litli1ei2ei3ei4e6:stringi5edeee
+d4:dictd3:key36:This is a string within a dictionarye7:integeri12345e4:listli1ei2ei3ei4e6:stringi5edee6:string11:Hello Worlde
 ```
 
 ### Decoding
