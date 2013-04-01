@@ -1,5 +1,5 @@
 var assert = require("assert");
-var bencode = require('../bencode.js');
+var bencode = require('./lib.js');
 
 describe("bencode", function() {
   describe("#encode()", function() {
@@ -17,12 +17,23 @@ describe("bencode", function() {
       };
       assert.equal(bencode.encode(data).toString(), "d7:integeri12345e6:string11:Hello Worlde");
     })
-    it('should be able to encode a number', function() {
+    it('should force keys to be strings', function() {
+      var data = {
+        12: 'Hello World',
+        34: 12345,
+      };
+      assert.equal(bencode.encode(data).toString(), "d2:1211:Hello World2:34i12345ee")
+    })
+    it('should be able to encode a positive integer', function() {
       assert.equal(bencode.encode(123), 'i123e');
+    })
+    it('should be able to encode a negative integer', function() {
+      assert.equal(bencode.encode(-123), 'i-123e');
+    })
+    it('should be able to encode a positive float (optional)', function() {
       assert.equal(bencode.encode(123.5), 'i123.5e');
     })
-    it('should be able to encode a negative number', function() {
-      assert.equal(bencode.encode(-123), 'i-123e');
+    it('should be able to encode a negative float (optional)', function() {
       assert.equal(bencode.encode(-123.5), 'i-123.5e');
     })
     it('should be able to encode a string', function() {

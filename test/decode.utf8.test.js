@@ -3,25 +3,30 @@ var assert = require("assert");
 var binary_key = new Buffer("ZDU6ZmlsZXNkMjA6N7VVuuCjmp5LoM+n15a5iM/XJHdkODpjb21wbGV0ZWkwZTEwOmRvd25sb2FkZWRpMTBlMTA6aW5jb21wbGV0ZWkwZWVlZQ==", 'base64')
 var keyName = (new Buffer("N++/vVXvv73go5rvv71L77+9z6fXlu+/ve+/ve+/ve+/vSR3", 'base64')).toString();
 
-var bencode = require('../bencode.js');
+var bencode = require('./lib.js');
 describe("bencode", function() {
-  describe("#decode()", function() {
-    it('should be able to decode a number', function() {
-      assert.equal(bencode.decode('i123e'), 123);
-      assert.equal(bencode.decode('i123.5e'), 123.5);
+  describe("#decode(x, 'uft8')", function() {
+    it('should be able to decode an integer', function() {
+      assert.deepEqual(bencode.decode('i123e', 'utf8'), 123);
+    });
+    it('should be able to decode a float', function() {
+      assert.deepEqual(bencode.decode('i12.3e', 'utf8'), 12.3);
     });
     it('should be able to decode a string', function() {
-      assert.equal(bencode.decode('5:asdfe'), 'asdfe');
-      assert.equal(bencode.decode('4:öö'), 'öö');
-      assert.equal(bencode.decode('4:öö', 'utf8'), 'öö');
+      assert.deepEqual(bencode.decode('5:asdfe', 'utf8'), 'asdfe');
+      assert.deepEqual(bencode.decode('4:öö', 'utf8'), 'öö');
     });
     it('should be able to decode "binary keys"', function() {
-      assert.equal(true, bencode.decode(binary_key).files.hasOwnProperty(keyName));
+      assert.ok(bencode.decode(binary_key, 'utf8').files.hasOwnProperty(keyName));
     });
+
     it('should be able to decode a dictionary', function() {
       assert.deepEqual(
         bencode.decode( 'd3:cow3:moo4:spam4:eggse', 'utf8' ),
-        { cow: 'moo', spam: 'eggs' }
+        {
+          cow: 'moo',
+          spam: 'eggs'
+        }
       )
       assert.deepEqual(
         bencode.decode( 'd4:spaml1:a1:bee', 'utf8' ),
@@ -36,6 +41,7 @@ describe("bencode", function() {
         }
       )
     });
+
     it('should be able to decode a list', function() {
       assert.deepEqual(
         bencode.decode( 'l4:spam4:eggse', 'utf8' ),
@@ -43,7 +49,6 @@ describe("bencode", function() {
       )
     });
     it('should return the correct type', function() {
-      assert.ok(bencode.decode('4:öö') instanceof Buffer);
       assert.ok(typeof(bencode.decode('4:öö', 'utf8')) === 'string');
     });
     it('should be able to decode integers (issue #12)', function() {
