@@ -15,7 +15,7 @@ var object = bencode.decode( buffer, 'ascii' )
 
 console.log( 'ENCODING\n' )
 var encoding = new Benchmark.Suite()
-  
+
   .add( 'bencode', function () {
     bencode.encode( object )
   })
@@ -31,7 +31,7 @@ var encoding = new Benchmark.Suite()
   .add( 'dht.js', function () {
     dht.encode( object )
   })
-  
+
   .on( 'cycle', function ( event ) {
     console.log( event.target.toString() )
   })
@@ -46,7 +46,7 @@ var encoding = new Benchmark.Suite()
 
 console.log( 'DECODING\n' )
 var decoding = new Benchmark.Suite()
-  
+
   .add( 'bencode', function () {
     bencode.decode( buffer )
   })
@@ -62,7 +62,6 @@ var decoding = new Benchmark.Suite()
   .add( 'dht.js', function () {
     dht.decode( buffer )
   })
-  
   .on( 'cycle', function ( event, bench ) {
     console.log( event.target.toString() )
   })
@@ -72,3 +71,4 @@ var decoding = new Benchmark.Suite()
     )
   })
   .run()
+

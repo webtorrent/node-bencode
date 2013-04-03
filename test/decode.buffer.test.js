@@ -1,23 +1,23 @@
-var assert = require("assert");
+var assert  = require('assert')
+var bencode = require('./lib.js')
+var data    = require('./data.js')
 
-var binary_key = new Buffer("ZDU6ZmlsZXNkMjA6N7VVuuCjmp5LoM+n15a5iM/XJHdkODpjb21wbGV0ZWkwZTEwOmRvd25sb2FkZWRpMTBlMTA6aW5jb21wbGV0ZWkwZWVlZQ==", 'base64')
-var keyName = (new Buffer("N++/vVXvv73go5rvv71L77+9z6fXlu+/ve+/ve+/ve+/vSR3", 'base64')).toString();
-
-var bencode = require('./lib.js');
 describe("bencode", function() {
   describe("#decode(x)", function()  {
     it('should be able to decode an integer', function() {
       assert.deepEqual(bencode.decode('i123e'), 123);
+      assert.deepEqual(bencode.decode('i-123e', 'utf8'), -123);
     });
-    it('should be able to decode a float', function() {
+    it('should be able to decode a float (optional)', function() {
       assert.deepEqual(bencode.decode('i12.3e'), 12.3);
+      assert.deepEqual(bencode.decode('i-12.3e'), -12.3);
     });
     it('should be able to decode a string', function() {
       assert.deepEqual(bencode.decode('5:asdfe'), new Buffer('asdfe'));
       assert.deepEqual(bencode.decode('4:öö'), new Buffer('öö'));
     });
     it('should be able to decode "binary keys"', function() {
-      assert.ok(bencode.decode(binary_key).files.hasOwnProperty(keyName));
+      assert.ok(bencode.decode(data.binKeyData).files.hasOwnProperty(data.binKeyName));
     });
 
     it('should be able to decode a dictionary', function() {
@@ -30,7 +30,10 @@ describe("bencode", function() {
       )
       assert.deepEqual(
         bencode.decode( 'd4:spaml1:a1:bee' ),
-        { spam: [ new Buffer('a'), new Buffer('b') ] }
+        { spam: [
+          new Buffer('a'),
+          new Buffer('b')
+        ] }
       )
       assert.deepEqual(
         bencode.decode( 'd9:publisher3:bob17:publisher-webpage15:www.example.com18:publisher.location4:homee'),
@@ -45,14 +48,15 @@ describe("bencode", function() {
     it('should be able to decode a list', function() {
       assert.deepEqual(
         bencode.decode( 'l4:spam4:eggse'),
-        [ new Buffer('spam'), new Buffer('eggs') ]
+        [ new Buffer('spam'),
+          new Buffer('eggs') ]
       )
     });
     it('should return the correct type', function() {
       assert.ok(bencode.decode('4:öö') instanceof Buffer);
     });
-    it('should be able to decode integers (issue #12)', function() {
-      var data = {
+    it('should be able to decode stuff in dicts (issue #12)', function() {
+      var someData = {
         string: 'Hello World',
         integer: 12345,
         dict: {
@@ -60,9 +64,11 @@ describe("bencode", function() {
         },
         list: [ 1, 2, 3, 4, 'string', 5, {} ]
       }
-      var result = bencode.encode( data )
+      var result = bencode.encode( someData )
       var dat = bencode.decode ( result )
       assert.equal(dat.integer, 12345)
+      assert.deepEqual(dat.string, new Buffer("Hello World"))
+      assert.deepEqual(dat.dict.key, new Buffer("This is a string within a dictionary"))
       assert.deepEqual(dat.list, [1, 2, 3, 4, new Buffer('string'), 5, {}])
     });
   });
