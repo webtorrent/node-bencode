@@ -10,9 +10,14 @@ var dht         = require( 'dht.js/lib/dht/bencode' )
 
 var buffer = fs.readFileSync( __dirname + '/test.torrent' )
 var object = bencode.decode( buffer, 'ascii' )
-
+var doEncode = true,
+    doDecode = true;
+if(process.argv.length > 2) {
+  doEncode = (process.argv.indexOf('encode') !== -1);
+  doDecode = (process.argv.indexOf('decode') !== -1);
+}
 // ////////////////////////////////////////////////////////////////////////////
-
+if(doEncode) {
 console.log( 'ENCODING\n' )
 var encoding = new Benchmark.Suite()
 
@@ -41,9 +46,10 @@ var encoding = new Benchmark.Suite()
     )
   })
   .run()
+}
 
 // ////////////////////////////////////////////////////////////////////////////
-
+if(doDecode) {
 console.log( 'DECODING\n' )
 var decoding = new Benchmark.Suite()
 
@@ -62,6 +68,7 @@ var decoding = new Benchmark.Suite()
   .add( 'dht.js', function () {
     dht.decode( buffer )
   })
+
   .on( 'cycle', function ( event, bench ) {
     console.log( event.target.toString() )
   })
@@ -71,4 +78,4 @@ var decoding = new Benchmark.Suite()
     )
   })
   .run()
-
+}
