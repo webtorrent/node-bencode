@@ -8,9 +8,9 @@ describe("bencode", function() {
       assert.deepEqual(bencode.decode('i123e'), 123);
       assert.deepEqual(bencode.decode('i-123e', 'utf8'), -123);
     });
-    it('should be able to decode a float (optional)', function() {
-      assert.deepEqual(bencode.decode('i12.3e'), 12.3);
-      assert.deepEqual(bencode.decode('i-12.3e'), -12.3);
+    it('should be able to decode a float (as int)', function() {
+      assert.deepEqual(bencode.decode('i12.3e'), 12);
+      assert.deepEqual(bencode.decode('i-12.3e'), -12);
     });
     it('should be able to decode a string', function() {
       assert.deepEqual(bencode.decode('5:asdfe'), new Buffer('asdfe'));

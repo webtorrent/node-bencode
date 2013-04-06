@@ -30,11 +30,11 @@ describe("bencode", function() {
     it('should be able to encode a negative integer', function() {
       assert.equal(bencode.encode(-123), 'i-123e');
     })
-    it('should be able to encode a positive float (optional)', function() {
-      assert.equal(bencode.encode(123.5), 'i123.5e');
+    it('should be able to encode a positive float (as int)', function() {
+      assert.equal(bencode.encode(123.5), 'i123e');
     })
-    it('should be able to encode a negative float (optional)', function() {
-      assert.equal(bencode.encode(-123.5), 'i-123.5e');
+    it('should be able to encode a negative float (as int)', function() {
+      assert.equal(bencode.encode(-123.5), 'i-123e');
     })
     it('should be able to encode a string', function() {
       assert.equal(bencode.encode("asdf"), '4:asdf');
