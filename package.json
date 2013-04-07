@@ -1,15 +1,22 @@
 {
   "name": "bencode",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "license": "MIT",
   "description": "Bencode de/encoder",
   "keywords": [ "torrent", "bittorrent", "bencode", "bdecode", "bencoding" ],
 
-  "author": {
-    "name": "Mark Schmale",
-    "email": "ma.schmale@googlemail.com",
-    "url": "http://masch.it/"
-  },
+  "contributors": [
+    {
+      "name": "Mark Schmale",
+      "email": "masch@masch.it",
+      "url": "http://masch.it/"
+    },
+    {
+      "name": "Jonas Hermsmeier",
+      "email": "jonas@hojoki.com"
+    }
+
+  ],
 
   "main": "bencode.js",
 
