@@ -1,3 +1,7 @@
+## Upcoming
+
+  - decode() now throws if it encounters invalid input
+
 ## 0.4.3
  * improved performance a lot
  * dropped support for de- and encoding floats to respect the spec
