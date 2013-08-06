@@ -6,7 +6,7 @@ describe("bencode", function() {
   describe("#decode(x)", function()  {
     it('should be able to decode an integer', function() {
       assert.deepEqual(bencode.decode('i123e'), 123);
-      assert.deepEqual(bencode.decode('i-123e', 'utf8'), -123);
+      assert.deepEqual(bencode.decode('i-123e'), -123);
     });
     it('should be able to decode a float (as int)', function() {
       assert.deepEqual(bencode.decode('i12.3e'), 12);
