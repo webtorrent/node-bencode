@@ -38,23 +38,29 @@ npm install bencode
 
 ### encode
 ```
-bencode x 10,933 ops/sec ±1.43% (90 runs sampled)
-bencoding x 7,864 ops/sec ±0.91% (92 runs sampled)
-dht-bencode x 7,028 ops/sec ±8.01% (72 runs sampled)
-bncode x 6,713 ops/sec ±2.62% (82 runs sampled)
-dht.js x 13,762 ops/sec ±1.17% (92 runs sampled)
+  11,883 op/s ⨠ bencode
+   5,457 op/s ⨠ bencoding
+   6,550 op/s ⨠ dht_bencode
+   5,405 op/s ⨠ bncode
+  10,978 op/s ⨠ dht
 ```
 
 ### decode
 ```
-bencode x 34,142 ops/sec ±0.18% (101 runs sampled)
-bencoding x 37,041 ops/sec ±0.50% (99 runs sampled)
-dht-bencode x 29,211 ops/sec ±0.30% (99 runs sampled)
-bncode x 1,208 ops/sec ±0.84% (100 runs sampled)
-dht.js x 27,651 ops/sec ±0.78% (100 runs sampled)
+  30,240 op/s ⨠ bencode
+  25,293 op/s ⨠ bencoding
+  26,220 op/s ⨠ dht_bencode
+     824 op/s ⨠ bncode
+  19,824 op/s ⨠ dht
 ```
 
-*Benchmarks run on an Intel Core i5-3427U CPU @ 2.29 GHz with node v0.10.4*
+*Benchmarks run on an Intel Core2 CPU T9550 @ 2.66GHz with node v0.10.5*
+
+To run the benchmarks simply use
+
+```
+npm run-script bench
+```
 
 ## Usage
 
