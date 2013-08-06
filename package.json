@@ -21,7 +21,7 @@
   "main": "bencode.js",
 
   "devDependencies": {
-    "benchmark": "",
+    "matcha": "",
     "bencoding": "",
     "dht-bencode": "",
     "bncode": "",
@@ -29,7 +29,8 @@
     "mocha": ""
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha",
+    "bench": "./node_modules/.bin/matcha benchmark/*.js"
   },
 
   "repository": {
