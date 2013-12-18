@@ -36,6 +36,18 @@ describe("bencode", function() {
     it('should be able to encode a negative float (as int)', function() {
       assert.equal(bencode.encode(-123.5), 'i-123e');
     })
+    it('should be able to encode a positive 64 bit int', function() {
+      assert.equal(bencode.encode(4777722361), 'i4777722361e');
+    })
+    it('should be able to encode a negative 64 bit int', function() {
+      assert.equal(bencode.encode(-4777722361), 'i-4777722361e');
+    })
+    it('should be able to encode a positive 64 bit float (as int)', function() {
+      assert.equal(bencode.encode(4777722361.5), 'i4777722361e');
+    })
+    it('should be able to encode a negative 64 bit float (as int)', function() {
+      assert.equal(bencode.encode(-4777722361.5), 'i-4777722361e');
+    })
     it('should be able to encode a string', function() {
       assert.equal(bencode.encode("asdf"), '4:asdf');
       assert.equal(bencode.encode(":asdf:"), '6::asdf:');
