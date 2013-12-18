@@ -28,9 +28,10 @@
     "dht.js": "",
     "mocha": ""
   },
+  
   "scripts": {
-    "test": "./node_modules/.bin/mocha",
-    "bench": "./node_modules/.bin/matcha benchmark/*.js"
+    "test": "node node_modules/mocha/bin/mocha",
+    "bench": "node node_modules/matcha/bin/matcha benchmark/*.js"
   },
 
   "repository": {
