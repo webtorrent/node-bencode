@@ -1,6 +1,6 @@
 {
   "name": "bencode",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "license": "MIT",
   "description": "Bencode de/encoder",
   "keywords": [ "torrent", "bittorrent", "bencode", "bdecode", "bencoding" ],
@@ -28,7 +28,7 @@
     "dht.js": "",
     "mocha": ""
   },
-  
+
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha",
     "bench": "node node_modules/matcha/bin/matcha benchmark/*.js"
