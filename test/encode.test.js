@@ -36,17 +36,42 @@ describe("bencode", function() {
     it('should be able to encode a negative float (as int)', function() {
       assert.equal(bencode.encode(-123.5), 'i-123e');
     })
-    it('should be able to encode a positive 64 bit int', function() {
-      assert.equal(bencode.encode(4777722361), 'i4777722361e');
+    it('should be able to safely encode numbers between -/+ 2 ^ 53 (as ints)', function() {
+      assert.equal(bencode.encode(0), 'i' + 0 + 'e');
+
+      var JAVASCRIPT_INT_BITS = 53;
+      var MAX_JAVASCRIPT_INT = Math.pow(2, JAVASCRIPT_INT_BITS);
+
+      for (var exp = 1; exp < JAVASCRIPT_INT_BITS; ++exp) {
+        var val = Math.pow(2, exp);
+        // try the positive and negative
+        assert.equal(bencode.encode(val), 'i' + val + 'e');
+        assert.equal(bencode.encode(-val), 'i-' + val + 'e');
+
+        // try the value, one above and one below, both positive and negative 
+        var above = val + 1;
+        var below = val - 1;
+
+        assert.equal(bencode.encode(above), 'i' + above + 'e');
+        assert.equal(bencode.encode(-above), 'i-' + above + 'e');
+
+        assert.equal(bencode.encode(below), 'i' + below + 'e');
+        assert.equal(bencode.encode(-below), 'i-' + below + 'e');
+      }
+      assert.equal(bencode.encode(MAX_JAVASCRIPT_INT), 'i' + MAX_JAVASCRIPT_INT + 'e');
+      assert.equal(bencode.encode(-MAX_JAVASCRIPT_INT), 'i-' + MAX_JAVASCRIPT_INT + 'e');
+    });
+    it('should be able to encode a previously problematice 64 bit int', function() {
+      assert.equal(bencode.encode(2433088826), 'i' + 2433088826 + 'e');
     })
     it('should be able to encode a negative 64 bit int', function() {
-      assert.equal(bencode.encode(-4777722361), 'i-4777722361e');
+      assert.equal(bencode.encode(-0xffffffff), 'i-' + 0xffffffff + 'e');
     })
     it('should be able to encode a positive 64 bit float (as int)', function() {
-      assert.equal(bencode.encode(4777722361.5), 'i4777722361e');
+      assert.equal(bencode.encode(0xffffffff + 0.5), 'i' + 0xffffffff + 'e');
     })
     it('should be able to encode a negative 64 bit float (as int)', function() {
-      assert.equal(bencode.encode(-4777722361.5), 'i-4777722361e');
+      assert.equal(bencode.encode(-0xffffffff - 0.5), 'i-' + 0xffffffff + 'e');
     })
     it('should be able to encode a string', function() {
       assert.equal(bencode.encode("asdf"), '4:asdf');
