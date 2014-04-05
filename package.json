@@ -3,8 +3,13 @@
   "version": "0.5.2",
   "license": "MIT",
   "description": "Bencode de/encoder",
-  "keywords": [ "torrent", "bittorrent", "bencode", "bdecode", "bencoding" ],
-
+  "keywords": [
+    "torrent",
+    "bittorrent",
+    "bencode",
+    "bdecode",
+    "bencoding"
+  ],
   "contributors": [
     {
       "name": "Mark Schmale",
@@ -15,32 +20,25 @@
       "name": "Jonas Hermsmeier",
       "email": "jonas@hojoki.com"
     }
-
   ],
-
   "main": "bencode.js",
-
   "devDependencies": {
     "matcha": "",
     "bencoding": "",
     "dht-bencode": "",
     "bncode": "",
     "dht.js": "",
-    "mocha": ""
+    "tape": "^2.12.2"
   },
-
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha",
+    "test": "node node_modules/tape/bin/tape test/*.test.js",
     "bench": "node node_modules/matcha/bin/matcha benchmark/*.js"
   },
-
   "repository": {
     "type": "git",
     "url": "git://github.com/themasch/node-bencode.git"
   },
-
   "bugs": {
     "url": "https://github.com/themasch/node-bencode/issues"
   }
-
 }
