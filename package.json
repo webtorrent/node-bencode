@@ -28,7 +28,7 @@
     "dht-bencode": "",
     "bncode": "",
     "dht.js": "",
-    "tape": "^2.12.2"
+    "tape": "^2"
   },
   "scripts": {
     "test": "node node_modules/tape/bin/tape test/*.test.js",
