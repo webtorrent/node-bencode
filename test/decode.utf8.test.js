@@ -21,7 +21,7 @@ test("bencode#decode(x, 'uft8')", function(t) {
   t.test('should be able to decode "binary keys"', function(t) {
     t.plan(1)
     var decoded = bencode.decode(data.binKeyData, 'utf8')
-    t.ok(decoded.files.hasOwnProperty(data.binKeyName))
+    t.ok(decoded.files.hasOwnProperty(data.binKeyName.toString('utf8')))
   })
 
   t.test('should be able to decode a dictionary', function(t) {
