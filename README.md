@@ -1,4 +1,3 @@
-
 # node-bencode [![build status](https://secure.travis-ci.org/themasch/node-bencode.png)](http://travis-ci.org/themasch/node-bencode) [![NPM version](https://badge.fury.io/js/bencode.png)](https://npmjs.org/package/bencode)
 
 A node library for encoding and decoding bencoded data,
@@ -67,6 +66,10 @@ npm run-script bench
 ```javascript
 var bencode = require( 'bencode' )
 ```
+
+You can also use node-bencode with browserify to be able to use it in a lot of modern browsers.
+
+[![testling results](https://ci.testling.com/themasch/node-bencode.png)](https://ci.testling.com/themasch/node-bencode)
 
 ### Encoding
 
