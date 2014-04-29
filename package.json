@@ -1,10 +1,15 @@
 {
   "name": "bencode",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "license": "MIT",
   "description": "Bencode de/encoder",
-  "keywords": [ "torrent", "bittorrent", "bencode", "bdecode", "bencoding" ],
-
+  "keywords": [
+    "torrent",
+    "bittorrent",
+    "bencode",
+    "bdecode",
+    "bencoding"
+  ],
   "contributors": [
     {
       "name": "Mark Schmale",
@@ -15,32 +20,38 @@
       "name": "Jonas Hermsmeier",
       "email": "jonas@hojoki.com"
     }
-
   ],
-
   "main": "bencode.js",
-
   "devDependencies": {
     "matcha": "",
     "bencoding": "",
     "dht-bencode": "",
     "bncode": "",
     "dht.js": "",
-    "mocha": ""
+    "tape": "~2.12"
   },
-
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha",
+    "test": "node node_modules/tape/bin/tape test/*.test.js",
     "bench": "node node_modules/matcha/bin/matcha benchmark/*.js"
   },
-
   "repository": {
     "type": "git",
     "url": "git://github.com/themasch/node-bencode.git"
   },
-
   "bugs": {
     "url": "https://github.com/themasch/node-bencode/issues"
+  },
+  "testling": {
+    "files": "test/*.test.js",
+    "browsers": [
+      "ie/6..latest",
+      "chrome/22..latest",
+      "firefox/16..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6..latest",
+      "ipad/6..latest",
+      "android-browser/latest"
+    ]
   }
-
 }
