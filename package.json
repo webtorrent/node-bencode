@@ -28,11 +28,12 @@
     "dht-bencode": "",
     "bncode": "",
     "dht.js": "",
-    "tape": "~2.12"
+    "tape": "~2.12",
+    "tap-spec": ""
   },
   "scripts": {
-    "test": "node node_modules/tape/bin/tape test/*.test.js",
-    "bench": "node node_modules/matcha/bin/matcha benchmark/*.js"
+    "test": "node node_modules/.bin/tape test/*.test.js | node node_modules/.bin/tap-spec",
+    "bench": "node node_modules/.bin/matcha benchmark/*.js"
   },
   "repository": {
     "type": "git",
