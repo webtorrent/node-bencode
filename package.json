@@ -23,13 +23,13 @@
   ],
   "main": "bencode.js",
   "devDependencies": {
-    "matcha": "",
-    "bencoding": "",
-    "dht-bencode": "",
-    "bncode": "",
-    "dht.js": "",
-    "tape": "~2.12",
-    "tap-spec": ""
+    "bencoding": "latest",
+    "bncode": "latest",
+    "dht-bencode": "latest",
+    "dht.js": "latest",
+    "matcha": "~0.6.0",
+    "tap-spec": "~2.2.0",
+    "tape": "~3.5.0"
   },
   "scripts": {
     "test": "node node_modules/.bin/tape test/*.test.js | node node_modules/.bin/tap-spec",
