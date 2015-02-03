@@ -1,4 +1,7 @@
-# node-bencode [![build status](https://secure.travis-ci.org/themasch/node-bencode.png)](http://travis-ci.org/themasch/node-bencode) [![NPM version](https://badge.fury.io/js/bencode.png)](https://npmjs.org/package/bencode)
+# Bencode
+[![npm](http://img.shields.io/npm/v/bencode.svg?style=flat)](https://npmjs.com/bencode)
+[![npm downloads](http://img.shields.io/npm/dm/bencode.svg?style=flat)](https://npmjs.com/bencode)
+[![build status](http://img.shields.io/travis/themasch/node-bencode.svg?style=flat)](https://travis-ci.org/themasch/node-bencode)
 
 A node library for encoding and decoding bencoded data,
 according to the [BitTorrent specification](http://www.bittorrent.org/beps/bep_0003.html).
@@ -37,28 +40,28 @@ npm install bencode
 
 ### encode
 ```
-  11,883 op/s ⨠ bencode
-   5,457 op/s ⨠ bencoding
-   6,550 op/s ⨠ dht_bencode
-   5,405 op/s ⨠ bncode
-  10,978 op/s ⨠ dht
+19,235 op/s » bencode
+ 9,684 op/s » bencoding
+11,988 op/s » dht_bencode
+ 8,946 op/s » bncode
+18,744 op/s » dht
 ```
 
 ### decode
 ```
-  30,240 op/s ⨠ bencode
-  25,293 op/s ⨠ bencoding
-  26,220 op/s ⨠ dht_bencode
-     824 op/s ⨠ bncode
-  19,824 op/s ⨠ dht
+33,786 op/s » bencode
+55,040 op/s » bencoding
+40,872 op/s » dht_bencode
+ 2,533 op/s » bncode
+30,292 op/s » dht
 ```
 
-*Benchmarks run on an Intel Core2 CPU T9550 @ 2.66GHz with node v0.10.5*
+*Benchmarks run on an 1.8 GHz Intel Core i5 with io.js 1.0.4*
 
 To run the benchmarks simply use
 
 ```
-npm run-script bench
+npm run bench
 ```
 
 ## Usage
