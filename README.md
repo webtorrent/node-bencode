@@ -1,4 +1,7 @@
-# node-bencode [![build status](https://secure.travis-ci.org/themasch/node-bencode.png)](http://travis-ci.org/themasch/node-bencode) [![NPM version](https://badge.fury.io/js/bencode.png)](https://npmjs.org/package/bencode)
+# Bencode
+[![npm](http://img.shields.io/npm/v/bencode.svg?style=flat)](https://npmjs.com/bencode)
+[![npm downloads](http://img.shields.io/npm/dm/bencode.svg?style=flat)](https://npmjs.com/bencode)
+[![build status](http://img.shields.io/travis/themasch/node-bencode.svg?style=flat)](https://travis-ci.org/themasch/node-bencode)
 
 A node library for encoding and decoding bencoded data,
 according to the [BitTorrent specification](http://www.bittorrent.org/beps/bep_0003.html).
