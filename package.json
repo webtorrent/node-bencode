@@ -29,7 +29,7 @@
     "dht.js": "latest",
     "matcha": "~0.6.0",
     "tap-spec": "~4.1.0",
-    "tape": "~4.2.1"
+    "tape": "~4.3.0"
   },
   "scripts": {
     "test": "node node_modules/.bin/tape test/*.test.js | node node_modules/.bin/tap-spec",
