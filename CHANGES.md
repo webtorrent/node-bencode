@@ -8,7 +8,7 @@
 
 - Fixed invalid test data (@themasch)
 - Added `Makefile` for browser tests (@themasch)
-- Fixed Browserify compatibility (@themash)
+- Fixed Browserify compatibility (@themasch)
 
 ## 0.5.2
 
