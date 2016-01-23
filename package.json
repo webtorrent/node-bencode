@@ -34,7 +34,7 @@
   },
   "scripts": {
     "test": "tape test/*.test.js | tap-spec",
-    "bench": "matcha benchmark/*.js"
+    "bench": "matcha"
   },
   "repository": {
     "type": "git",
