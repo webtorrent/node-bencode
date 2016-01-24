@@ -1,7 +1,7 @@
 # Bencode
-[![npm](http://img.shields.io/npm/v/bencode.svg?style=flat)](https://npmjs.com/bencode)
-[![npm downloads](http://img.shields.io/npm/dm/bencode.svg?style=flat)](https://npmjs.com/bencode)
-[![build status](http://img.shields.io/travis/themasch/node-bencode.svg?style=flat)](https://travis-ci.org/themasch/node-bencode)
+[![npm](https://img.shields.io/npm/v/bencode.svg?style=flat-square)](https://npmjs.com/bencode)
+[![npm downloads](https://img.shields.io/npm/dm/bencode.svg?style=flat-square)](https://npmjs.com/bencode)
+[![build status](https://img.shields.io/travis/themasch/node-bencode.svg?style=flat-square)](https://travis-ci.org/themasch/node-bencode)
 
 A node library for encoding and decoding bencoded data,
 according to the [BitTorrent specification](http://www.bittorrent.org/beps/bep_0003.html).
@@ -30,7 +30,7 @@ It supports four different types of values:
 Bencoding is most commonly used in torrent files.
 These metadata files are simply bencoded dictionaries.
 
-## Install with [npm](http://npmjs.org)
+## Install with [npm](https://npmjs.org)
 
 ```
 npm install bencode
@@ -40,23 +40,23 @@ npm install bencode
 
 ### encode
 ```
-19,235 op/s » bencode
- 9,684 op/s » bencoding
-11,988 op/s » dht_bencode
- 8,946 op/s » bncode
-18,744 op/s » dht
+34,832 op/s » bencode
+17,475 op/s » bencoding
+15,947 op/s » dht_bencode
+15,036 op/s » bncode
+21,577 op/s » dht
 ```
 
 ### decode
 ```
-33,786 op/s » bencode
-55,040 op/s » bencoding
-40,872 op/s » dht_bencode
- 2,533 op/s » bncode
-30,292 op/s » dht
+50,460 op/s » bencode
+45,318 op/s » bencoding
+60,672 op/s » dht_bencode
+ 2,928 op/s » bncode
+49,488 op/s » dht
 ```
 
-*Benchmarks run on an 1.8 GHz Intel Core i5 with io.js 1.0.4*
+*Benchmarks run on an 2,6 GHz Intel Core i5 with node 5.5.0*
 
 To run the benchmarks simply use
 
