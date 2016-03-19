@@ -42,6 +42,7 @@
     "dht-bencode": "latest",
     "dht.js": "latest",
     "matcha": "^0.7.0",
+    "standard": "^6.0.8",
     "tape": "^4.5.1"
   },
   "testling": {
