@@ -38,6 +38,7 @@
     "dht-bencode": "latest",
     "dht.js": "latest",
     "matcha": "^0.7.0",
+    "nyc": "^6.1.1",
     "standard": "^6.0.8",
     "tape": "^4.5.1"
   },
