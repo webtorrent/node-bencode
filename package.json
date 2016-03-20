@@ -20,7 +20,7 @@
   "files": [
     "lib"
   ],
-  "main": "./lib/index.js",
+  "main": "./lib/bencode.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/themasch/node-bencode.git"
@@ -31,10 +31,6 @@
     "lint": "standard",
     "test": "npm run lint && npm run unit",
     "unit": "tape test/*.js"
-  },
-  "dependencies": {
-    "varstruct": "^5.1.0",
-    "varstruct-match": "^3.1.0"
   },
   "devDependencies": {
     "bencoding": "latest",

@@ -1,0 +1,22 @@
+{
+  "integer": {
+    "symbol": "i",
+    "code": 105
+  },
+  "list": {
+    "symbol": "l",
+    "code": 108
+  },
+  "dictionary": {
+    "symbol": "d",
+    "code": 100
+  },
+  "stop": {
+    "symbol": "e",
+    "code": 101
+  },
+  "colon": {
+    "symbol": ":",
+    "code": 58
+  }
+}
