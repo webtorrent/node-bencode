@@ -9,57 +9,58 @@ test('should be able to decode an integer', function (t) {
 })
 
 test('should be able to decode a string', function (t) {
-  t.same(bencode.decode(new Buffer('5:asdfe')), 'asdfe')
-  t.same(bencode.decode(fixture.binResultData), fixture.binStringData.toString())
+  t.same(bencode.decode(new Buffer('5:asdfe')), new Buffer('asdfe', 'ascii'))
+  t.same(bencode.decode(fixture.binResultData), fixture.binStringData)
   t.end()
 })
 
 test('should be able to decode \'binary keys\'', function (t) {
   var decoded = bencode.decode(fixture.binKeyData)
-  t.ok(decoded.files.hasOwnProperty(fixture.binKeyName.toString('utf8')))
+  t.ok(decoded.files.hasOwnProperty(fixture.binKeyName.toString('ascii')))
   t.end()
 })
 
 test('should be able to decode a dictionary', function (t) {
   t.same(
     bencode.decode(new Buffer('d3:cow3:moo4:spam4:eggse')),
-    { cow: 'moo', spam: 'eggs' }
+    { cow: new Buffer('moo', 'ascii'), spam: new Buffer('eggs', 'ascii') }
   )
 
   t.same(
     bencode.decode(new Buffer('d4:spaml1:a1:bee')),
-    { spam: [ 'a', 'b' ] }
+    { spam: [ new Buffer('a', 'ascii'), new Buffer('b', 'ascii') ] }
   )
 
   t.same(
     bencode.decode(new Buffer('d9:publisher3:bob17:publisher-webpage15:www.example.com18:publisher.location4:homee')),
-    { 'publisher': 'bob', 'publisher-webpage': 'www.example.com', 'publisher.location': 'home' }
+    {
+      'publisher': new Buffer('bob', 'ascii'),
+      'publisher-webpage': new Buffer('www.example.com', 'ascii'),
+      'publisher.location': new Buffer('home', 'ascii')
+    }
   )
 
   t.end()
 })
 
 test('should be able to decode a list', function (t) {
-  t.same(bencode.decode(new Buffer('l4:spam4:eggse')), [ 'spam', 'eggs' ])
+  var expected = [ new Buffer('spam', 'ascii'), new Buffer('eggs', 'ascii') ]
+  t.same(bencode.decode(new Buffer('l4:spam4:eggse')), expected)
   t.end()
 })
 
 test('should return the correct type', function (t) {
-  t.ok(typeof bencode.decode(new Buffer('4:öö')) === 'string')
+  t.ok(Buffer.isBuffer(bencode.decode(new Buffer('4:öö'))))
   t.end()
 })
 
 test('should be able to decode stuff in dicts (issue #12)', function (t) {
   var expected = {
-    string: 'Hello World',
+    string: new Buffer('Hello World', 'ascii'),
     integer: 12345,
-    list: [ 1, 2, 3, 4, 'string', 5, {} ],
-    dict: { k: 'This is a string within a dictionary', l: [] }
+    list: [ 1, 2, 3, 4, new Buffer('string', 'ascii'), 5, {} ],
+    dict: { k: new Buffer('This is a string within a dictionary', 'ascii'), l: [] }
   }
-  var result = bencode.decode(bencode.encode(expected))
-  t.same(result.string, 'Hello World')
-  t.same(result.integer, 12345)
-  t.same(result.list, [ 1, 2, 3, 4, 'string', 5, {} ])
-  t.same(result.dict, { k: 'This is a string within a dictionary', l: [] })
+  t.same(bencode.decode(bencode.encode(expected)), expected)
   t.end()
 })
