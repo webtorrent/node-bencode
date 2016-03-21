@@ -1,0 +1,18 @@
+{
+  "name": "bencode-benchmark",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "matcha decode.js encode.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bencoding": "0.0.1",
+    "bncode": "^0.5.3",
+    "dht-bencode": "^0.1.2",
+    "dht.js": "^0.2.16",
+    "matcha": "^0.7.0"
+  }
+}

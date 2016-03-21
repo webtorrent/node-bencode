@@ -60,3 +60,31 @@ console.log(bencode.decode(encoded))
 You can also use node-bencode with browserify to be able to use it in a lot of modern browsers.
 
 [![testling results](https://ci.testling.com/themasch/node-bencode.png)](https://ci.testling.com/themasch/node-bencode)
+
+## Benchmark
+
+Torrent file for benchmark: [Fedora-Live-MATE_Compiz-x86_64-23.torrent](https://torrent.fedoraproject.org/torrents/Fedora-Live-MATE_Compiz-x86_64-23.torrent)
+
+```shell
+$ cd benchmark
+$ npm i
+...
+$ npm start
+                      decode
+          36,044 op/s » bencode
+          24,687 op/s » bencoding
+          33,427 op/s » dht_bencode
+             532 op/s » bncode
+          26,013 op/s » dht
+
+                      encode
+          13,234 op/s » bencode
+           5,670 op/s » bencoding
+           8,534 op/s » dht_bencode
+           5,334 op/s » bncode
+           5,979 op/s » dht
+```
+
+## License
+
+MIT

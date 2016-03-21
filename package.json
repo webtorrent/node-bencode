@@ -26,18 +26,12 @@
     "url": "https://github.com/themasch/node-bencode.git"
   },
   "scripts": {
-    "bench": "matcha",
     "coverage": "nyc npm run unit",
     "lint": "standard",
     "test": "npm run lint && npm run unit",
     "unit": "tape test/*.js"
   },
   "devDependencies": {
-    "bencoding": "latest",
-    "bncode": "latest",
-    "dht-bencode": "latest",
-    "dht.js": "latest",
-    "matcha": "^0.7.0",
     "nyc": "^6.1.1",
     "standard": "^6.0.8",
     "tape": "^4.5.1"

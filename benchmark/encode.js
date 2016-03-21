@@ -8,7 +8,7 @@ var dht_bencode = require('dht-bencode')
 var bncode = require('bncode')
 var dht = require('dht.js/lib/dht/bencode')
 
-var buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
+var buffer = fs.readFileSync(path.join(__dirname, 'Fedora-Live-MATE_Compiz-x86_64-23.torrent'))
 var object = bencode.decode(buffer)
 
 suite('encode', () => {
