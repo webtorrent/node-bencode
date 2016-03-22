@@ -1,18 +1,14 @@
 # Bencode
-[![npm](https://img.shields.io/npm/v/bencode.svg?style=flat-square)](https://npmjs.com/bencode)
-[![npm downloads](https://img.shields.io/npm/dm/bencode.svg?style=flat-square)](https://npmjs.com/bencode)
-[![build status](https://img.shields.io/travis/themasch/node-bencode.svg?style=flat-square)](https://travis-ci.org/themasch/node-bencode)
+
+[![NPM Package](https://img.shields.io/npm/v/bencode.svg?style=flat-square)](https://www.npmjs.org/package/bencode)
+[![Build Status](https://img.shields.io/travis/themasch/node-bencode.svg?branch=master&style=flat-square)](https://travis-ci.org/themasch/node-bencode)
+
+[![abstract-encoding](https://img.shields.io/badge/abstract--encoding-compliant-brightgreen.svg?style=flat-square)](https://github.com/mafintosh/abstract-encoding)
+
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
 A node library for encoding and decoding bencoded data,
 according to the [BitTorrent specification](http://www.bittorrent.org/beps/bep_0003.html).
-
-## Index
-
-- [About BEncoding](#about-bencoding)
-- [Installation](#install-with-npm)
-- [Performance](#performance)
-- [Usage](#usage)
-- [API](#api)
 
 ## About BEncoding
 
@@ -36,120 +32,59 @@ These metadata files are simply bencoded dictionaries.
 npm install bencode
 ```
 
-## Performance
-
-### encode
-```
-34,832 op/s » bencode
-17,475 op/s » bencoding
-15,947 op/s » dht_bencode
-15,036 op/s » bncode
-21,577 op/s » dht
-```
-
-### decode
-```
-50,460 op/s » bencode
-45,318 op/s » bencoding
-60,672 op/s » dht_bencode
- 2,928 op/s » bncode
-49,488 op/s » dht
-```
-
-*Benchmarks run on an 2,6 GHz Intel Core i5 with node 5.5.0*
-
-To run the benchmarks simply use
-
-```
-npm run bench
-```
-
 ## Usage
 
 ```javascript
-var bencode = require( 'bencode' )
+var bencode = require('bencode')
+var data = {
+  string: 'Hey there!',
+  integer: 42,
+  dict: { key: 'dict-key-string' },
+  list: [ 1, 2, 3, 'str', 5, {}, [] ]
+}
+
+console.log(bencode.encodingLength(data))
+// 96
+
+var encoded = bencode.encode(data)
+console.log(encoded.toString())
+// d4:dictd3:key15:dict-key-stringe7:integeri42e4:listli1ei2ei3e3:stri5edelee6:string10:Hey there!e'
+
+console.log(bencode.decode(encoded))
+// { dict: { key: 'dict-key-string' },
+//   integer: 42,
+//   list: [ 1, 2, 3, 'str', 5, {}, [] ],
+//   string: 'Hey there!' }
 ```
 
 You can also use node-bencode with browserify to be able to use it in a lot of modern browsers.
 
 [![testling results](https://ci.testling.com/themasch/node-bencode.png)](https://ci.testling.com/themasch/node-bencode)
 
-### Encoding
+## Benchmark
 
-```javascript
+Torrent file for benchmark: [Fedora-Live-MATE_Compiz-x86_64-23.torrent](https://torrent.fedoraproject.org/torrents/Fedora-Live-MATE_Compiz-x86_64-23.torrent)
 
-var data = {
-  string: 'Hello World',
-  integer: 12345,
-  dict: {
-    key: 'This is a string within a dictionary'
-  },
-  list: [ 1, 2, 3, 4, 'string', 5, {} ]
-}
+```shell
+$ cd benchmark
+$ npm i
+...
+$ npm start
+                      decode
+          36,044 op/s » bencode
+          24,687 op/s » bencoding
+          33,427 op/s » dht_bencode
+             532 op/s » bncode
+          26,013 op/s » dht
 
-var result = bencode.encode( data )
-
+                      encode
+          13,234 op/s » bencode
+           5,670 op/s » bencoding
+           8,534 op/s » dht_bencode
+           5,334 op/s » bncode
+           5,979 op/s » dht
 ```
 
-#### Output
+## License
 
-```
-d4:dictd3:key36:This is a string within a dictionarye7:integeri12345e4:listli1ei2ei3ei4e6:stringi5edee6:string11:Hello Worlde
-```
-
-### Decoding
-
-```javascript
-var data   = new Buffer( 'd6:string11:Hello World7:integeri12345e4:dictd3:key36:This is a string within a dictionarye4:litli1ei2ei3ei4e6:stringi5edeee' )
-var result = bencode.decode( data )
-```
-
-#### Output
-
-```javascript
-{
-  string: <Buffer 48 65 6c 6c 6f 20 57 6f 72 6c 64>,
-  integer: 12345,
-  dict: {
-    key: <Buffer 54 68 69 73 20 69 73 20 61 20 73 74 72 69 6e 67 20 77 69 74 68 69 6e 20 61 20 64 69 63 74 69 6f 6e 61 72 79>
-  },
-  list: [ 1, 2, 3, 4, <Buffer 73 74 72 69 6e 67>, 5, {} ]
-}
-```
-
-Automagically convert bytestrings to strings:
-
-```javascript
-var result = bencode.decode( data, 'utf8' )
-```
-
-#### Output
-
-```javascript
-{
-  string: 'Hello World',
-  integer: 12345,
-  dict: {
-    key: 'This is a string within a dictionary'
-  },
-  list: [ 1, 2, 3, 4, 'string', 5, {} ]
-}
-```
-
-## API
-
-### bencode.encode( *data* )
-
-> `Buffer` | `Array` | `String` | `Object` | `Number` __data__
-
-Returns `Buffer`
-
-### bencode.decode( *data*, *encoding* )
-
-> `Buffer` __data__
-> `String` __encoding__
-
-If `encoding` is set, bytestrings are
-automatically converted to strings.
-
-Returns `Object` | `Array` | `Buffer` | `String` | `Number`
+MIT

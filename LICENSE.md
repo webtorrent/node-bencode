@@ -1,7 +1,7 @@
 The MIT License (MIT)
 =====================
 
-Copyright (c) 2010 Mark Schmale
+Copyright (c) 2010-216 Mark Schmale & node-bencode contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
