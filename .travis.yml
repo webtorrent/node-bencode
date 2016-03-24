@@ -6,3 +6,7 @@ node_js:
   - 0.12
   - 4
   - stable
+branches:
+  only:
+    - master
+script: npm test
