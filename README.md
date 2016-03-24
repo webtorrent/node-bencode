@@ -91,6 +91,8 @@ var result = bencode.encode( data )
 
 ```
 
+**NOTE** As of `bencode@0.8.0`, boolean values will be cast to integers (false -> 0, true -> 1).
+
 #### Output
 
 ```
