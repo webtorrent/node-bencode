@@ -1,3 +1,7 @@
+## 0.8.0
+
+- Add support for encoding `Boolean` values (@kaelar)
+
 ## 0.7.0
 
 - Add binary key support (@deoxxa)
