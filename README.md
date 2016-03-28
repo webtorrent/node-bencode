@@ -140,18 +140,28 @@ var result = bencode.decode( data, 'utf8' )
 
 ## API
 
-### bencode.encode( *data* )
+The API is compatible with the [`abstract-encoding`](https://github.com/mafintosh/abstract-encoding) specification.
 
-> `Buffer` | `Array` | `String` | `Object` | `Number` __data__
+### bencode.encode( *data*, *[buffer]*, *[offset]* )
+
+> `Buffer` | `Array` | `String` | `Object` | `Number` | `Boolean` __data__
+> `Buffer` __buffer__
+> `Number` __offset__
 
 Returns `Buffer`
 
-### bencode.decode( *data*, *encoding* )
+### bencode.decode( *data*, *[start]*, *[end]*, *[encoding]* )
 
 > `Buffer` __data__
+> `Number` __start__
+> `Number` __end__
 > `String` __encoding__
 
 If `encoding` is set, bytestrings are
 automatically converted to strings.
 
 Returns `Object` | `Array` | `Buffer` | `String` | `Number`
+
+### bencode.byteLength( *value* ) or bencode.encodingLength( *value* )
+
+> `Buffer` | `Array` | `String` | `Object` | `Number` | `Boolean` __value__
