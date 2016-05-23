@@ -1,5 +1,5 @@
 var test    = require('tape').test
-var bencode = require('./lib.js')
+var bencode = require('..')
 var data    = require('./data.js')
 
 test("bencode#decode(x, 'uft8')", function(t) {

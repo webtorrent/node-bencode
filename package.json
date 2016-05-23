@@ -34,7 +34,7 @@
     "torrent"
   ],
   "license": "MIT",
-  "main": "bencode.js",
+  "main": "lib",
   "repository": {
     "type": "git",
     "url": "git://github.com/themasch/node-bencode.git"
