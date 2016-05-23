@@ -1,6 +1,6 @@
-var test = require('tape').test
 var bencode = require('..')
 var data = require('./data.js')
+var test = require('tape').test
 
 test('bencode#encode()', function (t) {
   // prevent the warning showing up in the test

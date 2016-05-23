@@ -2,9 +2,9 @@ var fs = require('fs')
 
 var bencode = require('../')
 var bencoding = require('bencoding')
-var dht_bencode = require('dht-bencode')
 var bncode = require('bncode')
 var dht = require('dht.js/lib/dht/bencode')
+var dht_bencode = require('dht-bencode')
 
 var buffer = fs.readFileSync(__dirname + '/test.torrent')
 

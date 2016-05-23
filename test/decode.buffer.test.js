@@ -1,6 +1,6 @@
-var test = require('tape').test
 var bencode = require('..')
-var data = require('./data.js')
+var data = require('./data')
+var test = require('tape').test
 
 test('bencode#decode(x)', function (t) {
   t.test('should be able to decode an integer', function (t) {
