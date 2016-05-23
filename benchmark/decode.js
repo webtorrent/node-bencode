@@ -41,4 +41,3 @@ suite('decode to binary', function() {
         bencode.decode( buffer, 'ascii' )
     })
 })
-
