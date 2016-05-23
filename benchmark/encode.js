@@ -4,13 +4,13 @@ var bencode = require('../')
 var bencoding = require('bencoding')
 var bncode = require('bncode')
 var dht = require('dht.js/lib/dht/bencode')
-var dht_bencode = require('dht-bencode')
+var dhtBencode = require('dht-bencode')
 
 var buffer = fs.readFileSync(__dirname + '/test.torrent')
 var object = bencode.decode(buffer)
-var object_utf8 = bencode.decode(buffer, 'utf8')
-var object_ascii = bencode.decode(buffer, 'ascii')
-var object_binary = bencode.decode(buffer, 'binary')
+var objectUtf8 = bencode.decode(buffer, 'utf8')
+var objectAscii = bencode.decode(buffer, 'ascii')
+var objectBinary = bencode.decode(buffer, 'binary')
 
 suite('encode buffer', function () {
   bench('bencode', function () {
@@ -19,8 +19,8 @@ suite('encode buffer', function () {
   bench('bencoding', function () {
     bencoding.encode(object)
   })
-  bench('dht_bencode', function () {
-    dht_bencode.bencode(object)
+  bench('dht-bencode', function () {
+    dhtBencode.bencode(object)
   })
   bench('bncode', function () {
     bncode.encode(object)
@@ -32,52 +32,52 @@ suite('encode buffer', function () {
 
 suite('encode utf8', function () {
   bench('bencode', function () {
-    bencode.encode(object_utf8)
+    bencode.encode(objectUtf8)
   })
   bench('bencoding', function () {
-    bencoding.encode(object_utf8)
+    bencoding.encode(objectUtf8)
   })
-  bench('dht_bencode', function () {
-    dht_bencode.bencode(object_utf8)
+  bench('dht-bencode', function () {
+    dhtBencode.bencode(objectUtf8)
   })
   bench('bncode', function () {
-    bncode.encode(object_utf8)
+    bncode.encode(objectUtf8)
   })
   bench('dht', function () {
-    dht.encode(object_utf8)
+    dht.encode(objectUtf8)
   })
 })
 suite('encode ascii', function () {
   bench('bencode', function () {
-    bencode.encode(object_ascii)
+    bencode.encode(objectAscii)
   })
   bench('bencoding', function () {
-    bencoding.encode(object_ascii)
+    bencoding.encode(objectAscii)
   })
-  bench('dht_bencode', function () {
-    dht_bencode.bencode(object_ascii)
+  bench('dht-bencode', function () {
+    dhtBencode.bencode(objectAscii)
   })
   bench('bncode', function () {
-    bncode.encode(object_ascii)
+    bncode.encode(objectAscii)
   })
   bench('dht', function () {
-    dht.encode(object_ascii)
+    dht.encode(objectAscii)
   })
 })
 suite('encode binary', function () {
   bench('bencode', function () {
-    bencode.encode(object_binary)
+    bencode.encode(objectBinary)
   })
   bench('bencoding', function () {
-    bencoding.encode(object_binary)
+    bencoding.encode(objectBinary)
   })
-  bench('dht_bencode', function () {
-    dht_bencode.bencode(object_binary)
+  bench('dht-bencode', function () {
+    dhtBencode.bencode(objectBinary)
   })
   bench('bncode', function () {
-    bncode.encode(object_binary)
+    bncode.encode(objectBinary)
   })
   bench('dht', function () {
-    dht.encode(object_binary)
+    dht.encode(objectBinary)
   })
 })
