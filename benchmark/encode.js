@@ -25,7 +25,7 @@ suite('encode buffer', function () {
   bench('bncode', function () {
     bncode.encode(object)
   })
-  bench('dht', function () {
+  bench('dht.js', function () {
     dht.encode(object)
   })
 })
@@ -43,7 +43,7 @@ suite('encode utf8', function () {
   bench('bncode', function () {
     bncode.encode(objectUtf8)
   })
-  bench('dht', function () {
+  bench('dht.js', function () {
     dht.encode(objectUtf8)
   })
 })
@@ -60,7 +60,7 @@ suite('encode ascii', function () {
   bench('bncode', function () {
     bncode.encode(objectAscii)
   })
-  bench('dht', function () {
+  bench('dht.js', function () {
     dht.encode(objectAscii)
   })
 })
@@ -77,7 +77,7 @@ suite('encode binary', function () {
   bench('bncode', function () {
     bncode.encode(objectBinary)
   })
-  bench('dht', function () {
+  bench('dht.js', function () {
     dht.encode(objectBinary)
   })
 })

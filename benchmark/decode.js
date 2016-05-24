@@ -21,7 +21,7 @@ suite('decode to buffer', function () {
   bench('bncode', function () {
     bncode.decode(buffer)
   })
-  bench('dht', function () {
+  bench('dht.js', function () {
     dht.decode(buffer)
   })
 })
