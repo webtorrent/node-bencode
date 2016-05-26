@@ -38,8 +38,8 @@ test('bencode#decode(x)', function (t) {
     t.deepEqual(
       bencode.decode('d4:spaml1:a1:bee'),
       { spam: [
-          new Buffer('a'),
-          new Buffer('b')
+        new Buffer('a'),
+        new Buffer('b')
       ] }
     )
     t.deepEqual(

@@ -25,7 +25,7 @@ test('bencode#encode()', function (t) {
     t.plan(1)
     var data = {
       12: 'Hello World',
-      34: 12345,
+      34: 12345
     }
     t.equal(bencode.encode(data).toString(), 'd2:1211:Hello World2:34i12345ee')
   })

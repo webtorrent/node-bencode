@@ -1,4 +1,6 @@
+/* global suite, bench */
 var fs = require('fs')
+var path = require('path')
 
 var bencode = require('../')
 var bencoding = require('bencoding')
@@ -6,7 +8,7 @@ var bncode = require('bncode')
 var dht = require('dht.js/lib/dht/bencode')
 var dhtBencode = require('dht-bencode')
 
-var buffer = fs.readFileSync(__dirname + '/test.torrent')
+var buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
 var object = bencode.decode(buffer)
 var objectUtf8 = bencode.decode(buffer, 'utf8')
 var objectAscii = bencode.decode(buffer, 'ascii')

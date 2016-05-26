@@ -1,7 +1,9 @@
+/* global suite, bench */
 var fs = require('fs')
+var path = require('path')
 var bencode = require('..')
 
-var buffer = fs.readFileSync(__dirname + '/test.torrent')
+var buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
 var torrent = bencode.decode(buffer)
 
 suite('encoding length', function () {

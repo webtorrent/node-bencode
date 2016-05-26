@@ -36,7 +36,7 @@ test('abstract encoding', function (t) {
 
   t.test('decode.bytes', function (t) {
     var input = new Buffer('d7:integeri12345e6:string11:Hello Worlde')
-    var output = bencode.decode(input)
+    bencode.decode(input)
     t.plan(1)
     t.equal(bencode.decode.bytes, input.length)
   })
