@@ -1,3 +1,16 @@
+## 0.10.0
+
+- Add `standard` code style (@slang800)
+- Update benchmarks (@slang800)
+- Remove `lib/dict.js` (@slang800)
+- Move `main` entrypoint into ./lib (@slang800)
+- Clean up `package.json` (@slang800)
+- Remove extra files from being published to npm (@slang800)
+
+## 0.9.0
+
+- Implement the `abstract-encoding` API (@jhermsmeier)
+
 ## 0.8.0
 
 - Add support for encoding `Boolean` values (@kaelar)
