@@ -23,6 +23,7 @@
     "dht-bencode": "latest",
     "dht.js": "latest",
     "matcha": "~0.7.0",
+    "standard": "^7.1.1",
     "tap-spec": "~4.1.0",
     "tape": "~4.5.1"
   },
@@ -41,7 +42,7 @@
   },
   "scripts": {
     "bench": "matcha",
-    "test": "tape test/*.test.js | tap-spec"
+    "test": "standard && tape test/*.test.js | tap-spec"
   },
   "testling": {
     "files": "test/*.test.js",
