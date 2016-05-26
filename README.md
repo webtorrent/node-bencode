@@ -38,25 +38,27 @@ npm install bencode
 
 ## Performance
 
-### encode
-```
-34,832 op/s » bencode
-17,475 op/s » bencoding
-15,947 op/s » dht_bencode
-15,036 op/s » bncode
-21,577 op/s » dht
-```
+### encode buffer
 
-### decode
-```
-50,460 op/s » bencode
-45,318 op/s » bencoding
-60,672 op/s » dht_bencode
- 2,928 op/s » bncode
-49,488 op/s » dht
-```
+package     | version | op/sec
+----------- | ------- | ------
+bencode     | 1.0.0   | 41,880
+dht.js      | 0.2.16  | 36,824
+dht-bencode | 0.1.2   | 25,232
+bencoding   | 0.0.1   | 19,129
+bncode      | 0.5.3   | 16,567
 
-*Benchmarks run on an 2,6 GHz Intel Core i5 with node 5.5.0*
+### decode to buffer
+
+package     | version | op/sec
+----------- | ------- | ------
+bencode     | 1.0.0   | 67,351
+dht-bencode | 0.1.2   | 64,445
+bencoding   | 0.0.1   | 48,415
+dht.js      | 0.2.16  | 41,648
+bncode      | 0.5.3   | 3,188
+
+_Benchmarks run on an Intel Core i7-5500U @ 2.40Ghz with node v6.1.0 & GNU/Linux 4.4.0_
 
 To run the benchmarks simply use
 
