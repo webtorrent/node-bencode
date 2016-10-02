@@ -8,10 +8,28 @@ test("bencode#decode(x, 'uft8')", function (t) {
     t.equal(bencode.decode('i123e', 'utf8'), 123)
     t.equal(bencode.decode('i-123e', 'utf8'), -123)
   })
+  t.test('should be throw an error when trying to decode a broken integer', function (t) {
+    t.plan(2)
+    t.throws(function () {
+      bencode.decode('i12+3e', 'utf8')
+    }, /not a number/)
+    t.throws(function () {
+      bencode.decode('i-1+23e', 'utf8')
+    }, /not a number/)
+  })
   t.test('should be able to decode a float (as int)', function (t) {
     t.plan(2)
     t.equal(bencode.decode('i12.3e', 'utf8'), 12)
     t.equal(bencode.decode('i-12.3e', 'utf8'), -12)
+  })
+  t.test('should be throw an error when trying to decode a broken float', function (t) {
+    t.plan(2)
+    t.throws(function () {
+      bencode.decode('i1+2.3e', 'utf8')
+    }, /not a number/)
+    t.throws(function () {
+      bencode.decode('i-1+2.3e', 'utf8')
+    }, /not a number/)
   })
   t.test('should be able to decode a string', function (t) {
     t.plan(2)
