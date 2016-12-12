@@ -43,18 +43,5 @@
   "scripts": {
     "bench": "matcha",
     "test": "standard && tape test/*.test.js | tap-spec"
-  },
-  "testling": {
-    "files": "test/*.test.js",
-    "browsers": [
-      "ie/6..latest",
-      "chrome/22..latest",
-      "firefox/16..latest",
-      "safari/latest",
-      "opera/11.0..latest",
-      "iphone/6..latest",
-      "ipad/6..latest",
-      "android-browser/latest"
-    ]
   }
 }

@@ -74,8 +74,6 @@ var bencode = require( 'bencode' )
 
 You can also use node-bencode with browserify to be able to use it in a lot of modern browsers.
 
-[![testling results](https://ci.testling.com/themasch/node-bencode.png)](https://ci.testling.com/themasch/node-bencode)
-
 ### Encoding
 
 ```javascript
