@@ -1,3 +1,10 @@
+## 0.11.0
+
+- Ignore null-values when encoding (@jhermsmeier)
+- Add test/BEP-0023: Test correct handling of compacted peer lists (@jhermsmeier)
+- Implement a faster way to parse intergers from buffers (@themasch)
+- Fix string to be decoded in README (@ngotchac)
+
 ## 0.10.0
 
 - Add `standard` code style (@slang800)
