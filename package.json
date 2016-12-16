@@ -1,7 +1,7 @@
 {
   "name": "bencode",
   "description": "Bencode de/encoder",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "bugs": {
     "url": "https://github.com/themasch/node-bencode/issues"
   },
