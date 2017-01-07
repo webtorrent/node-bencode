@@ -1,12 +1,12 @@
 
 .PHONY: all test benchmark
 
-browserify: bencode.js lib/*.js
+browserify: lib/*.js
 	mkdir -p dist
 	browserify bencode.js -s bencode -o dist/bencode.js
 
 # TODO: thats not how it should behave!
-browser-test: bencode.js lib/*.js test/*.js
+browser-test: lib/*.js test/*.js
 	mkdir -p dist
 	browserify test/*.test.js -o dist/tests.js
 	echo "<script src='tests.js'></script>" > dist/test.html
