@@ -20,6 +20,7 @@
   "devDependencies": {
     "bencoding": "latest",
     "bncode": "latest",
+    "browserify": "^13.3.0",
     "dht-bencode": "latest",
     "dht.js": "latest",
     "matcha": "~0.7.0",
@@ -42,6 +43,9 @@
   },
   "scripts": {
     "bench": "matcha",
+    "bundle": "mkdir -p dist && npm run bundle:lib && npm run bundle:test",
+    "bundle:lib": "browserify lib/index.js -s bencode -o dist/bencode.js",
+    "bundle:test": "browserify test/*.test.js -o dist/tests.js",
     "test": "standard && tape test/*.test.js | tap-spec"
   }
 }
