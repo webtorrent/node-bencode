@@ -42,6 +42,7 @@
   },
   "scripts": {
     "bench": "matcha",
+    "style": "standard --fix",
     "test": "standard && tape test/*.test.js | tap-spec"
   }
 }
