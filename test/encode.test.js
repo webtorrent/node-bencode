@@ -51,7 +51,7 @@ test('bencode#encode()', function (t) {
     var JAVASCRIPT_INT_BITS = 53
     var MAX_JAVASCRIPT_INT = Math.pow(2, JAVASCRIPT_INT_BITS)
 
-    t.plan((JAVASCRIPT_INT_BITS - 1) * 6 + 3)
+    t.plan((JAVASCRIPT_INT_BITS - 1) * (6 + 3))
     t.equal(bencode.encode(0).toString(), 'i' + 0 + 'e')
 
     for (var exp = 1; exp < JAVASCRIPT_INT_BITS; ++exp) {
