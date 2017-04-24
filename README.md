@@ -41,24 +41,26 @@ npm install bencode
 ### encode buffer
 
 package     | version | op/sec
------------ | ------- | ------
-bencode     | 1.0.0   | 41,880
-dht.js      | 0.2.16  | 36,824
-dht-bencode | 0.1.2   | 25,232
-bencoding   | 0.0.1   | 19,129
-bncode      | 0.5.3   | 16,567
+----------- | ------- | ---------
+bencode     | 0.12.0  |  *47,692*
+dht.js      | 0.2.16  |   43,908
+dht-bencode | 0.1.2   |   35,670
+bencoding   | 0.0.1   |   31,942
+bncode      | 0.5.3   |   25,097
+bparse      | 1.0.2   |        -
 
 ### decode to buffer
 
 package     | version | op/sec
 ----------- | ------- | ------
-bencode     | 1.0.0   | 67,351
-dht-bencode | 0.1.2   | 64,445
-bencoding   | 0.0.1   | 48,415
-dht.js      | 0.2.16  | 41,648
-bncode      | 0.5.3   | 3,188
+bencode     | 0.12.0  |  129,326
+dht.js      | 0.2.16  |   71,639
+dht-bencode | 0.1.2   |   89,285
+bencoding   | 0.0.1   |   97,285
+bncode      | 0.5.3   |   16,567
+bparse      | 1.0.2   | *155,660*
 
-_Benchmarks run on an Intel Core i7-5500U @ 2.40Ghz with node v6.1.0 & GNU/Linux 4.4.0_
+_Benchmarks run on an Intel Core i7-4600M @ 2.90Ghz with node v7.8.0 & GNU/Linux 4.4.39_
 
 To run the benchmarks simply use
 

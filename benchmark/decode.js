@@ -5,6 +5,7 @@ var path = require('path')
 var bencode = require('../')
 var bencoding = require('bencoding')
 var bncode = require('bncode')
+var btparse = require('btparse')
 var dht = require('dht.js/lib/dht/bencode')
 var dhtBencode = require('dht-bencode')
 
@@ -22,6 +23,9 @@ suite('decode to buffer', function () {
   })
   bench('bncode', function () {
     bncode.decode(buffer)
+  })
+  bench('btparse', function () {
+    btparse(buffer)
   })
   bench('dht.js', function () {
     dht.decode(buffer)
