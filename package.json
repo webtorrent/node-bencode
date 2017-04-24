@@ -1,7 +1,7 @@
 {
   "name": "bencode",
   "description": "Bencode de/encoder",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "bugs": {
     "url": "https://github.com/themasch/node-bencode/issues"
   },
@@ -20,6 +20,7 @@
   "devDependencies": {
     "bencoding": "latest",
     "bncode": "latest",
+    "btparse": "latest",
     "dht-bencode": "latest",
     "dht.js": "latest",
     "matcha": "~0.7.0",
