@@ -18,7 +18,7 @@ test('BEP 0023', function (t) {
       incomplete: 3,
       interval: 1800,
       'min interval': 1800,
-      peers: new Buffer('2ebd1b641a1f51d54c0546cc342190401a1f626ee9c6c8d5cb0d92131a1fac4e689a3c6b180f3d5746db', 'hex')
+      peers: Buffer.from('2ebd1b641a1f51d54c0546cc342190401a1f626ee9c6c8d5cb0d92131a1fac4e689a3c6b180f3d5746db', 'hex')
     })
   })
 

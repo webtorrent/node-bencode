@@ -102,7 +102,7 @@ d4:dictd3:key36:This is a string within a dictionarye7:integeri12345e4:listli1ei
 ### Decoding
 
 ```javascript
-var data   = new Buffer( 'd6:string11:Hello World7:integeri12345e4:dictd3:key36:This is a string within a dictionarye4:listli1ei2ei3ei4e6:stringi5edeee' )
+var data = Buffer.from('d6:string11:Hello World7:integeri12345e4:dictd3:key36:This is a string within a dictionarye4:listli1ei2ei3ei4e6:stringi5edeee')
 var result = bencode.decode( data )
 ```
 
