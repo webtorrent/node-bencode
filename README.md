@@ -47,7 +47,7 @@ dht.js      | 0.2.16  |   43,908
 dht-bencode | 0.1.2   |   35,670
 bencoding   | 0.0.1   |   31,942
 bncode      | 0.5.3   |   25,097
-bparse      | 1.0.2   |        -
+btparse     | 1.0.2   |        -
 
 ### decode to buffer
 
@@ -58,7 +58,7 @@ dht.js      | 0.2.16  |   71,639
 dht-bencode | 0.1.2   |   89,285
 bencoding   | 0.0.1   |   97,285
 bncode      | 0.5.3   |   16,567
-bparse      | 1.0.2   | *155,660*
+btparse     | 1.0.2   | *155,660*
 
 _Benchmarks run on an Intel Core i7-4600M @ 2.90Ghz with node v7.8.0 & GNU/Linux 4.4.39_
 
