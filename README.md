@@ -42,7 +42,7 @@ npm install bencode
 
 package     | version | op/sec
 ----------- | ------- | ---------
-bencode     | 0.12.0  |   47,692
+bencode     | 0.12.0  |  *47,692*
 dht.js      | 0.2.16  |   43,908
 dht-bencode | 0.1.2   |   35,670
 bencoding   | 0.0.1   |   31,942
