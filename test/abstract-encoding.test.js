@@ -1,5 +1,6 @@
 var bencode = require('..')
 var test = require('tape').test
+var Buffer = require('safe-buffer').Buffer
 
 test('abstract encoding', function (t) {
   t.test('encodingLength( value )', function (t) {

@@ -2,6 +2,7 @@ var bencode = require('..')
 var path = require('path')
 var fs = require('fs')
 var test = require('tape').test
+var Buffer = require('safe-buffer').Buffer
 
 // @see http://www.bittorrent.org/beps/bep_0023.html
 test('BEP 0023', function (t) {
