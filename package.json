@@ -45,5 +45,8 @@
     "bench": "matcha",
     "style": "standard --fix",
     "test": "standard && tape test/*.test.js | tap-spec"
+  },
+  "dependencies": {
+    "safe-buffer": "^5.1.1"
   }
 }
