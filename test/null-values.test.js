@@ -1,5 +1,6 @@
 var bencode = require('..')
 var test = require('tape').test
+var Buffer = require('safe-buffer').Buffer
 
 test('Data with null values', function (t) {
   t.test('should return an empty value when encoding either null or undefined', function (t) {
