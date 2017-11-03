@@ -23,7 +23,7 @@
     "btparse": "latest",
     "dht-bencode": "latest",
     "dht.js": "latest",
-    "matcha": "~0.7.0",
+    "nanobench": "^2.1.0",
     "standard": "^9.0.2",
     "tap-spec": "~4.1.0",
     "tape": "~4.6.0"
@@ -42,7 +42,7 @@
     "url": "git://github.com/themasch/node-bencode.git"
   },
   "scripts": {
-    "bench": "matcha",
+    "benchmark": "nanobench benchmark/*.js",
     "style": "standard --fix",
     "test": "standard && tape test/*.test.js | tap-spec"
   },

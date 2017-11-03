@@ -1,82 +1,87 @@
-/* global suite, bench */
 var fs = require('fs')
 var path = require('path')
-var bencode = require('..')
 var bench = require('nanobench')
 
+var bencode = require('../')
+var bencoding = require('bencoding')
+var bncode = require('bncode')
+var btparse = require('btparse')
+var dht = require('dht.js/lib/dht/bencode')
+var dhtBencode = require('dht-bencode')
+
 var buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
-var torrent = bencode.decode(buffer)
 
 const ITERATIONS = 10000
 
-bench('bencode.encodingLength(torrent)', function (run) {
+bench(`bencode.decode() ⨉ ${ITERATIONS}`, function (run) {
   var result = null
 
   run.start()
   for (var i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength(torrent)
+    result = bencode.decode(buffer)
   }
   run.end()
 
   return result
 })
 
-bench('bencode.encodingLength(buffer)', function (run) {
+bench(`bencoding.decode() ⨉ ${ITERATIONS}`, function (run) {
   var result = null
 
   run.start()
   for (var i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength(buffer)
+    result = bencoding.decode(buffer)
   }
   run.end()
 
   return result
 })
 
-bench('bencode.encodingLength(string)', function (run) {
+bench(`bncode.decode() ⨉ ${ITERATIONS}`, function (run) {
   var result = null
 
   run.start()
   for (var i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength('Test, test, this is a string')
+    result = bncode.decode(buffer)
   }
   run.end()
 
   return result
 })
 
-bench('bencode.encodingLength(number)', function (run) {
+bench(`btparse() ⨉ ${ITERATIONS}`, function (run) {
   var result = null
 
   run.start()
   for (var i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength(87641234567)
+    result = btparse(buffer)
   }
   run.end()
 
   return result
 })
 
-bench('bencode.encodingLength(array<number>)', function (run) {
+bench(`dht.decode() ⨉ ${ITERATIONS}`, function (run) {
   var result = null
 
   run.start()
   for (var i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ])
+    result = dht.decode(buffer)
   }
   run.end()
 
   return result
 })
 
-bench('bencode.encodingLength(small object)', function (run) {
+bench(`dhtBencode.decode() ⨉ ${ITERATIONS}`, function (run) {
   var result = null
 
   run.start()
   for (var i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength({ a: 1, b: 'c', d: 'abcdefg', e: [1, 2, 3] })
+    result = dhtBencode.bdecode(buffer)
   }
   run.end()
 
   return result
 })
+
