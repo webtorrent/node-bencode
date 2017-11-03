@@ -1,6 +1,7 @@
 var bencode = require('..')
 var data = require('./data.js')
 var test = require('tape').test
+var Buffer = require('safe-buffer').Buffer
 
 test('bencode#encode()', function (t) {
   // prevent the warning showing up in the test
@@ -101,8 +102,8 @@ test('bencode#encode()', function (t) {
   })
   t.test('should be able to encode a buffer', function (t) {
     t.plan(2)
-    t.equal(bencode.encode(new Buffer('asdf')).toString(), '4:asdf')
-    t.equal(bencode.encode(new Buffer(':asdf:')).toString(), '6::asdf:')
+    t.equal(bencode.encode(Buffer.from('asdf')).toString(), '4:asdf')
+    t.equal(bencode.encode(Buffer.from(':asdf:')).toString(), '6::asdf:')
   })
   t.test('should be able to encode an array', function (t) {
     t.plan(2)
@@ -113,6 +114,6 @@ test('bencode#encode()', function (t) {
     t.plan(3)
     t.equal(bencode.encode({'a': 'bc'}).toString(), 'd1:a2:bce')
     t.equal(bencode.encode({'a': '45', 'b': 45}).toString(), 'd1:a2:451:bi45ee')
-    t.equal(bencode.encode({'a': new Buffer('bc')}).toString(), 'd1:a2:bce')
+    t.equal(bencode.encode({'a': Buffer.from('bc')}).toString(), 'd1:a2:bce')
   })
 })
