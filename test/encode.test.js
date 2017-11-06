@@ -116,4 +116,53 @@ test('bencode#encode()', function (t) {
     t.equal(bencode.encode({'a': '45', 'b': 45}).toString(), 'd1:a2:451:bi45ee')
     t.equal(bencode.encode({'a': Buffer.from('bc')}).toString(), 'd1:a2:bce')
   })
+
+  t.test('should encode new Number(1) as number', function (t) {
+    var data = new Number(1) // eslint-disable-line
+    var result = bencode.decode(bencode.encode(data))
+    var expected = 1
+    t.plan(1)
+    t.strictEqual(result, expected)
+  })
+
+  t.test('should encode new Boolean(true) as number', function (t) {
+    var data = new Boolean(true) // eslint-disable-line
+    var result = bencode.decode(bencode.encode(data))
+    var expected = 1
+    t.plan(1)
+    t.strictEqual(result, expected)
+  })
+
+  t.test('should encode Uint8Array as buffer', function (t) {
+    var data = new Uint8Array([ 1, 2, 3, 4, 5, 6, 7, 8, 9 ])
+    var result = bencode.decode(bencode.encode(data))
+    var expected = Buffer.from(data.buffer)
+    t.plan(1)
+    t.deepEqual(result, expected)
+  })
+
+  t.test('should encode Uint32Array as buffer', function (t) {
+    var data = new Uint32Array([ 0xF, 0xFF, 0xFFF, 0xFFFF, 0xFFFFF, 0xFFFFFF, 0xFFFFFFF, 0xFFFFFFFF ])
+    var result = bencode.decode(bencode.encode(data))
+    var expected = Buffer.from(data.buffer)
+    t.plan(1)
+    t.deepEqual(result, expected)
+  })
+
+  t.test('should encode ArrayBuffer as buffer', function (t) {
+    var data = new Uint32Array([ 0xF, 0xFF, 0xFFF, 0xFFFF, 0xFFFFF, 0xFFFFFF, 0xFFFFFFF, 0xFFFFFFFF ])
+    var result = bencode.decode(bencode.encode(data.buffer))
+    var expected = Buffer.from(data.buffer)
+    t.plan(1)
+    t.deepEqual(result, expected)
+  })
+
+  t.test('should encode Float32Array as buffer', function (t) {
+    var data = new Float32Array([ 1.2, 2.3, 3.4, 4.5, 5.6, 6.7, 7.8, 8.9, 9.0 ])
+    var result = bencode.decode(bencode.encode(data))
+    var expected = Buffer.from(data.buffer)
+    console.log(result)
+    t.plan(1)
+    t.deepEqual(result, expected)
+  })
 })
