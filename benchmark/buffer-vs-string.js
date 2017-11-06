@@ -1,4 +1,3 @@
-/* global suite, bench */
 var fs = require('fs')
 var path = require('path')
 var bencode = require('../')

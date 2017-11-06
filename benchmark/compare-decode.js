@@ -84,4 +84,3 @@ bench(`dhtBencode.decode() ⨉ ${ITERATIONS}`, function (run) {
 
   return result
 })
-

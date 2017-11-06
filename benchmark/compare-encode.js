@@ -72,4 +72,3 @@ bench(`dhtBencode.encode() ⨉ ${ITERATIONS}`, function (run) {
 
   return result
 })
-
