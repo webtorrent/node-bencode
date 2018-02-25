@@ -161,7 +161,24 @@ test('bencode#encode()', function (t) {
     var data = new Float32Array([ 1.2, 2.3, 3.4, 4.5, 5.6, 6.7, 7.8, 8.9, 9.0 ])
     var result = bencode.decode(bencode.encode(data))
     var expected = Buffer.from(data.buffer)
-    console.log(result)
+    t.plan(1)
+    t.deepEqual(result, expected)
+  })
+
+  t.test('should encode DataView as buffer', function (t) {
+    var data = new Uint8Array([ 1, 2, 3, 4, 5, 6, 7, 8, 9 ])
+    var view = new DataView(data.buffer)
+    var result = bencode.decode(bencode.encode(view))
+    var expected = Buffer.from(data.buffer)
+    t.plan(1)
+    t.deepEqual(result, expected)
+  })
+
+  t.test('should encode Uint8Array subarray properly', function (t) {
+    var data = new Uint8Array([ 1, 2, 3, 4, 5, 6, 7, 8, 9 ])
+    var subData = data.subarray(5)
+    var result = bencode.decode(bencode.encode(subData))
+    var expected = Buffer.from(subData.buffer, subData.byteOffset, subData.byteLength)
     t.plan(1)
     t.deepEqual(result, expected)
   })
