@@ -65,7 +65,7 @@ _Benchmarks run on an Intel Core i7-4600M @ 2.90Ghz with node v7.8.0 & GNU/Linux
 To run the benchmarks simply use
 
 ```
-npm run bench
+npm run benchmark
 ```
 
 ## Usage
