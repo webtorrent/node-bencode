@@ -1,3 +1,8 @@
+## 2.0.0
+
+- Drop support for Node 0.10, 0.12., add support for Node 8 & 9  (@jhermsmeier)
+- Support for typed arrays (@jhermsmeier, @nazar-pc)
+
 ## 1.0.0
 
 - Support Node 0.10, 0.12, and early Node 4 (@feross)
