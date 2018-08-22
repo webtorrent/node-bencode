@@ -136,7 +136,3 @@ Returns `Object` | `Array` | `Buffer` | `String` | `Number`
 ### bencode.byteLength( *value* ) or bencode.encodingLength( *value* )
 
 > `Buffer` | `Array` | `String` | `Object` | `Number` | `Boolean` __value__
-
-
-## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fthemasch%2Fnode-bencode.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fthemasch%2Fnode-bencode?ref=badge_large)
