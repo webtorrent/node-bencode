@@ -2,6 +2,7 @@
 [![npm](https://img.shields.io/npm/v/bencode.svg?style=flat-square)](https://npmjs.com/bencode)
 [![npm downloads](https://img.shields.io/npm/dm/bencode.svg?style=flat-square)](https://npmjs.com/bencode)
 [![build status](https://img.shields.io/travis/themasch/node-bencode/master.svg?style=flat-square)](https://travis-ci.org/themasch/node-bencode)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fthemasch%2Fnode-bencode.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fthemasch%2Fnode-bencode?ref=badge_shield)
 
 A node library for encoding and decoding bencoded data,
 according to the [BitTorrent specification](http://www.bittorrent.org/beps/bep_0003.html).
