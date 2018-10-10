@@ -182,4 +182,11 @@ test('bencode#encode()', function (t) {
     t.plan(1)
     t.deepEqual(result, expected)
   })
+
+  t.test('should encode a BigInt', function (t) {
+    var data = 2n ** 64n // 18446744073709551616
+    var result = bencode.decode(bencode.encode(data))
+    t.plan(1)
+    t.strictEqual(result, data)
+  })
 })

@@ -9,6 +9,13 @@ test('bencode#decode(x)', function (t) {
     t.equal(bencode.decode('i123e'), 123)
     t.equal(bencode.decode('i-123e'), -123)
   })
+
+  t.test('should be able to decode a BigInt', function (t) {
+    t.plan(2)
+    t.strictEqual(bencode.decode('i18446744073709551616e'), 18446744073709551616n)
+    t.strictEqual(bencode.decode('i-18446744073709551616e'), -18446744073709551616n)
+  })
+
   t.test('should be throw an error when trying to decode a broken integer', function (t) {
     t.plan(2)
     t.throws(function () {
@@ -18,11 +25,13 @@ test('bencode#decode(x)', function (t) {
       bencode.decode('i-1+23e')
     }, /not a number/)
   })
+
   t.test('should be able to decode a float (as int)', function (t) {
     t.plan(2)
     t.equal(bencode.decode('i12.3e'), 12)
     t.equal(bencode.decode('i-12.3e'), -12)
   })
+
   t.test('should be throw an error when trying to decode a broken float', function (t) {
     t.plan(2)
     t.throws(function () {
@@ -78,10 +87,12 @@ test('bencode#decode(x)', function (t) {
         Buffer.from('eggs') ]
     )
   })
+
   t.test('should return the correct type', function (t) {
     t.plan(1)
     t.ok(Buffer.isBuffer(bencode.decode('4:öö')))
   })
+
   t.test('should be able to decode stuff in dicts (issue #12)', function (t) {
     t.plan(4)
     var someData = {
