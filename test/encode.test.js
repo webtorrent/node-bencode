@@ -12,7 +12,7 @@ test('bencode#encode()', function (t) {
     t.ok(Buffer.isBuffer(bencode.encode({})), 'its a buffer for empty dicts')
     t.ok(Buffer.isBuffer(bencode.encode('test')), 'its a buffer for strings')
     t.ok(Buffer.isBuffer(bencode.encode([3, 2])), 'its a buffer for lists')
-    t.ok(Buffer.isBuffer(bencode.encode({'a': 'b', 3: 6})), 'its a buffer for big dicts')
+    t.ok(Buffer.isBuffer(bencode.encode({ 'a': 'b', 3: 6 })), 'its a buffer for big dicts')
     t.ok(Buffer.isBuffer(bencode.encode(123)), 'its a buffer for numbers')
   })
 
@@ -112,9 +112,9 @@ test('bencode#encode()', function (t) {
   })
   t.test('should be able to encode an object', function (t) {
     t.plan(3)
-    t.equal(bencode.encode({'a': 'bc'}).toString(), 'd1:a2:bce')
-    t.equal(bencode.encode({'a': '45', 'b': 45}).toString(), 'd1:a2:451:bi45ee')
-    t.equal(bencode.encode({'a': Buffer.from('bc')}).toString(), 'd1:a2:bce')
+    t.equal(bencode.encode({ 'a': 'bc' }).toString(), 'd1:a2:bce')
+    t.equal(bencode.encode({ 'a': '45', 'b': 45 }).toString(), 'd1:a2:451:bi45ee')
+    t.equal(bencode.encode({ 'a': Buffer.from('bc') }).toString(), 'd1:a2:bce')
   })
 
   t.test('should encode new Number(1) as number', function (t) {
