@@ -11,7 +11,6 @@ according to the [BitTorrent specification](http://www.bittorrent.org/beps/bep_0
 
 - [About BEncoding](#about-bencoding)
 - [Installation](#install-with-npm)
-- [Performance](#performance)
 - [Usage](#usage)
 - [API](#api)
 
