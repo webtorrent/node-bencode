@@ -120,6 +120,11 @@ test('bencode#encode()', function (t) {
     t.equal(bencode.encode([32, 12]).toString(), 'li32ei12ee')
     t.equal(bencode.encode([':asdf:']).toString(), 'l6::asdf:e')
   })
+  t.test('should be able to encode a Set as a list', function (t) {
+    t.plan(2)
+    t.equal(bencode.encode(new Set([32, 12])).toString(), 'li32ei12ee')
+    t.equal(bencode.encode(new Set([':asdf:'])).toString(), 'l6::asdf:e')
+  })
   t.test('should be able to encode an object', function (t) {
     t.plan(3)
     t.equal(bencode.encode({ 'a': 'bc' }).toString(), 'd1:a2:bce')
