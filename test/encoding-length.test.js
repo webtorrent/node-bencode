@@ -16,13 +16,34 @@ test('encoding-length', function (t) {
   })
 
   t.test('returns correct length for empty dictionaries', function (t) {
-    t.plan(1)
-    t.equal(bencode.encodingLength({}), 2)
+    t.plan(2)
+    t.equal(bencode.encodingLength({}), 2) // de
+    t.equal(bencode.encodingLength(new Map()), 2) // de
+  })
+
+  t.test('returns correct length for dictionaries', function (t) {
+    t.plan(2)
+    var obj = { a: 1, b: 'str', c: { de: 'f' } }
+    var map = new Map([
+      [ 'a', 1 ],
+      [ 'b', 'str' ],
+      [ 'c', { de: 'f' } ]
+    ])
+    t.equal(bencode.encodingLength(obj), 28) // d1:ai1e1:b3:str1:cd2:de1:fee
+    t.equal(bencode.encodingLength(map), 28) // d1:ai1e1:b3:str1:cd2:de1:fee
   })
 
   t.test('returns correct length for empty lists', function (t) {
-    t.plan(1)
-    t.equal(bencode.encodingLength({}), 2)
+    t.plan(2)
+    t.equal(bencode.encodingLength([]), 2) // le
+    t.equal(bencode.encodingLength(new Set()), 2) // le
+  })
+
+  t.test('returns correct length for lists', function (t) {
+    t.plan(3)
+    t.equal(bencode.encodingLength([1, 2, 3]), 11) // li1ei2ei3ee
+    t.equal(bencode.encodingLength([1, 'string', [{ a: 1, b: 2 }]]), 29) // li1e6:stringld1:ai1e1:bi2eeee
+    t.equal(bencode.encodingLength(new Set([1, 'string', [{ a: 1, b: 2 }]])), 29) // li1e6:stringld1:ai1e1:bi2eeee
   })
 
   t.test('returns correct length for integers', function (t) {
