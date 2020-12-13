@@ -31,6 +31,16 @@ test('bencode#encode()', function (t) {
     t.equal(bencode.encode(data).toString(), 'd2:1211:Hello World2:34i12345ee')
   })
 
+  t.test('should encode a Map as dictionary', function (t) {
+    t.plan(1)
+    var data = new Map([
+      [ 12, 'Hello World' ],
+      [ '34', 12345 ],
+      [ Buffer.from('buffer key'), Buffer.from('buffer value') ]
+    ])
+    t.equal(bencode.encode(data).toString(), 'd2:1211:Hello World2:34i12345e10:buffer key12:buffer valuee')
+  })
+
   t.test('should be able to encode a positive integer', function (t) {
     t.plan(1)
     t.equal(bencode.encode(123).toString(), 'i123e')
@@ -109,6 +119,11 @@ test('bencode#encode()', function (t) {
     t.plan(2)
     t.equal(bencode.encode([32, 12]).toString(), 'li32ei12ee')
     t.equal(bencode.encode([':asdf:']).toString(), 'l6::asdf:e')
+  })
+  t.test('should be able to encode a Set as a list', function (t) {
+    t.plan(2)
+    t.equal(bencode.encode(new Set([32, 12])).toString(), 'li32ei12ee')
+    t.equal(bencode.encode(new Set([':asdf:'])).toString(), 'l6::asdf:e')
   })
   t.test('should be able to encode an object', function (t) {
     t.plan(3)
