@@ -4,7 +4,7 @@ var bench = require('nanobench')
 
 var bencode = require('../')
 
-var buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
+var buffer = fs.readFileSync(path.join(__dirname, '..', 'test', 'data', 'test.torrent'))
 var object = bencode.decode(buffer)
 var objectUtf8 = bencode.decode(buffer, 'utf8')
 var objectAscii = bencode.decode(buffer, 'ascii')

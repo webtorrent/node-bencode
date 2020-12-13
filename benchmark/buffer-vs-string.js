@@ -3,7 +3,7 @@ var path = require('path')
 var bencode = require('../')
 var bench = require('nanobench')
 
-var buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
+var buffer = fs.readFileSync(path.join(__dirname, '..', 'test', 'data', 'test.torrent'))
 var str = buffer.toString('ascii')
 
 const ITERATIONS = 10000
