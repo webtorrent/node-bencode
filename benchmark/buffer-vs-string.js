@@ -1,18 +1,18 @@
-var fs = require('fs')
-var path = require('path')
-var bencode = require('../')
-var bench = require('nanobench')
+const fs = require('fs')
+const path = require('path')
+const bencode = require('../')
+const bench = require('nanobench')
 
-var buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
-var str = buffer.toString('ascii')
+const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
+const str = buffer.toString('ascii')
 
 const ITERATIONS = 10000
 
 bench(`decode buffer ⨉ ${ITERATIONS}`, function (run) {
-  var result = null
+  let result = null
 
   run.start()
-  for (var i = 0; i < ITERATIONS; i++) {
+  for (let i = 0; i < ITERATIONS; i++) {
     result = bencode.decode(buffer)
   }
   run.end()
@@ -21,10 +21,10 @@ bench(`decode buffer ⨉ ${ITERATIONS}`, function (run) {
 })
 
 bench(`decode string ⨉ ${ITERATIONS}`, function (run) {
-  var result = null
+  let result = null
 
   run.start()
-  for (var i = 0; i < ITERATIONS; i++) {
+  for (let i = 0; i < ITERATIONS; i++) {
     result = bencode.decode(str)
   }
   run.end()

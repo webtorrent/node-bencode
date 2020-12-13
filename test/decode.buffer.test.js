@@ -1,7 +1,7 @@
-var bencode = require('..')
-var data = require('./data')
-var test = require('tape').test
-var Buffer = require('safe-buffer').Buffer
+const bencode = require('..')
+const data = require('./data')
+const test = require('tape').test
+const Buffer = require('safe-buffer').Buffer
 
 test('bencode#decode(x)', function (t) {
   t.test('should be able to decode an integer', function (t) {
@@ -41,7 +41,7 @@ test('bencode#decode(x)', function (t) {
 
   t.test('should be able to decode "binary keys"', function (t) {
     t.plan(1)
-    t.ok(bencode.decode(data.binKeyData).files.hasOwnProperty(data.binKeyName))
+    t.ok(Object.prototype.hasOwnProperty.call(bencode.decode(data.binKeyData).files, data.binKeyName))
   })
 
   t.test('should be able to decode a dictionary', function (t) {
@@ -55,15 +55,17 @@ test('bencode#decode(x)', function (t) {
     )
     t.deepEqual(
       bencode.decode('d4:spaml1:a1:bee'),
-      { spam: [
-        Buffer.from('a'),
-        Buffer.from('b')
-      ] }
+      {
+        spam: [
+          Buffer.from('a'),
+          Buffer.from('b')
+        ]
+      }
     )
     t.deepEqual(
       bencode.decode('d9:publisher3:bob17:publisher-webpage15:www.example.com18:publisher.location4:homee'),
       {
-        'publisher': Buffer.from('bob'),
+        publisher: Buffer.from('bob'),
         'publisher-webpage': Buffer.from('www.example.com'),
         'publisher.location': Buffer.from('home')
       }
@@ -74,8 +76,8 @@ test('bencode#decode(x)', function (t) {
     t.plan(1)
     t.deepEqual(
       bencode.decode('l4:spam4:eggse'),
-      [ Buffer.from('spam'),
-        Buffer.from('eggs') ]
+      [Buffer.from('spam'),
+        Buffer.from('eggs')]
     )
   })
   t.test('should return the correct type', function (t) {
@@ -84,16 +86,16 @@ test('bencode#decode(x)', function (t) {
   })
   t.test('should be able to decode stuff in dicts (issue #12)', function (t) {
     t.plan(4)
-    var someData = {
+    const someData = {
       string: 'Hello World',
       integer: 12345,
       dict: {
         key: 'This is a string within a dictionary'
       },
-      list: [ 1, 2, 3, 4, 'string', 5, {} ]
+      list: [1, 2, 3, 4, 'string', 5, {}]
     }
-    var result = bencode.encode(someData)
-    var dat = bencode.decode(result)
+    const result = bencode.encode(someData)
+    const dat = bencode.decode(result)
     t.equal(dat.integer, 12345)
     t.deepEqual(dat.string, Buffer.from('Hello World'))
     t.deepEqual(dat.dict.key, Buffer.from('This is a string within a dictionary'))

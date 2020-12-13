@@ -1,15 +1,15 @@
-var bencode = require('..')
-var path = require('path')
-var fs = require('fs')
-var test = require('tape').test
-var Buffer = require('safe-buffer').Buffer
+const bencode = require('..')
+const path = require('path')
+const fs = require('fs')
+const test = require('tape').test
+const Buffer = require('safe-buffer').Buffer
 
 // @see http://www.bittorrent.org/beps/bep_0023.html
 test('BEP 0023', function (t) {
   t.test('should be able to handle an compacted peer announce', function (t) {
-    var filename = path.join(__dirname, 'data', 'announce-compacted-peers.bin')
-    var announce = fs.readFileSync(filename)
-    var data = bencode.decode(announce)
+    const filename = path.join(__dirname, 'data', 'announce-compacted-peers.bin')
+    const announce = fs.readFileSync(filename)
+    const data = bencode.decode(announce)
 
     console.log(data)
 
@@ -24,9 +24,9 @@ test('BEP 0023', function (t) {
   })
 
   t.test('should be able to handle an compacted peer announce when decoding strings', function (t) {
-    var filename = path.join(__dirname, 'data', 'announce-compacted-peers.bin')
-    var announce = fs.readFileSync(filename)
-    var data = bencode.decode(announce, 'utf8')
+    const filename = path.join(__dirname, 'data', 'announce-compacted-peers.bin')
+    const announce = fs.readFileSync(filename)
+    const data = bencode.decode(announce, 'utf8')
 
     console.log(data)
 
