@@ -1,22 +1,22 @@
-var fs = require('fs')
-var path = require('path')
-var bench = require('nanobench')
+const fs = require('fs')
+const path = require('path')
+const bench = require('nanobench')
 
-var bencode = require('../')
+const bencode = require('../')
 
-var buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
-var object = bencode.decode(buffer)
-var objectUtf8 = bencode.decode(buffer, 'utf8')
-var objectAscii = bencode.decode(buffer, 'ascii')
-var objectBinary = bencode.decode(buffer, 'binary')
+const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
+const object = bencode.decode(buffer)
+const objectUtf8 = bencode.decode(buffer, 'utf8')
+const objectAscii = bencode.decode(buffer, 'ascii')
+const objectBinary = bencode.decode(buffer, 'binary')
 
 const ITERATIONS = 10000
 
 bench(`bencode.encode() [buffer] ⨉ ${ITERATIONS}`, function (run) {
-  var result = null
+  let result = null
 
   run.start()
-  for (var i = 0; i < ITERATIONS; i++) {
+  for (let i = 0; i < ITERATIONS; i++) {
     result = bencode.encode(object)
   }
   run.end()
@@ -25,10 +25,10 @@ bench(`bencode.encode() [buffer] ⨉ ${ITERATIONS}`, function (run) {
 })
 
 bench(`bencode.encode() [utf8] ⨉ ${ITERATIONS}`, function (run) {
-  var result = null
+  let result = null
 
   run.start()
-  for (var i = 0; i < ITERATIONS; i++) {
+  for (let i = 0; i < ITERATIONS; i++) {
     result = bencode.encode(objectUtf8)
   }
   run.end()
@@ -37,10 +37,10 @@ bench(`bencode.encode() [utf8] ⨉ ${ITERATIONS}`, function (run) {
 })
 
 bench(`bencode.encode() [ascii] ⨉ ${ITERATIONS}`, function (run) {
-  var result = null
+  let result = null
 
   run.start()
-  for (var i = 0; i < ITERATIONS; i++) {
+  for (let i = 0; i < ITERATIONS; i++) {
     result = bencode.encode(objectAscii)
   }
   run.end()
@@ -49,10 +49,10 @@ bench(`bencode.encode() [ascii] ⨉ ${ITERATIONS}`, function (run) {
 })
 
 bench(`bencode.encode() [binary] ⨉ ${ITERATIONS}`, function (run) {
-  var result = null
+  let result = null
 
   run.start()
-  for (var i = 0; i < ITERATIONS; i++) {
+  for (let i = 0; i < ITERATIONS; i++) {
     result = bencode.encode(objectBinary)
   }
   run.end()
@@ -61,10 +61,10 @@ bench(`bencode.encode() [binary] ⨉ ${ITERATIONS}`, function (run) {
 })
 
 bench(`bencode.decode() [buffer] ⨉ ${ITERATIONS}`, function (run) {
-  var result = null
+  let result = null
 
   run.start()
-  for (var i = 0; i < ITERATIONS; i++) {
+  for (let i = 0; i < ITERATIONS; i++) {
     result = bencode.decode(buffer)
   }
   run.end()
@@ -73,10 +73,10 @@ bench(`bencode.decode() [buffer] ⨉ ${ITERATIONS}`, function (run) {
 })
 
 bench(`bencode.decode() [utf8] ⨉ ${ITERATIONS}`, function (run) {
-  var result = null
+  let result = null
 
   run.start()
-  for (var i = 0; i < ITERATIONS; i++) {
+  for (let i = 0; i < ITERATIONS; i++) {
     result = bencode.decode(buffer, 'utf8')
   }
   run.end()
@@ -85,10 +85,10 @@ bench(`bencode.decode() [utf8] ⨉ ${ITERATIONS}`, function (run) {
 })
 
 bench(`bencode.decode() [ascii] ⨉ ${ITERATIONS}`, function (run) {
-  var result = null
+  let result = null
 
   run.start()
-  for (var i = 0; i < ITERATIONS; i++) {
+  for (let i = 0; i < ITERATIONS; i++) {
     result = bencode.decode(buffer, 'ascii')
   }
   run.end()
@@ -97,10 +97,10 @@ bench(`bencode.decode() [ascii] ⨉ ${ITERATIONS}`, function (run) {
 })
 
 bench(`bencode.decode() [binary] ⨉ ${ITERATIONS}`, function (run) {
-  var result = null
+  let result = null
 
   run.start()
-  for (var i = 0; i < ITERATIONS; i++) {
+  for (let i = 0; i < ITERATIONS; i++) {
     result = bencode.decode(buffer, 'binary')
   }
   run.end()

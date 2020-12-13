@@ -1,16 +1,16 @@
-var fs = require('fs')
-var path = require('path')
-var test = require('tape').test
-var bencode = require('..')
+const fs = require('fs')
+const path = require('path')
+const test = require('tape').test
+const bencode = require('..')
 
-var torrent = fs.readFileSync(
+const torrent = fs.readFileSync(
   path.join(__dirname, '..', 'benchmark', 'test.torrent')
 )
 
 test('encoding-length', function (t) {
   t.test('torrent', function (t) {
-    var value = bencode.decode(torrent)
-    var length = bencode.encodingLength(value)
+    const value = bencode.decode(torrent)
+    const length = bencode.encodingLength(value)
     t.plan(1)
     t.equal(length, torrent.length)
   })
@@ -23,11 +23,11 @@ test('encoding-length', function (t) {
 
   t.test('returns correct length for dictionaries', function (t) {
     t.plan(2)
-    var obj = { a: 1, b: 'str', c: { de: 'f' } }
-    var map = new Map([
-      [ 'a', 1 ],
-      [ 'b', 'str' ],
-      [ 'c', { de: 'f' } ]
+    const obj = { a: 1, b: 'str', c: { de: 'f' } }
+    const map = new Map([
+      ['a', 1],
+      ['b', 'str'],
+      ['c', { de: 'f' }]
     ])
     t.equal(bencode.encodingLength(obj), 28) // d1:ai1e1:b3:str1:cd2:de1:fee
     t.equal(bencode.encodingLength(map), 28) // d1:ai1e1:b3:str1:cd2:de1:fee
