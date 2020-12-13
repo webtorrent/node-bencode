@@ -9,7 +9,7 @@ var btparse = require('btparse')
 var dht = require('dht.js/lib/dht/bencode')
 var dhtBencode = require('dht-bencode')
 
-var buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
+var buffer = fs.readFileSync(path.join(__dirname, '..', 'test', 'data', 'test.torrent'))
 
 const ITERATIONS = 10000
 
