@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const test = require('tape').test
-const bencode = require('..')
+const bencode = require('../lib/index.js')
 
 const torrent = fs.readFileSync(
   path.join(__dirname, '..', 'benchmark', 'test.torrent')

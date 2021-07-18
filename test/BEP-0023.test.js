@@ -1,8 +1,7 @@
-const bencode = require('..')
 const path = require('path')
 const fs = require('fs')
 const test = require('tape').test
-const Buffer = require('safe-buffer').Buffer
+const bencode = require('../lib/index.js')
 
 // @see http://www.bittorrent.org/beps/bep_0023.html
 test('BEP 0023', function (t) {

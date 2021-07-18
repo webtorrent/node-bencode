@@ -1,6 +1,5 @@
-const bencode = require('..')
 const test = require('tape').test
-const Buffer = require('safe-buffer').Buffer
+const bencode = require('../lib/index.js')
 
 test('abstract encoding', function (t) {
   t.test('encodingLength( value )', function (t) {

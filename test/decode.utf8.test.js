@@ -1,6 +1,6 @@
-const bencode = require('..')
-const data = require('./data')
 const test = require('tape').test
+const data = require('./data')
+const bencode = require('../lib/index.js')
 
 test("bencode#decode(x, 'uft8')", function (t) {
   t.test('should be able to decode an integer', function (t) {

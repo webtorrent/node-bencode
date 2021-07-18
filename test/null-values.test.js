@@ -1,6 +1,5 @@
-const bencode = require('..')
 const test = require('tape').test
-const Buffer = require('safe-buffer').Buffer
+const bencode = require('../lib/index.js')
 
 test('Data with null values', function (t) {
   t.test('should return an empty value when encoding either null or undefined', function (t) {

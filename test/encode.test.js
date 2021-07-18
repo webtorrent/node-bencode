@@ -1,7 +1,6 @@
-const bencode = require('..')
-const data = require('./data.js')
 const test = require('tape').test
-const Buffer = require('safe-buffer').Buffer
+const data = require('./data.js')
+const bencode = require('../lib/index.js')
 
 test('bencode#encode()', function (t) {
   // prevent the warning showing up in the test
