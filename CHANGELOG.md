@@ -1,7 +1,3 @@
-## 2.0.2
-
-- remove the safe-buffer dependency (@mmywarting)
-
 ## 2.0.1
 
 - fix deprecation warning on Buffer() constructor (@jhermsmeier)
