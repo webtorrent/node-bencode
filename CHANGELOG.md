@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/themasch/node-bencode/compare/v2.0.1...v2.0.2) (2021-07-28)
+
+
+### Bug Fixes
+
+* Patch release to drop a dependecy to safe-buffer ([#99](https://github.com/themasch/node-bencode/issues/99)) ([a661715](https://github.com/themasch/node-bencode/commit/a6617150c53c3c00d0cd12c685c5f2ee47db30c0))
+
 ## 2.0.1
 
 - fix deprecation warning on Buffer() constructor (@jhermsmeier)
