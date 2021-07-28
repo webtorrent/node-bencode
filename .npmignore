@@ -1,6 +1,6 @@
 *.html
 *.log
-.travis.yml
+.github/
 AUTHORS
 Makefile
 benchmark
