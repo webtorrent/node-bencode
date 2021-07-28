@@ -1,16 +1,3 @@
-# 1.0.0 (2021-07-28)
-
-
-### Tests
-
-* **ci:** Drop Node v0.10.x & v0.12.x, add 8.x.x ([9ae02b3](https://github.com/themasch/node-bencode/commit/9ae02b37379e2b54ec08ffc08a6e0840dcf15b8f))
-
-
-### BREAKING CHANGES
-
-* **ci:** This drops support Node v0.10.x, and v0.12.x
-while adding Node v8.x.x, as v9.x.x is now stable.
-
 ## 2.0.0
 
 - Drop support for Node 0.10, 0.12., add support for Node 8 & 9  (@jhermsmeier)
