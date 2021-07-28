@@ -18,12 +18,14 @@
     }
   ],
   "devDependencies": {
+    "@webtorrent/semantic-release-config": "1.0.5",
     "bencoding": "latest",
     "bncode": "latest",
     "btparse": "latest",
     "dht-bencode": "latest",
     "dht.js": "latest",
     "nanobench": "^2.1.0",
+    "semantic-release": "17.4.4",
     "standard": "^16.0.3",
     "tap-spec": "^5.0.0",
     "tape": "^5.0.1"
@@ -45,5 +47,13 @@
     "benchmark": "nanobench benchmark/*.js",
     "style": "standard --fix",
     "test": "standard && tape test/*.test.js | tap-spec"
+  },
+  "renovate": {
+    "extends": [
+      "github>webtorrent/renovate-config"
+    ]
+  },
+  "release": {
+    "extends": "@webtorrent/semantic-release-config"
   }
 }
