@@ -24,10 +24,10 @@
     "btparse": "latest",
     "dht-bencode": "latest",
     "dht.js": "latest",
-    "nanobench": "^2.1.0",
+    "nanobench": "2.1.1",
     "semantic-release": "17.4.4",
-    "standard": "^16.0.3",
-    "tap-spec": "^5.0.0",
+    "standard": "16.0.3",
+    "tap-spec": "5.0.0",
     "tape": "5.3.0"
   },
   "keywords": [
