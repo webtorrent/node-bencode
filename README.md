@@ -108,6 +108,19 @@ var result = bencode.decode( data, 'utf8' )
 }
 ```
 
+## url mode
+If you want to use the serialized data in a url you might want to use the urlMode to make it shorter by using `-` which does not need to be url-encoded instead of `:` which needs to be url-encoded as `%34`
+
+Warning: The url mode is not compatible with standard bencode.
+
+```javascript
+bencode.urlMode() // enables the url mode. From now on, encode and decode will use `-` instead of `:`
+```
+
+```javascript
+bencode.normalMode() // disables the url mode. From now on, encode and decode will use `:` again
+```
+
 ## API
 
 The API is compatible with the [`abstract-encoding`](https://github.com/mafintosh/abstract-encoding) specification.
