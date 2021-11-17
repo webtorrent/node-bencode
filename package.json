@@ -28,7 +28,7 @@
     "semantic-release": "18.0.0",
     "standard": "16.0.3",
     "tap-spec": "5.0.0",
-    "tape": "5.3.1"
+    "tape": "5.3.2"
   },
   "keywords": [
     "bdecode",
