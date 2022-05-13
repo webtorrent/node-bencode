@@ -1,3 +1,5 @@
+## [2.0.3](https://github.com/themasch/node-bencode/compare/v2.0.2...v2.0.3) (2022-05-13)
+
 ## [2.0.2](https://github.com/themasch/node-bencode/compare/v2.0.1...v2.0.2) (2021-07-28)
 
 
