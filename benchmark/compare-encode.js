@@ -1,12 +1,12 @@
-const fs = require('fs')
-const path = require('path')
-const bench = require('nanobench')
+import fs from 'fs'
+import path from 'path'
+import bench from 'nanobench'
 
-const bencode = require('../')
-const bencoding = require('bencoding')
-const bncode = require('bncode')
-const dht = require('dht.js/lib/dht/bencode')
-const dhtBencode = require('dht-bencode')
+import bencode from '../'
+import bencoding from 'bencoding'
+import bncode from 'bncode'
+import dht from 'dht.js/lib/dht/bencode'
+import dhtBencode from 'dht-bencode'
 
 const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
 const object = bencode.decode(buffer)

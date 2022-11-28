@@ -1,6 +1,6 @@
-const test = require('tape').test
-const data = require('./data')
-const bencode = require('../lib/index.js')
+import test from 'tape'
+import data from './data.js'
+import bencode from '../lib/index.js'
 
 test('bencode#decode(x)', function (t) {
   t.test('should be able to decode an integer', function (t) {

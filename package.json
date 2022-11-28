@@ -5,6 +5,7 @@
   "bugs": {
     "url": "https://github.com/themasch/node-bencode/issues"
   },
+  "type": "module",
   "contributors": [
     {
       "name": "Mark Schmale",
@@ -38,7 +39,12 @@
     "torrent"
   ],
   "license": "MIT",
-  "main": "lib",
+  "engines": {
+    "node": ">=12.20.0"
+  },
+  "exports": {
+    "import": "./lib/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/themasch/node-bencode.git"

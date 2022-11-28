@@ -1,7 +1,11 @@
-const fs = require('fs')
-const path = require('path')
-const test = require('tape').test
-const bencode = require('../lib/index.js')
+import fs from 'fs'
+import path, { dirname } from 'path'
+import test from 'tape'
+import bencode from '../lib/index.js'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const torrent = fs.readFileSync(
   path.join(__dirname, '..', 'benchmark', 'test.torrent')

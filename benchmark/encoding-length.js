@@ -1,7 +1,7 @@
-const fs = require('fs')
-const path = require('path')
-const bencode = require('..')
-const bench = require('nanobench')
+import fs from 'fs'
+import path from 'path'
+import bencode from '..'
+import bench from 'nanobench'
 
 const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
 const torrent = bencode.decode(buffer)
