@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/themasch/node-bencode/compare/v2.0.3...v3.0.0) (2022-11-28)
+
+
+### Features
+
+* esm ([#131](https://github.com/themasch/node-bencode/issues/131)) ([b111818](https://github.com/themasch/node-bencode/commit/b111818695c8e85e1268fa771fc49c7c6687167f))
+
+
+### BREAKING CHANGES
+
+* ESM only
+
 ## [2.0.3](https://github.com/themasch/node-bencode/compare/v2.0.2...v2.0.3) (2022-05-13)
 
 ## [2.0.2](https://github.com/themasch/node-bencode/compare/v2.0.1...v2.0.2) (2021-07-28)
