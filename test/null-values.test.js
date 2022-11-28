@@ -1,5 +1,5 @@
-const test = require('tape').test
-const bencode = require('../lib/index.js')
+import test from 'tape'
+import bencode from '../lib/index.js'
 
 test('Data with null values', function (t) {
   t.test('should return an empty value when encoding either null or undefined', function (t) {

@@ -1,7 +1,11 @@
-const path = require('path')
-const fs = require('fs')
-const test = require('tape').test
-const bencode = require('../lib/index.js')
+import path, { dirname } from 'path'
+import fs from 'fs'
+import test from 'tape'
+import bencode from '../lib/index.js'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 // @see http://www.bittorrent.org/beps/bep_0023.html
 test('BEP 0023', function (t) {
