@@ -19,7 +19,7 @@
     }
   ],
   "devDependencies": {
-    "@webtorrent/semantic-release-config": "1.0.7",
+    "@webtorrent/semantic-release-config": "1.0.8",
     "bencoding": "latest",
     "bncode": "latest",
     "btparse": "latest",
