@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/themasch/node-bencode/compare/v3.0.1...v3.0.2) (2023-01-31)
+
+
+### Bug Fixes
+
+* package.json for exporting lib ([#140](https://github.com/themasch/node-bencode/issues/140)) ([f63c09a](https://github.com/themasch/node-bencode/commit/f63c09a8a525e67b00cc0e7619eb84bd159855b2))
+
 ## [3.0.1](https://github.com/themasch/node-bencode/compare/v3.0.0...v3.0.1) (2023-01-31)
 
 
