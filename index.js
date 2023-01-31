@@ -4,7 +4,7 @@ import byteLength from './lib/encoding-length.js'
 /**
  * Determines the amount of bytes
  * needed to encode the given value
- * @param  {Object|Array|Buffer|String|Number|Boolean} value
+ * @param  {Object|Array|Uint8Array|String|Number|Boolean} value
  * @return {Number} byteCount
  */
 const encodingLength = byteLength
