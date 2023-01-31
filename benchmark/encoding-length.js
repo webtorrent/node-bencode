@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import bencode from '..'
+import bencode from '../index.js'
 import bench from 'nanobench'
 
 const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))

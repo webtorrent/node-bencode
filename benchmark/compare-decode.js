@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import bench from 'nanobench'
 
-import bencode from '../'
+import bencode from '../index.js'
 import bencoding from 'bencoding'
 import bncode from 'bncode'
 import btparse from 'btparse'

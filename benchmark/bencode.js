@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import bench from 'nanobench'
 
-import bencode from '../'
+import bencode from '../index.js'
 
 const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
 const object = bencode.decode(buffer)

@@ -1,6 +1,6 @@
 import test from 'tape'
 import data from './data.js'
-import bencode from '../lib/index.js'
+import bencode from '../index.js'
 
 test("bencode#decode(x, 'uft8')", function (t) {
   t.test('should be able to decode an integer', function (t) {
