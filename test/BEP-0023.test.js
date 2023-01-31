@@ -1,7 +1,7 @@
 import path, { dirname } from 'path'
 import fs from 'fs'
 import test from 'tape'
-import bencode from '../lib/index.js'
+import bencode from '../index.js'
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
