@@ -34,8 +34,8 @@ test('bencode#decode(x)', function (t) {
 
   t.test('should be able to decode a string', function (t) {
     t.plan(2)
-    t.deepEqual(bencode.decode('5:asdfe'), Buffer.from('asdfe'))
-    t.deepEqual(bencode.decode(data.binResultData.toString()), data.binStringData)
+    t.deepEqual(bencode.decode('5:asdfe'), new Uint8Array(Buffer.from('asdfe')))
+    t.deepEqual(bencode.decode(data.binResultData.toString()), new Uint8Array(data.binStringData))
   })
 
   t.test('should be able to decode "binary keys"', function (t) {
@@ -48,25 +48,25 @@ test('bencode#decode(x)', function (t) {
     t.deepEqual(
       bencode.decode('d3:cow3:moo4:spam4:eggse'),
       {
-        cow: Buffer.from('moo'),
-        spam: Buffer.from('eggs')
+        cow: new Uint8Array(Buffer.from('moo')),
+        spam: new Uint8Array(Buffer.from('eggs'))
       }
     )
     t.deepEqual(
       bencode.decode('d4:spaml1:a1:bee'),
       {
         spam: [
-          Buffer.from('a'),
-          Buffer.from('b')
+          new Uint8Array(Buffer.from('a')),
+          new Uint8Array(Buffer.from('b'))
         ]
       }
     )
     t.deepEqual(
       bencode.decode('d9:publisher3:bob17:publisher-webpage15:www.example.com18:publisher.location4:homee'),
       {
-        publisher: Buffer.from('bob'),
-        'publisher-webpage': Buffer.from('www.example.com'),
-        'publisher.location': Buffer.from('home')
+        publisher: new Uint8Array(Buffer.from('bob')),
+        'publisher-webpage': new Uint8Array(Buffer.from('www.example.com')),
+        'publisher.location': new Uint8Array(Buffer.from('home'))
       }
     )
   })
@@ -75,13 +75,13 @@ test('bencode#decode(x)', function (t) {
     t.plan(1)
     t.deepEqual(
       bencode.decode('l4:spam4:eggse'),
-      [Buffer.from('spam'),
-        Buffer.from('eggs')]
+      [new Uint8Array(Buffer.from('spam')),
+        new Uint8Array(Buffer.from('eggs'))]
     )
   })
   t.test('should return the correct type', function (t) {
     t.plan(1)
-    t.ok(Buffer.isBuffer(bencode.decode('4:öö')))
+    t.ok(ArrayBuffer.isView(bencode.decode('4:öö')))
   })
   t.test('should be able to decode stuff in dicts (issue #12)', function (t) {
     t.plan(4)
@@ -96,8 +96,8 @@ test('bencode#decode(x)', function (t) {
     const result = bencode.encode(someData)
     const dat = bencode.decode(result)
     t.equal(dat.integer, 12345)
-    t.deepEqual(dat.string, Buffer.from('Hello World'))
-    t.deepEqual(dat.dict.key, Buffer.from('This is a string within a dictionary'))
-    t.deepEqual(dat.list, [1, 2, 3, 4, Buffer.from('string'), 5, {}])
+    t.deepEqual(dat.string, new Uint8Array(Buffer.from('Hello World')))
+    t.deepEqual(dat.dict.key, new Uint8Array(Buffer.from('This is a string within a dictionary')))
+    t.deepEqual(dat.list, [1, 2, 3, 4, new Uint8Array(Buffer.from('string')), 5, {}])
   })
 })
