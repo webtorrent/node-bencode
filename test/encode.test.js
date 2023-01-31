@@ -1,6 +1,6 @@
 import test from 'tape'
 import data from './data.js'
-import bencode from '../lib/index.js'
+import bencode from '../index.js'
 
 test('bencode#encode()', function (t) {
   // prevent the warning showing up in the test

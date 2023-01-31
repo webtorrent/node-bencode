@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/themasch/node-bencode/compare/v3.0.0...v3.0.1) (2023-01-31)
+
+
+### Bug Fixes
+
+* imports ([#138](https://github.com/themasch/node-bencode/issues/138)) ([abe29c3](https://github.com/themasch/node-bencode/commit/abe29c32ab327fafb323b05f17eda0aa9ca32478))
+
 # [3.0.0](https://github.com/themasch/node-bencode/compare/v2.0.3...v3.0.0) (2022-11-28)
 
 

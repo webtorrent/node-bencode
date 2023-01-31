@@ -1,5 +1,5 @@
 import test from 'tape'
-import bencode from '../lib/index.js'
+import bencode from '../index.js'
 
 test('Data with null values', function (t) {
   t.test('should return an empty value when encoding either null or undefined', function (t) {

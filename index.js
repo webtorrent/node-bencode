@@ -1,6 +1,6 @@
-import encode from './encode.js'
-import decode from './decode.js'
-import byteLength from './encoding-length.js'
+import encode from './lib/encode.js'
+import decode from './lib/decode.js'
+import byteLength from './lib/encoding-length.js'
 /**
  * Determines the amount of bytes
  * needed to encode the given value
