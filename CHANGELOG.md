@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/themasch/node-bencode/compare/v3.0.2...v3.0.3) (2023-01-31)
+
+
+### Bug Fixes
+
+* update dependency nanobench to v3 ([#130](https://github.com/themasch/node-bencode/issues/130)) ([f7027c4](https://github.com/themasch/node-bencode/commit/f7027c46f9cf86017f388fa6d811417b13e03e8e))
+
 ## [3.0.2](https://github.com/themasch/node-bencode/compare/v3.0.1...v3.0.2) (2023-01-31)
 
 
