@@ -4,8 +4,8 @@ import bencode from '../index.js'
 test('Data with null values', function (t) {
   t.test('should return an empty value when encoding either null or undefined', function (t) {
     t.plan(2)
-    t.deepEqual(bencode.encode(null), new Uint8Array())
-    t.deepEqual(bencode.encode(undefined), new Uint8Array())
+    t.deepEqual(bencode.encode(null), Buffer.allocUnsafe(0))
+    t.deepEqual(bencode.encode(undefined), Buffer.allocUnsafe(0))
   })
 
   t.test('should return null when decoding an empty value', function (t) {
