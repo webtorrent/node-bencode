@@ -1,7 +1,8 @@
 # Bencode
 [![npm](https://img.shields.io/npm/v/bencode.svg?style=flat-square)](https://npmjs.com/bencode)
 [![npm downloads](https://img.shields.io/npm/dm/bencode.svg?style=flat-square)](https://npmjs.com/bencode)
-[![build status](https://img.shields.io/travis/themasch/node-bencode/master.svg?style=flat-square)](https://travis-ci.org/themasch/node-bencode)
+[![tests](https://github.com/webtorrent/node-bencode/actions/workflows/test.yml/badge.svg)](https://github.com/webtorrent/node-bencode/actions/workflows/test.yml)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fthemasch%2Fnode-bencode.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fthemasch%2Fnode-bencode?ref=badge_shield)
 
 A node library for encoding and decoding bencoded data,
 according to the [BitTorrent specification](http://www.bittorrent.org/beps/bep_0003.html).
@@ -10,7 +11,6 @@ according to the [BitTorrent specification](http://www.bittorrent.org/beps/bep_0
 
 - [About BEncoding](#about-bencoding)
 - [Installation](#install-with-npm)
-- [Performance](#performance)
 - [Usage](#usage)
 - [API](#api)
 
@@ -36,42 +36,10 @@ These metadata files are simply bencoded dictionaries.
 npm install bencode
 ```
 
-## Performance
-
-### encode buffer
-
-package     | version | op/sec
------------ | ------- | ---------
-bencode     | 0.12.0  |  *47,692*
-dht.js      | 0.2.16  |   43,908
-dht-bencode | 0.1.2   |   35,670
-bencoding   | 0.0.1   |   31,942
-bncode      | 0.5.3   |   25,097
-btparse     | 1.0.2   |        -
-
-### decode to buffer
-
-package     | version | op/sec
------------ | ------- | ------
-bencode     | 0.12.0  |  129,326
-dht.js      | 0.2.16  |   71,639
-dht-bencode | 0.1.2   |   89,285
-bencoding   | 0.0.1   |   97,285
-bncode      | 0.5.3   |   16,567
-btparse     | 1.0.2   | *155,660*
-
-_Benchmarks run on an Intel Core i7-4600M @ 2.90Ghz with node v7.8.0 & GNU/Linux 4.4.39_
-
-To run the benchmarks simply use
-
-```
-npm run bench
-```
-
 ## Usage
 
 ```javascript
-var bencode = require( 'bencode' )
+import bencode from 'bencode'
 ```
 
 You can also use node-bencode with browserify to be able to use it in a lot of modern browsers.

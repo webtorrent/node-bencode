@@ -1,16 +1,33 @@
-/* global suite, bench */
-var fs = require('fs')
-var path = require('path')
-var bencode = require('../')
+import fs from 'fs'
+import path from 'path'
+import bencode from '../index.js'
+import bench from 'nanobench'
 
-var buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
-var str = buffer.toString('ascii')
+const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
+const str = buffer.toString('ascii')
 
-suite('buffer vs string', function () {
-  bench('buffer', function () {
-    bencode.decode(buffer)
-  })
-  bench('string', function () {
-    bencode.decode(str)
-  })
+const ITERATIONS = 10000
+
+bench(`decode buffer ⨉ ${ITERATIONS}`, function (run) {
+  let result = null
+
+  run.start()
+  for (let i = 0; i < ITERATIONS; i++) {
+    result = bencode.decode(buffer)
+  }
+  run.end()
+
+  return result
+})
+
+bench(`decode string ⨉ ${ITERATIONS}`, function (run) {
+  let result = null
+
+  run.start()
+  for (let i = 0; i < ITERATIONS; i++) {
+    result = bencode.decode(str)
+  }
+  run.end()
+
+  return result
 })

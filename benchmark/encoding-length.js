@@ -1,33 +1,81 @@
-/* global suite, bench */
-var fs = require('fs')
-var path = require('path')
-var bencode = require('..')
+import fs from 'fs'
+import path from 'path'
+import bencode from '../index.js'
+import bench from 'nanobench'
 
-var buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
-var torrent = bencode.decode(buffer)
+const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
+const torrent = bencode.decode(buffer)
 
-suite('encoding length', function () {
-  bench('torrent', function () {
+const ITERATIONS = 10000
+
+bench('bencode.encodingLength(torrent)', function (run) {
+  const result = null
+
+  run.start()
+  for (let i = 0; i < ITERATIONS; i++) {
     bencode.encodingLength(torrent)
-  })
+  }
+  run.end()
 
-  bench('buffer', function () {
+  return result
+})
+
+bench('bencode.encodingLength(buffer)', function (run) {
+  const result = null
+
+  run.start()
+  for (let i = 0; i < ITERATIONS; i++) {
     bencode.encodingLength(buffer)
-  })
+  }
+  run.end()
 
-  bench('string', function () {
+  return result
+})
+
+bench('bencode.encodingLength(string)', function (run) {
+  const result = null
+
+  run.start()
+  for (let i = 0; i < ITERATIONS; i++) {
     bencode.encodingLength('Test, test, this is a string')
-  })
+  }
+  run.end()
 
-  bench('number', function () {
+  return result
+})
+
+bench('bencode.encodingLength(number)', function (run) {
+  const result = null
+
+  run.start()
+  for (let i = 0; i < ITERATIONS; i++) {
     bencode.encodingLength(87641234567)
-  })
+  }
+  run.end()
 
-  bench('array<number>', function () {
-    bencode.encodingLength([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ])
-  })
+  return result
+})
 
-  bench('small object', function () {
+bench('bencode.encodingLength(array<number>)', function (run) {
+  const result = null
+
+  run.start()
+  for (let i = 0; i < ITERATIONS; i++) {
+    bencode.encodingLength([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+  }
+  run.end()
+
+  return result
+})
+
+bench('bencode.encodingLength(small object)', function (run) {
+  const result = null
+
+  run.start()
+  for (let i = 0; i < ITERATIONS; i++) {
     bencode.encodingLength({ a: 1, b: 'c', d: 'abcdefg', e: [1, 2, 3] })
-  })
+  }
+  run.end()
+
+  return result
 })

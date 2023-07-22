@@ -1,8 +1,9 @@
 *.html
 *.log
-.travis.yml
+.github/
 AUTHORS
 Makefile
 benchmark
 dist
 test
+.editorconfig
