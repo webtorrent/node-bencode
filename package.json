@@ -27,7 +27,7 @@
     "dht.js": "latest",
     "nanobench": "3.0.0",
     "semantic-release": "19.0.5",
-    "standard": "17.0.0",
+    "standard": "17.1.0",
     "tap-spec": "5.0.0",
     "tape": "5.6.6"
   },
