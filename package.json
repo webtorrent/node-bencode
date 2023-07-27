@@ -19,15 +19,16 @@
     }
   ],
   "devDependencies": {
-    "@webtorrent/semantic-release-config": "1.0.9",
+    "@webtorrent/semantic-release-config": "1.0.10",
     "bencoding": "latest",
     "bncode": "latest",
+    "browserify": "^17.0.0",
     "btparse": "latest",
     "dht-bencode": "latest",
     "dht.js": "latest",
     "nanobench": "3.0.0",
-    "semantic-release": "19.0.5",
-    "standard": "17.0.0",
+    "semantic-release": "21.0.7",
+    "standard": "17.1.0",
     "tap-spec": "5.0.0",
     "tape": "5.6.6"
   },
@@ -51,6 +52,9 @@
   },
   "scripts": {
     "benchmark": "nanobench benchmark/*.js",
+    "bundle": "mkdir -p dist && npm run bundle:lib && npm run bundle:test",
+    "bundle:lib": "browserify lib/index.js -s bencode -o dist/bencode.js",
+    "bundle:test": "browserify test/*.test.js -o dist/tests.js",
     "style": "standard --fix",
     "test": "standard && tape test/*.test.js | tap-spec"
   },
