@@ -1,6 +1,7 @@
 import test from 'tape'
 import data from './data.js'
 import bencode from '../index.js'
+import { arr2text } from 'uint8-util'
 
 test('bencode#encode()', function (t) {
   // prevent the warning showing up in the test
@@ -195,5 +196,10 @@ test('bencode#encode()', function (t) {
     const expected = new Uint8Array(subData.buffer, subData.byteOffset, subData.byteLength)
     t.plan(1)
     t.deepEqual(result, expected)
+  })
+  t.test('should encode large numbers with full digits', function (t) {
+    t.plan(1)
+    const data = 340282366920938463463374607431768211456
+    t.deepEqual(arr2text(bencode.encode(data)), 'i340282366920938463463374607431768211456e')
   })
 })
