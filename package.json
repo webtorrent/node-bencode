@@ -3,7 +3,7 @@
   "description": "Bencode de/encoder",
   "version": "3.1.0",
   "bugs": {
-    "url": "https://github.com/themasch/node-bencode/issues"
+    "url": "https://github.com/webtorrent/node-bencode/issues"
   },
   "type": "module",
   "contributors": [
@@ -48,7 +48,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/themasch/node-bencode.git"
+    "url": "git://github.com/webtorrent/node-bencode.git"
   },
   "scripts": {
     "benchmark": "nanobench benchmark/*.js",

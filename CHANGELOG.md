@@ -1,51 +1,51 @@
-# [3.1.0](https://github.com/themasch/node-bencode/compare/v3.0.3...v3.1.0) (2023-07-31)
+# [3.1.0](https://github.com/webtorrent/node-bencode/compare/v3.0.3...v3.1.0) (2023-07-31)
 
 
 ### Features
 
-* update uint8-util ([#153](https://github.com/themasch/node-bencode/issues/153)) ([7941736](https://github.com/themasch/node-bencode/commit/79417361876a5e5b6b9b17260a5ede8042cfa3e6))
+* update uint8-util ([#153](https://github.com/webtorrent/node-bencode/issues/153)) ([7941736](https://github.com/webtorrent/node-bencode/commit/79417361876a5e5b6b9b17260a5ede8042cfa3e6))
 
-## [3.0.3](https://github.com/themasch/node-bencode/compare/v3.0.2...v3.0.3) (2023-01-31)
-
-
-### Bug Fixes
-
-* update dependency nanobench to v3 ([#130](https://github.com/themasch/node-bencode/issues/130)) ([f7027c4](https://github.com/themasch/node-bencode/commit/f7027c46f9cf86017f388fa6d811417b13e03e8e))
-
-## [3.0.2](https://github.com/themasch/node-bencode/compare/v3.0.1...v3.0.2) (2023-01-31)
+## [3.0.3](https://github.com/webtorrent/node-bencode/compare/v3.0.2...v3.0.3) (2023-01-31)
 
 
 ### Bug Fixes
 
-* package.json for exporting lib ([#140](https://github.com/themasch/node-bencode/issues/140)) ([f63c09a](https://github.com/themasch/node-bencode/commit/f63c09a8a525e67b00cc0e7619eb84bd159855b2))
+* update dependency nanobench to v3 ([#130](https://github.com/webtorrent/node-bencode/issues/130)) ([f7027c4](https://github.com/webtorrent/node-bencode/commit/f7027c46f9cf86017f388fa6d811417b13e03e8e))
 
-## [3.0.1](https://github.com/themasch/node-bencode/compare/v3.0.0...v3.0.1) (2023-01-31)
+## [3.0.2](https://github.com/webtorrent/node-bencode/compare/v3.0.1...v3.0.2) (2023-01-31)
 
 
 ### Bug Fixes
 
-* imports ([#138](https://github.com/themasch/node-bencode/issues/138)) ([abe29c3](https://github.com/themasch/node-bencode/commit/abe29c32ab327fafb323b05f17eda0aa9ca32478))
+* package.json for exporting lib ([#140](https://github.com/webtorrent/node-bencode/issues/140)) ([f63c09a](https://github.com/webtorrent/node-bencode/commit/f63c09a8a525e67b00cc0e7619eb84bd159855b2))
 
-# [3.0.0](https://github.com/themasch/node-bencode/compare/v2.0.3...v3.0.0) (2022-11-28)
+## [3.0.1](https://github.com/webtorrent/node-bencode/compare/v3.0.0...v3.0.1) (2023-01-31)
+
+
+### Bug Fixes
+
+* imports ([#138](https://github.com/webtorrent/node-bencode/issues/138)) ([abe29c3](https://github.com/webtorrent/node-bencode/commit/abe29c32ab327fafb323b05f17eda0aa9ca32478))
+
+# [3.0.0](https://github.com/webtorrent/node-bencode/compare/v2.0.3...v3.0.0) (2022-11-28)
 
 
 ### Features
 
-* esm ([#131](https://github.com/themasch/node-bencode/issues/131)) ([b111818](https://github.com/themasch/node-bencode/commit/b111818695c8e85e1268fa771fc49c7c6687167f))
+* esm ([#131](https://github.com/webtorrent/node-bencode/issues/131)) ([b111818](https://github.com/webtorrent/node-bencode/commit/b111818695c8e85e1268fa771fc49c7c6687167f))
 
 
 ### BREAKING CHANGES
 
 * ESM only
 
-## [2.0.3](https://github.com/themasch/node-bencode/compare/v2.0.2...v2.0.3) (2022-05-13)
+## [2.0.3](https://github.com/webtorrent/node-bencode/compare/v2.0.2...v2.0.3) (2022-05-13)
 
-## [2.0.2](https://github.com/themasch/node-bencode/compare/v2.0.1...v2.0.2) (2021-07-28)
+## [2.0.2](https://github.com/webtorrent/node-bencode/compare/v2.0.1...v2.0.2) (2021-07-28)
 
 
 ### Bug Fixes
 
-* Patch release to drop a dependecy to safe-buffer ([#99](https://github.com/themasch/node-bencode/issues/99)) ([a661715](https://github.com/themasch/node-bencode/commit/a6617150c53c3c00d0cd12c685c5f2ee47db30c0))
+* Patch release to drop a dependecy to safe-buffer ([#99](https://github.com/webtorrent/node-bencode/issues/99)) ([a661715](https://github.com/webtorrent/node-bencode/commit/a6617150c53c3c00d0cd12c685c5f2ee47db30c0))
 
 ## 2.0.1
 
