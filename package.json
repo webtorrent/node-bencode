@@ -67,6 +67,6 @@
     "extends": "@webtorrent/semantic-release-config"
   },
   "dependencies": {
-    "uint8-util": "^2.1.6"
+    "uint8-util": "^2.2.2"
   }
 }
