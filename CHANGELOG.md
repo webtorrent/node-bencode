@@ -1,19 +1,17 @@
 # [4.0.0](https://github.com/webtorrent/node-bencode/compare/v3.1.0...v4.0.0) (2023-08-09)
 
 
-### chore
+### Features
 
-* force major release ([#156](https://github.com/webtorrent/node-bencode/issues/156)) ([a075f8a](https://github.com/webtorrent/node-bencode/commit/a075f8a02408eb4bf82350d1bfce9f0488e15e0e))
-
+* breaking, feat, fix: bigint support, don't mangle directory keys ([#150](https://github.com/webtorrent/node-bencode/pull/150)) ([e95475a](https://github.com/webtorrent/node-bencode/commit/e95475ac554fda8c756669ad31d8af2fae3d64f6))
 
 ### BREAKING CHANGES
 
-* update uint8-util
+* fix: bigint support, don't mangle directory keys
 
-# [3.1.0](https://github.com/webtorrent/node-bencode/compare/v3.0.3...v3.1.0) (2023-07-31)
+## [3.1.1](https://github.com/webtorrent/node-bencode/compare/v3.0.3...v3.1.1) (2023-07-31)
 
-
-### Features
+## Features
 
 * update uint8-util ([#153](https://github.com/webtorrent/node-bencode/issues/153)) ([7941736](https://github.com/webtorrent/node-bencode/commit/79417361876a5e5b6b9b17260a5ede8042cfa3e6))
 
