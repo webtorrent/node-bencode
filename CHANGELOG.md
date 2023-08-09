@@ -11,7 +11,7 @@
 
 ## [3.1.1](https://github.com/webtorrent/node-bencode/compare/v3.0.3...v3.1.1) (2023-07-31)
 
-## Features
+### Features
 
 * update uint8-util ([#153](https://github.com/webtorrent/node-bencode/issues/153)) ([7941736](https://github.com/webtorrent/node-bencode/commit/79417361876a5e5b6b9b17260a5ede8042cfa3e6))
 
