@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/webtorrent/node-bencode/compare/v3.1.0...v4.0.0) (2023-08-09)
+
+
+### chore
+
+* force major release ([#156](https://github.com/webtorrent/node-bencode/issues/156)) ([a075f8a](https://github.com/webtorrent/node-bencode/commit/a075f8a02408eb4bf82350d1bfce9f0488e15e0e))
+
+
+### BREAKING CHANGES
+
+* update uint8-util
+
 # [3.1.0](https://github.com/webtorrent/node-bencode/compare/v3.0.3...v3.1.0) (2023-07-31)
 
 
