@@ -1,14 +1,21 @@
 import fs from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 import bencode from '../index.js'
-import bench from 'nanobench'
+
+import { Bench } from 'tinybench'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
 const torrent = bencode.decode(buffer)
 
 const ITERATIONS = 10000
 
-bench('bencode.encodingLength(torrent)', function (run) {
+const bench = new Bench({ time: 100 })
+
+bench.add('bencode.encodingLength(torrent)', function (run) {
   const result = null
 
   run.start()
@@ -20,7 +27,7 @@ bench('bencode.encodingLength(torrent)', function (run) {
   return result
 })
 
-bench('bencode.encodingLength(buffer)', function (run) {
+bench.add('bencode.encodingLength(buffer)', function (run) {
   const result = null
 
   run.start()
@@ -32,7 +39,7 @@ bench('bencode.encodingLength(buffer)', function (run) {
   return result
 })
 
-bench('bencode.encodingLength(string)', function (run) {
+bench.add('bencode.encodingLength(string)', function (run) {
   const result = null
 
   run.start()
@@ -44,7 +51,7 @@ bench('bencode.encodingLength(string)', function (run) {
   return result
 })
 
-bench('bencode.encodingLength(number)', function (run) {
+bench.add('bencode.encodingLength(number)', function (run) {
   const result = null
 
   run.start()
@@ -56,7 +63,7 @@ bench('bencode.encodingLength(number)', function (run) {
   return result
 })
 
-bench('bencode.encodingLength(array<number>)', function (run) {
+bench.add('bencode.encodingLength(array<number>)', function (run) {
   const result = null
 
   run.start()
@@ -68,7 +75,7 @@ bench('bencode.encodingLength(array<number>)', function (run) {
   return result
 })
 
-bench('bencode.encodingLength(small object)', function (run) {
+bench.add('bencode.encodingLength(small object)', function (run) {
   const result = null
 
   run.start()
@@ -79,3 +86,7 @@ bench('bencode.encodingLength(small object)', function (run) {
 
   return result
 })
+
+await bench.run()
+
+console.table(bench.table())

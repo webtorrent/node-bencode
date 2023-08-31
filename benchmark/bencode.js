@@ -1,8 +1,12 @@
 import fs from 'fs'
 import path from 'path'
-import bench from 'nanobench'
+import { fileURLToPath } from 'url'
+import { Bench } from 'tinybench'
 
 import bencode from '../index.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
 const object = bencode.decode(buffer)
@@ -12,7 +16,9 @@ const objectBinary = bencode.decode(buffer, 'binary')
 
 const ITERATIONS = 10000
 
-bench(`bencode.encode() [buffer] ⨉ ${ITERATIONS}`, function (run) {
+const bench = new Bench({ time: 100 })
+
+bench.add(`bencode.encode() [buffer] ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -24,7 +30,7 @@ bench(`bencode.encode() [buffer] ⨉ ${ITERATIONS}`, function (run) {
   return result
 })
 
-bench(`bencode.encode() [utf8] ⨉ ${ITERATIONS}`, function (run) {
+bench.add(`bencode.encode() [utf8] ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -36,7 +42,7 @@ bench(`bencode.encode() [utf8] ⨉ ${ITERATIONS}`, function (run) {
   return result
 })
 
-bench(`bencode.encode() [ascii] ⨉ ${ITERATIONS}`, function (run) {
+bench.add(`bencode.encode() [ascii] ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -48,7 +54,7 @@ bench(`bencode.encode() [ascii] ⨉ ${ITERATIONS}`, function (run) {
   return result
 })
 
-bench(`bencode.encode() [binary] ⨉ ${ITERATIONS}`, function (run) {
+bench.add(`bencode.encode() [binary] ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -60,7 +66,7 @@ bench(`bencode.encode() [binary] ⨉ ${ITERATIONS}`, function (run) {
   return result
 })
 
-bench(`bencode.decode() [buffer] ⨉ ${ITERATIONS}`, function (run) {
+bench.add(`bencode.decode() [buffer] ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -72,7 +78,7 @@ bench(`bencode.decode() [buffer] ⨉ ${ITERATIONS}`, function (run) {
   return result
 })
 
-bench(`bencode.decode() [utf8] ⨉ ${ITERATIONS}`, function (run) {
+bench.add(`bencode.decode() [utf8] ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -84,7 +90,7 @@ bench(`bencode.decode() [utf8] ⨉ ${ITERATIONS}`, function (run) {
   return result
 })
 
-bench(`bencode.decode() [ascii] ⨉ ${ITERATIONS}`, function (run) {
+bench.add(`bencode.decode() [ascii] ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -96,7 +102,7 @@ bench(`bencode.decode() [ascii] ⨉ ${ITERATIONS}`, function (run) {
   return result
 })
 
-bench(`bencode.decode() [binary] ⨉ ${ITERATIONS}`, function (run) {
+bench.add(`bencode.decode() [binary] ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -107,3 +113,7 @@ bench(`bencode.decode() [binary] ⨉ ${ITERATIONS}`, function (run) {
 
   return result
 })
+
+await bench.run()
+
+console.table(bench.table())
