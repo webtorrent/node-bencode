@@ -18,65 +18,63 @@ const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
 const ITERATIONS = 1
 
 suite('compare decode', () => {
+  scenario('bencode.decode()', function () {
+    let result = null
 
-scenario(`bencode.decode()`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.decode(buffer)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.decode(buffer)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencoding.decode()', function () {
+    let result = null
 
-scenario(`bencoding.decode()`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencoding.decode(buffer)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencoding.decode(buffer)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bncode.decode()', function () {
+    let result = null
 
-scenario(`bncode.decode()`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bncode.decode(buffer)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bncode.decode(buffer)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('btparse()', function () {
+    let result = null
 
-scenario(`btparse()`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = btparse(buffer)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = btparse(buffer)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('dht.decode()', function () {
+    let result = null
 
-scenario(`dht.decode()`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = dht.decode(buffer)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = dht.decode(buffer)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('dhtBencode.decode()', function () {
+    let result = null
 
-scenario(`dhtBencode.decode()`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = dhtBencode.bdecode(buffer)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = dhtBencode.bdecode(buffer)
-  }
-
-  return result
-})
-
+    return result
+  })
 })

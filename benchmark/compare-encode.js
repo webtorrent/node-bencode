@@ -18,55 +18,53 @@ const object = bencode.decode(buffer)
 const ITERATIONS = 1
 
 suite('compare encode', () => {
+  scenario('bencode.encode()', function () {
+    let result = null
 
-scenario(`bencode.encode()`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.encode(object)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.encode(object)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencoding.encode()', function () {
+    let result = null
 
-scenario(`bencoding.encode()`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencoding.encode(object)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencoding.encode(object)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bncode.encode()', function () {
+    let result = null
 
-scenario(`bncode.encode()`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bncode.encode(object)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bncode.encode(object)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('dht.encode()', function () {
+    let result = null
 
-scenario(`dht.encode()`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = dht.encode(object)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = dht.encode(object)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('dhtBencode.encode()', function () {
+    let result = null
 
-scenario(`dhtBencode.encode()`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = dhtBencode.bencode(object)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = dhtBencode.bencode(object)
-  }
-
-  return result
-})
-
+    return result
+  })
 })

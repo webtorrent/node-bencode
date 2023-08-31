@@ -1,6 +1,3 @@
-// workaround: name of first suite is not printed
-console.log('reference before benchmarks')
-
 import './reference-before.js'
 
 import './bencode.js'

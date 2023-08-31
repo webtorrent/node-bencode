@@ -12,25 +12,23 @@ const str = buffer.toString('ascii')
 const ITERATIONS = 1
 
 suite('buffer vs string', () => {
+  scenario('decode buffer', function () {
+    let result = null
 
-scenario(`decode buffer`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.decode(buffer)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.decode(buffer)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('decode string', function () {
+    let result = null
 
-scenario(`decode string`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.decode(str)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.decode(str)
-  }
-
-  return result
-})
-
+    return result
+  })
 })

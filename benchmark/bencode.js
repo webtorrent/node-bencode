@@ -16,85 +16,83 @@ const objectBinary = bencode.decode(buffer, 'binary')
 const ITERATIONS = 1
 
 suite('bencode', () => {
+  scenario('bencode.encode() [buffer]', function () {
+    let result = null
 
-scenario(`bencode.encode() [buffer]`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.encode(object)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.encode(object)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencode.encode() [utf8]', function () {
+    let result = null
 
-scenario(`bencode.encode() [utf8]`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.encode(objectUtf8)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.encode(objectUtf8)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencode.encode() [ascii]', function () {
+    let result = null
 
-scenario(`bencode.encode() [ascii]`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.encode(objectAscii)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.encode(objectAscii)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencode.encode() [binary]', function () {
+    let result = null
 
-scenario(`bencode.encode() [binary]`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.encode(objectBinary)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.encode(objectBinary)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencode.decode() [buffer]', function () {
+    let result = null
 
-scenario(`bencode.decode() [buffer]`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.decode(buffer)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.decode(buffer)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencode.decode() [utf8]', function () {
+    let result = null
 
-scenario(`bencode.decode() [utf8]`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.decode(buffer, 'utf8')
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.decode(buffer, 'utf8')
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencode.decode() [ascii]', function () {
+    let result = null
 
-scenario(`bencode.decode() [ascii]`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.decode(buffer, 'ascii')
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.decode(buffer, 'ascii')
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencode.decode() [binary]', function () {
+    let result = null
 
-scenario(`bencode.decode() [binary]`, function () {
-  let result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.decode(buffer, 'binary')
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.decode(buffer, 'binary')
-  }
-
-  return result
-})
-
+    return result
+  })
 })

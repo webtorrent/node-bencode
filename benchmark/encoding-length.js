@@ -12,65 +12,63 @@ const torrent = bencode.decode(buffer)
 const ITERATIONS = 1
 
 suite('encoding length', () => {
+  scenario('bencode.encodingLength(torrent)', function () {
+    const result = null
 
-scenario('bencode.encodingLength(torrent)', function () {
-  const result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      bencode.encodingLength(torrent)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength(torrent)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencode.encodingLength(buffer)', function () {
+    const result = null
 
-scenario('bencode.encodingLength(buffer)', function () {
-  const result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      bencode.encodingLength(buffer)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength(buffer)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencode.encodingLength(string)', function () {
+    const result = null
 
-scenario('bencode.encodingLength(string)', function () {
-  const result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      bencode.encodingLength('Test, test, this is a string')
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength('Test, test, this is a string')
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencode.encodingLength(number)', function () {
+    const result = null
 
-scenario('bencode.encodingLength(number)', function () {
-  const result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      bencode.encodingLength(87641234567)
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength(87641234567)
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencode.encodingLength(array<number>)', function () {
+    const result = null
 
-scenario('bencode.encodingLength(array<number>)', function () {
-  const result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      bencode.encodingLength([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-  }
+    return result
+  })
 
-  return result
-})
+  scenario('bencode.encodingLength(small object)', function () {
+    const result = null
 
-scenario('bencode.encodingLength(small object)', function () {
-  const result = null
+    for (let i = 0; i < ITERATIONS; i++) {
+      bencode.encodingLength({ a: 1, b: 'c', d: 'abcdefg', e: [1, 2, 3] })
+    }
 
-  for (let i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength({ a: 1, b: 'c', d: 'abcdefg', e: [1, 2, 3] })
-  }
-
-  return result
-})
-
+    return result
+  })
 })
