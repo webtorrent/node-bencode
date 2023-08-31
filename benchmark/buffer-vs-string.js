@@ -1,33 +1,36 @@
 import fs from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 import bencode from '../index.js'
-import bench from 'nanobench'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
 const str = buffer.toString('ascii')
 
-const ITERATIONS = 10000
+const ITERATIONS = 1
 
-bench(`decode buffer ⨉ ${ITERATIONS}`, function (run) {
+suite('buffer vs string', () => {
+
+scenario(`decode buffer`, function () {
   let result = null
 
-  run.start()
   for (let i = 0; i < ITERATIONS; i++) {
     result = bencode.decode(buffer)
   }
-  run.end()
 
   return result
 })
 
-bench(`decode string ⨉ ${ITERATIONS}`, function (run) {
+scenario(`decode string`, function () {
   let result = null
 
-  run.start()
   for (let i = 0; i < ITERATIONS; i++) {
     result = bencode.decode(str)
   }
-  run.end()
 
   return result
+})
+
 })

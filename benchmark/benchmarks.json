@@ -1,0 +1,237 @@
+{
+  "suites": [
+    {
+      "name": "reference before benchmarks",
+      "scenarios": [
+        {
+          "name": "fibonacci loop",
+          "executions": 1000000,
+          "time": 559.685652,
+          "error": 3.1487334028716933
+        },
+        {
+          "name": "fibonacci recursive",
+          "executions": 7934,
+          "time": 630177.2286362491,
+          "error": 1.0079477172579856
+        },
+        {
+          "name": "fibonacci recmemo",
+          "executions": 629322,
+          "time": 7945.0529029654135,
+          "error": 0.5723554930927267
+        }
+      ]
+    },
+    {
+      "name": "bencode",
+      "scenarios": [
+        {
+          "name": "bencode.encode() [buffer]",
+          "executions": 35127,
+          "time": 142342.0572494093,
+          "error": 1.2212460556968496
+        },
+        {
+          "name": "bencode.encode() [utf8]",
+          "executions": 1349,
+          "time": 3704002.3409933285,
+          "error": 0.6776323429925276
+        },
+        {
+          "name": "bencode.encode() [ascii]",
+          "executions": 1387,
+          "time": 3604457.93222783,
+          "error": 0.6959704620115251
+        },
+        {
+          "name": "bencode.encode() [binary]",
+          "executions": 1384,
+          "time": 3611082.62283237,
+          "error": 0.886904952461389
+        },
+        {
+          "name": "bencode.decode() [buffer]",
+          "executions": 42809,
+          "time": 116795.72767408722,
+          "error": 0.7320742513453905
+        },
+        {
+          "name": "bencode.decode() [utf8]",
+          "executions": 2313,
+          "time": 2161073.1547773452,
+          "error": 0.6380497099955478
+        },
+        {
+          "name": "bencode.decode() [ascii]",
+          "executions": 2409,
+          "time": 2074895.296803653,
+          "error": 0.5471675241633337
+        },
+        {
+          "name": "bencode.decode() [binary]",
+          "executions": 2396,
+          "time": 2086413.753338898,
+          "error": 0.5403395352166391
+        }
+      ]
+    },
+    {
+      "name": "buffer vs string",
+      "scenarios": [
+        {
+          "name": "decode buffer",
+          "executions": 45024,
+          "time": 111051.06445451315,
+          "error": 0.5052997397476986
+        },
+        {
+          "name": "decode string",
+          "executions": 27973,
+          "time": 178745.74042827013,
+          "error": 0.5037603579470834
+        }
+      ]
+    },
+    {
+      "name": "compare decode",
+      "scenarios": [
+        {
+          "name": "bencode.decode()",
+          "executions": 44568,
+          "time": 112188.04153204092,
+          "error": 0.5311823992431295
+        },
+        {
+          "name": "bencoding.decode()",
+          "executions": 54228,
+          "time": 92203.5159696098,
+          "error": 0.5519025773079677
+        },
+        {
+          "name": "bncode.decode()",
+          "executions": 1570,
+          "time": 3184351.9987261146,
+          "error": 4.031632965687692
+        },
+        {
+          "name": "btparse()",
+          "executions": 132325,
+          "time": 37785.48271301719,
+          "error": 0.49077930951590953
+        },
+        {
+          "name": "dht.decode()",
+          "executions": 47400,
+          "time": 105483.08683544304,
+          "error": 0.4728875447697615
+        },
+        {
+          "name": "dhtBencode.decode()",
+          "executions": 28774,
+          "time": 173762.59105442412,
+          "error": 0.4921701716738526
+        }
+      ]
+    },
+    {
+      "name": "compare encode",
+      "scenarios": [
+        {
+          "name": "bencode.encode()",
+          "executions": 37666,
+          "time": 132742.29127064196,
+          "error": 0.8299521400901717
+        },
+        {
+          "name": "bencoding.encode()",
+          "executions": 25,
+          "time": 195132381.92,
+          "error": 8.551313598927392
+        },
+        {
+          "name": "bncode.encode()",
+          "executions": 1,
+          "time": 3939521850,
+          "error": 0
+        },
+        {
+          "name": "dht.encode()",
+          "executions": 50,
+          "time": 99655056.16,
+          "error": 6.321304669124846
+        },
+        {
+          "name": "dhtBencode.encode()",
+          "executions": 14,
+          "time": 351528698.78571427,
+          "error": 9.904070184501599
+        }
+      ]
+    },
+    {
+      "name": "encoding length",
+      "scenarios": [
+        {
+          "name": "bencode.encodingLength(torrent)",
+          "executions": 162351,
+          "time": 30797.4295569476,
+          "error": 2.6093067216240846
+        },
+        {
+          "name": "bencode.encodingLength(buffer)",
+          "executions": 1000000,
+          "time": 1151.522846,
+          "error": 0.17154410205677803
+        },
+        {
+          "name": "bencode.encodingLength(string)",
+          "executions": 1000000,
+          "time": 4384.510143,
+          "error": 0.33437787838758865
+        },
+        {
+          "name": "bencode.encodingLength(number)",
+          "executions": 1000000,
+          "time": 557.416746,
+          "error": 0.29860269449773136
+        },
+        {
+          "name": "bencode.encodingLength(array<number>)",
+          "executions": 1000000,
+          "time": 2784.717913,
+          "error": 0.20104464676215553
+        },
+        {
+          "name": "bencode.encodingLength(small object)",
+          "executions": 311927,
+          "time": 16029.371202236422,
+          "error": 0.34310281585091806
+        }
+      ]
+    },
+    {
+      "name": "reference after benchmarks",
+      "scenarios": [
+        {
+          "name": "fibonacci loop",
+          "executions": 1000000,
+          "time": 689.084318,
+          "error": 0.231909777005114
+        },
+        {
+          "name": "fibonacci recursive",
+          "executions": 7080,
+          "time": 706143.8394067796,
+          "error": 0.963718658922282
+        },
+        {
+          "name": "fibonacci recmemo",
+          "executions": 614393,
+          "time": 8138.115209645944,
+          "error": 0.2215156965189563
+        }
+      ]
+    }
+  ]
+}
