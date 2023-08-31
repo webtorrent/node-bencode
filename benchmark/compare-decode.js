@@ -1,19 +1,26 @@
 import fs from 'fs'
 import path from 'path'
-import bench from 'nanobench'
+import { fileURLToPath } from 'url'
+import { Bench } from 'tinybench'
 
 import bencode from '../index.js'
+
 import bencoding from 'bencoding'
 import bncode from 'bncode'
 import btparse from 'btparse'
-import dht from 'dht.js/lib/dht/bencode'
+import dht from 'dht.js/lib/dht/bencode.js'
 import dhtBencode from 'dht-bencode'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
 
 const ITERATIONS = 10000
 
-bench(`bencode.decode() ⨉ ${ITERATIONS}`, function (run) {
+const bench = new Bench({ time: 100 })
+
+bench.add(`bencode.decode() ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -25,7 +32,7 @@ bench(`bencode.decode() ⨉ ${ITERATIONS}`, function (run) {
   return result
 })
 
-bench(`bencoding.decode() ⨉ ${ITERATIONS}`, function (run) {
+bench.add(`bencoding.decode() ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -37,7 +44,7 @@ bench(`bencoding.decode() ⨉ ${ITERATIONS}`, function (run) {
   return result
 })
 
-bench(`bncode.decode() ⨉ ${ITERATIONS}`, function (run) {
+bench.add(`bncode.decode() ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -49,7 +56,7 @@ bench(`bncode.decode() ⨉ ${ITERATIONS}`, function (run) {
   return result
 })
 
-bench(`btparse() ⨉ ${ITERATIONS}`, function (run) {
+bench.add(`btparse() ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -61,7 +68,7 @@ bench(`btparse() ⨉ ${ITERATIONS}`, function (run) {
   return result
 })
 
-bench(`dht.decode() ⨉ ${ITERATIONS}`, function (run) {
+bench.add(`dht.decode() ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -73,7 +80,7 @@ bench(`dht.decode() ⨉ ${ITERATIONS}`, function (run) {
   return result
 })
 
-bench(`dhtBencode.decode() ⨉ ${ITERATIONS}`, function (run) {
+bench.add(`dhtBencode.decode() ⨉ ${ITERATIONS}`, function (run) {
   let result = null
 
   run.start()
@@ -84,3 +91,7 @@ bench(`dhtBencode.decode() ⨉ ${ITERATIONS}`, function (run) {
 
   return result
 })
+
+await bench.run()
+
+console.table(bench.table())
