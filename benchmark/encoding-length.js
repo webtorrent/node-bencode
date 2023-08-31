@@ -1,3 +1,6 @@
+// suite and scenario are undefined
+/* eslint-disable no-undef */
+
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'

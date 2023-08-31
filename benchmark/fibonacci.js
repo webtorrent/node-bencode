@@ -1,3 +1,6 @@
+// suite and scenario are undefined
+/* eslint-disable no-undef */
+
 // run a constant benchmark suite before and after our tests
 // so we can normalize performance across different CPUs
 
