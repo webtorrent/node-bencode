@@ -13,7 +13,7 @@ import dhtBencode from 'dht-bencode'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
+const buffer = fs.readFileSync(path.join(__dirname, '..', 'test', 'data', 'test.torrent'))
 
 const ITERATIONS = 1
 

@@ -7,7 +7,7 @@ import bencode from '../index.js'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
+const buffer = fs.readFileSync(path.join(__dirname, '..', 'test', 'data', 'test.torrent'))
 const object = bencode.decode(buffer)
 const objectUtf8 = bencode.decode(buffer, 'utf8')
 const objectAscii = bencode.decode(buffer, 'ascii')
