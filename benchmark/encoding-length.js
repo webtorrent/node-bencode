@@ -1,81 +1,77 @@
+// suite and scenario are undefined
+/* eslint-disable no-undef */
+
 import fs from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 import bencode from '../index.js'
-import bench from 'nanobench'
 
-const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+const buffer = fs.readFileSync(path.join(__dirname, '..', 'test', 'data', 'test.torrent'))
 const torrent = bencode.decode(buffer)
 
-const ITERATIONS = 10000
+const ITERATIONS = 1
 
-bench('bencode.encodingLength(torrent)', function (run) {
-  const result = null
+suite('encoding length', () => {
+  scenario('bencode.encodingLength(torrent)', function () {
+    const result = null
 
-  run.start()
-  for (let i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength(torrent)
-  }
-  run.end()
+    for (let i = 0; i < ITERATIONS; i++) {
+      bencode.encodingLength(torrent)
+    }
 
-  return result
-})
+    return result
+  })
 
-bench('bencode.encodingLength(buffer)', function (run) {
-  const result = null
+  scenario('bencode.encodingLength(buffer)', function () {
+    const result = null
 
-  run.start()
-  for (let i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength(buffer)
-  }
-  run.end()
+    for (let i = 0; i < ITERATIONS; i++) {
+      bencode.encodingLength(buffer)
+    }
 
-  return result
-})
+    return result
+  })
 
-bench('bencode.encodingLength(string)', function (run) {
-  const result = null
+  scenario('bencode.encodingLength(string)', function () {
+    const result = null
 
-  run.start()
-  for (let i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength('Test, test, this is a string')
-  }
-  run.end()
+    for (let i = 0; i < ITERATIONS; i++) {
+      bencode.encodingLength('Test, test, this is a string')
+    }
 
-  return result
-})
+    return result
+  })
 
-bench('bencode.encodingLength(number)', function (run) {
-  const result = null
+  scenario('bencode.encodingLength(number)', function () {
+    const result = null
 
-  run.start()
-  for (let i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength(87641234567)
-  }
-  run.end()
+    for (let i = 0; i < ITERATIONS; i++) {
+      bencode.encodingLength(87641234567)
+    }
 
-  return result
-})
+    return result
+  })
 
-bench('bencode.encodingLength(array<number>)', function (run) {
-  const result = null
+  scenario('bencode.encodingLength(array<number>)', function () {
+    const result = null
 
-  run.start()
-  for (let i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-  }
-  run.end()
+    for (let i = 0; i < ITERATIONS; i++) {
+      bencode.encodingLength([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    }
 
-  return result
-})
+    return result
+  })
 
-bench('bencode.encodingLength(small object)', function (run) {
-  const result = null
+  scenario('bencode.encodingLength(small object)', function () {
+    const result = null
 
-  run.start()
-  for (let i = 0; i < ITERATIONS; i++) {
-    bencode.encodingLength({ a: 1, b: 'c', d: 'abcdefg', e: [1, 2, 3] })
-  }
-  run.end()
+    for (let i = 0; i < ITERATIONS; i++) {
+      bencode.encodingLength({ a: 1, b: 'c', d: 'abcdefg', e: [1, 2, 3] })
+    }
 
-  return result
+    return result
+  })
 })

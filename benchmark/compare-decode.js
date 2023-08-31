@@ -1,86 +1,83 @@
+// suite and scenario are undefined
+/* eslint-disable no-undef */
+
 import fs from 'fs'
 import path from 'path'
-import bench from 'nanobench'
+import { fileURLToPath } from 'url'
 
 import bencode from '../index.js'
+
 import bencoding from 'bencoding'
 import bncode from 'bncode'
 import btparse from 'btparse'
-import dht from 'dht.js/lib/dht/bencode'
+import dht from 'dht.js/lib/dht/bencode.js'
 import dhtBencode from 'dht-bencode'
 
-const buffer = fs.readFileSync(path.join(__dirname, 'test.torrent'))
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
-const ITERATIONS = 10000
+const buffer = fs.readFileSync(path.join(__dirname, '..', 'test', 'data', 'test.torrent'))
 
-bench(`bencode.decode() ⨉ ${ITERATIONS}`, function (run) {
-  let result = null
+const ITERATIONS = 1
 
-  run.start()
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencode.decode(buffer)
-  }
-  run.end()
+suite('compare decode', () => {
+  scenario('bencode.decode()', function () {
+    let result = null
 
-  return result
-})
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencode.decode(buffer)
+    }
 
-bench(`bencoding.decode() ⨉ ${ITERATIONS}`, function (run) {
-  let result = null
+    return result
+  })
 
-  run.start()
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bencoding.decode(buffer)
-  }
-  run.end()
+  scenario('bencoding.decode()', function () {
+    let result = null
 
-  return result
-})
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bencoding.decode(buffer)
+    }
 
-bench(`bncode.decode() ⨉ ${ITERATIONS}`, function (run) {
-  let result = null
+    return result
+  })
 
-  run.start()
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = bncode.decode(buffer)
-  }
-  run.end()
+  scenario('bncode.decode()', function () {
+    let result = null
 
-  return result
-})
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = bncode.decode(buffer)
+    }
 
-bench(`btparse() ⨉ ${ITERATIONS}`, function (run) {
-  let result = null
+    return result
+  })
 
-  run.start()
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = btparse(buffer)
-  }
-  run.end()
+  scenario('btparse()', function () {
+    let result = null
 
-  return result
-})
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = btparse(buffer)
+    }
 
-bench(`dht.decode() ⨉ ${ITERATIONS}`, function (run) {
-  let result = null
+    return result
+  })
 
-  run.start()
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = dht.decode(buffer)
-  }
-  run.end()
+  scenario('dht.decode()', function () {
+    let result = null
 
-  return result
-})
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = dht.decode(buffer)
+    }
 
-bench(`dhtBencode.decode() ⨉ ${ITERATIONS}`, function (run) {
-  let result = null
+    return result
+  })
 
-  run.start()
-  for (let i = 0; i < ITERATIONS; i++) {
-    result = dhtBencode.bdecode(buffer)
-  }
-  run.end()
+  scenario('dhtBencode.decode()', function () {
+    let result = null
 
-  return result
+    for (let i = 0; i < ITERATIONS; i++) {
+      result = dhtBencode.bdecode(buffer)
+    }
+
+    return result
+  })
 })

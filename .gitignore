@@ -2,3 +2,5 @@ node_modules
 dist
 package-lock.json
 pnpm-lock.yaml
+test/data/*.torrent.actual
+test/data/*.torrent.actual.txt

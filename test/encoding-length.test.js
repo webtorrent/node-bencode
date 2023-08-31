@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 const torrent = fs.readFileSync(
-  path.join(__dirname, '..', 'benchmark', 'test.torrent')
+  path.join(__dirname, 'data', 'test.torrent')
 )
 
 test('encoding-length', function (t) {
