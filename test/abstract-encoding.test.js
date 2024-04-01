@@ -1,5 +1,5 @@
 import test from 'tape'
-import bencode from '../lib/index.js'
+import bencode from '../index.js'
 
 test('abstract encoding', function (t) {
   t.test('encodingLength( value )', function (t) {

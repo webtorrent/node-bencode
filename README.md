@@ -1,8 +1,8 @@
 # Bencode
-[![npm](https://img.shields.io/npm/v/bencode.svg?style=flat-square)](https://npmjs.com/bencode)
-[![npm downloads](https://img.shields.io/npm/dm/bencode.svg?style=flat-square)](https://npmjs.com/bencode)
-[![tests](https://github.com/webtorrent/node-bencode/actions/workflows/test.yml/badge.svg)](https://github.com/webtorrent/node-bencode/actions/workflows/test.yml)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fthemasch%2Fnode-bencode.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fthemasch%2Fnode-bencode?ref=badge_shield)
+[![npm](https://img.shields.io/npm/v/bencode.svg)](https://npmjs.com/bencode)
+[![npm downloads](https://img.shields.io/npm/dm/bencode.svg)](https://npmjs.com/bencode)
+[![ci](https://github.com/webtorrent/node-bencode/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/webtorrent/node-bencode/actions/workflows/ci.yml)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebtorrent%2Fnode-bencode.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebtorrent%2Fnode-bencode?ref=badge_shield)
 
 A node library for encoding and decoding bencoded data,
 according to the [BitTorrent specification](http://www.bittorrent.org/beps/bep_0003.html).
@@ -39,7 +39,7 @@ npm install bencode
 ## Usage
 
 ```javascript
-var bencode = require( 'bencode' )
+import bencode from 'bencode'
 ```
 
 You can also use node-bencode with browserify to be able to use it in a lot of modern browsers.
