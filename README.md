@@ -39,7 +39,7 @@ npm install bencode
 ## Usage
 
 ```javascript
-import bencode from 'bencode';
+var bencode = require( 'bencode' )
 ```
 
 You can also use node-bencode with browserify to be able to use it in a lot of modern browsers.
