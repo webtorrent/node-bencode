@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/webtorrent/node-bencode/compare/v4.0.0...v4.0.1) (2026-05-25)
+
+
+### Bug Fixes
+
+* **release:** update release.yml to include permissions for actions ([bef420f](https://github.com/webtorrent/node-bencode/commit/bef420fa29cc8a8945f9242390496ceef0a6c083))
+
 # [4.0.0](https://github.com/webtorrent/node-bencode/compare/v3.1.0...v4.0.0) (2023-08-09)
 
 
