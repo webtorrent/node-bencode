@@ -44,7 +44,9 @@
     "node": ">=12.20.0"
   },
   "exports": {
-    "import": "./index.js"
+    ".": {
+      "import": "./index.js"
+    }
   },
   "repository": {
     "type": "git",
