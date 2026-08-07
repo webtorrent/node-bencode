@@ -22,6 +22,14 @@ test('bencode#encode()', function (t) {
     t.equal(Buffer.from(bencode.encode(data)).toString(), 'd7:integeri12345e6:string11:Hello Worlde')
   })
 
+  t.test('should sort dictionary keys bytewise per BEP 3, including astral keys', function (t) {
+    t.plan(1)
+    // '\uE000' (UTF-8 ee 80 80) must sort before '\u{1F600}' (UTF-8 f0 9f 98 80),
+    // even though the astral key's leading UTF-16 surrogate (d83d) sorts first.
+    const data = { '\u{1F600}': 2, '\uE000': 1 }
+    t.equal(Buffer.from(bencode.encode(data)).toString('hex'), '64333aee8080693165343af09f988069326565')
+  })
+
   t.test('should force keys to be strings', function (t) {
     t.plan(1)
     const data = {
