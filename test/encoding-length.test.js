@@ -37,6 +37,43 @@ test('encoding-length', function (t) {
     t.equal(bencode.encodingLength(map), 28) // d1:ai1e1:b3:str1:cd2:de1:fee
   })
 
+  t.test('returns correct length for ArrayBuffer views', function (t) {
+    const buffer = new ArrayBuffer(32)
+    const cases = [
+      ['full view', new Uint8Array(buffer), 35],
+      ['offset view with a two digit length', new Uint8Array(buffer, 2, 10), 13],
+      ['offset larger than the view length', new Uint8Array(buffer, 20, 3), 5],
+      ['empty offset view', new Uint8Array(buffer, 7, 0), 2],
+      ['Uint16Array view', new Uint16Array(buffer, 8, 3), 8],
+      ['Uint32Array view', new Uint32Array(buffer, 12, 3), 15],
+      ['DataView', new DataView(buffer, 20, 3), 5],
+      ['empty DataView', new DataView(buffer, 7, 0), 2],
+      ['Buffer subarray', Buffer.from(buffer).subarray(20, 23), 5]
+    ]
+
+    t.plan(cases.length * 2)
+    for (const [name, value, length] of cases) {
+      t.equal(bencode.encodingLength(value), length, name)
+      t.equal(bencode.byteLength(value), length, name + ' byteLength alias')
+    }
+  })
+
+  t.test('returns correct length for nested offset views', function (t) {
+    const value = new Uint8Array(new ArrayBuffer(32), 20, 3)
+    t.plan(4)
+    t.equal(bencode.encodingLength([value]), 7)
+    t.equal(bencode.encodingLength(new Set([value])), 7)
+    t.equal(bencode.encodingLength({ a: value }), 10)
+    t.equal(bencode.encodingLength(new Map([['a', value]])), 10)
+  })
+
+  t.test('encodes into a buffer sized from an offset view', function (t) {
+    const value = Uint8Array.from([0, 0, 1, 2, 3]).subarray(2)
+    const target = new Uint8Array(bencode.encodingLength(value))
+    t.plan(1)
+    t.deepEqual(bencode.encode(value, target), Uint8Array.from([51, 58, 1, 2, 3]))
+  })
+
   t.test('returns correct length for empty lists', function (t) {
     t.plan(2)
     t.equal(bencode.encodingLength([]), 2) // le
